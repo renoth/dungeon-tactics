@@ -10,9 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 public class Resources {
-
-    private static final String FONT_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789][_!$%#@|\\/?-+=()*&.;,{}\"´`'<>";
-
     public static Texture hero1;
     public static Texture hero2;
     public static Texture hero3;
@@ -56,7 +53,7 @@ public class Resources {
         textButtonStyle.checked = mainMenuSkin.newDrawable("white", Color.BLUE);
         textButtonStyle.over = mainMenuSkin.newDrawable("white", Color.LIGHT_GRAY);
         textButtonStyle.font = mainMenuSkin.getFont("default");
+        textButtonStyle.pressedOffsetY = -2F;
         mainMenuSkin.add("default", textButtonStyle);
     }
-
 }

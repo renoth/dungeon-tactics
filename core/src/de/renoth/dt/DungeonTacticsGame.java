@@ -11,14 +11,14 @@ public class DungeonTacticsGame extends Game {
 	SpriteBatch batch;
 
     public MenuScreen menuScreen;
-    public GameScreen game;
+    public GameScreen gameScreen;
 
     @Override
 	public void create () {
         Resources.init();
 
         IntroScreen intro = new IntroScreen(this);
-        game = new GameScreen(this);
+        gameScreen = new GameScreen(this);
         menuScreen = new MenuScreen(this);
 
         setScreen(intro);

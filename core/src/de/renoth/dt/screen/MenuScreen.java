@@ -14,12 +14,18 @@ public class MenuScreen extends BaseScreen {
     private Table table = new Table();
 
 
-    public MenuScreen(DungeonTacticsGame game) {
+    public MenuScreen(final DungeonTacticsGame game) {
         super(game);
 
         playButton = new TextButton("Play", Resources.mainMenuSkin);
-        exitButton = new TextButton("Exit", Resources.mainMenuSkin);
+        playButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(game.gameScreen);
+            }
+        });
 
+        exitButton = new TextButton("Exit", Resources.mainMenuSkin);
         exitButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
