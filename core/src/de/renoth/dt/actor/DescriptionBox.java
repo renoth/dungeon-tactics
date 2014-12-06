@@ -27,7 +27,6 @@ public class DescriptionBox extends Actor {
         this.height = maxHeight + 5;
 
         setPosition(x,y);
-        setZIndex(2000);
 
         setOrigin(x, y);
         setBounds(getX(), getY(), width, height);
@@ -47,8 +46,6 @@ public class DescriptionBox extends Actor {
             label.setPosition(Gdx.input.getX(), 800 - Gdx.input.getY());
             label.setVisible(false);
 
-            label.setZIndex(3000);
-
             gameWorld.stage.addActor(label);
             labels.add(label);
         }
@@ -60,8 +57,6 @@ public class DescriptionBox extends Actor {
     }
 
     public void updatePositions() {
-        //remove();
-
         setPosition(Gdx.input.getX() + 5, 800 - Gdx.input.getY() + 5);
         for (Label l : labels) {
             l.setZIndex(3000);

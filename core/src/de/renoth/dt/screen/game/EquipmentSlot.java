@@ -17,6 +17,7 @@ public class EquipmentSlot extends InventorySlot {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        super.draw(batch, parentAlpha);
         batch.draw((gameWorld.selectedItem != null && gameWorld.selectedItem.itemClass == acceptedItemClass) ? Resources.inventoryAccept : tex,
                 getX(), getY(), Constants.INVENTORY_GRID_SIZE, Constants.INVENTORY_GRID_SIZE);
 
