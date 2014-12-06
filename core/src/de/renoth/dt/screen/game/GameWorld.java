@@ -12,6 +12,7 @@ import de.renoth.dt.actor.EnemyActor;
 import de.renoth.dt.actor.SimpleActor;
 import de.renoth.dt.common.Constants;
 import de.renoth.dt.domain.Enemy;
+import de.renoth.dt.domain.Hero;
 import de.renoth.dt.domain.Item;
 import de.renoth.dt.domain.factory.EnemyFactory;
 import de.renoth.dt.res.Resources;
@@ -26,7 +27,8 @@ public class GameWorld {
 
     public Item selectedItem;
     private SimpleActor selectedItemActor;
-    private ArrayList<Object> enemyActors;
+    public ArrayList<Object> enemyActors;
+    public Hero hero;
 
     public GameWorld(GameStage stage) {
         this.stage = stage;
@@ -59,7 +61,8 @@ public class GameWorld {
     }
 
     private void addPlayer() {
-        stage.bg.addActor(new HeroActor(500, 336, 64, 128, this, Resources.hero1));
+        hero = new Hero("Nina");
+        stage.bg.addActor(new HeroActor(500, 336, 64, 128, this, Resources.hero1, hero));
     }
 
     private void addMenu() {

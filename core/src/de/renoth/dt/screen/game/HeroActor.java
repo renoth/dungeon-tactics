@@ -11,10 +11,10 @@ public class HeroActor extends ActorWithDescription {
 
     private Hero hero;
 
-    public HeroActor(int x, int y, int width, int height, final GameWorld gameWorld, Texture tex) {
+    public HeroActor(int x, int y, int width, int height, final GameWorld gameWorld, Texture tex, Hero hero) {
         super(x,y,width,height,gameWorld,tex);
 
-        hero = new Hero("Ninja");
+        this.hero = hero;
 
         createDescriptionBox(hero);
     }

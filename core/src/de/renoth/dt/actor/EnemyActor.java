@@ -19,18 +19,15 @@ public class EnemyActor extends ActorWithDescription {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Hit");
                 if (EnemyActor.this.isHittableByHero(gameWorld)) {
-                    /*if (enemy.takeDamage(gameWorld.hero) <= 0) {
+                    if (enemy.takeDamage(gameWorld.hero) <= 0) {
                         EnemyActor.this.die();
                         System.out.println("Enemy dies");
                     } else {
                         System.out.println("Update info");
-                        createDescriptionBox(enemy, true);
-                    }*/
+                        createDescriptionBox(enemy);
+                    }
                 }
-
-                //TODO enemies turn
-
-                return super.touchDown(event, x, y, pointer, button);
+                return false;
             }
         });
 
@@ -45,11 +42,11 @@ public class EnemyActor extends ActorWithDescription {
     }
 
     private boolean isHittableByHero(GameWorld gameWorld) {
-/*        if (gameWorld.enemyActors.get(0).equals(this)) {
+        if (gameWorld.enemyActors.get(0).equals(this)) {
             return true;
-        }*/
+        }
         //TODO check for side attacks
-        return true;
+        return false;
     }
 
     @Override

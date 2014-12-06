@@ -1,18 +1,9 @@
 package de.renoth.dt.actor;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import javafx.geometry.Point2D;
 
-import java.awt.geom.Dimension2D;
-
-/**
- * User: hans
- * Date: 12/6/14
- */
 public class PositionedLabel extends Label {
 
     private final LabelStyle labelStyle;
