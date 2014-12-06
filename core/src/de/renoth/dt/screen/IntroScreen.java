@@ -20,11 +20,9 @@ public class IntroScreen extends BaseScreen {
     }
 
     @Override
-    public void render(float delta) {
+    protected void onRender() {
         if (Gdx.input.justTouched()) {
             game.setScreen(game.menuScreen);
         }
-
-        super.render(delta);
     }
 }

@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import de.renoth.dt.DungeonTacticsGame;
 import de.renoth.dt.common.Constants;
 
-public class BaseScreen implements Screen {
+public abstract class BaseScreen implements Screen {
     final SpriteBatch batch;
     final OrthographicCamera camera;
     final Stage stage;
@@ -33,14 +33,14 @@ public class BaseScreen implements Screen {
 
         batch.begin();
 
+        stage.draw();
+
         onRender();
 
         batch.end();
     }
 
-    protected void onRender() {
-       stage.draw();
-    }
+    protected abstract void onRender();
 
     @Override
     public void resize(int width, int height) {
@@ -70,5 +70,10 @@ public class BaseScreen implements Screen {
     @Override
     public void dispose() {
 
+    }
+
+    void exitApplication() {
+        Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width, Gdx.graphics.getDesktopDisplayMode().height, false);
+        Gdx.app.exit();
     }
 }

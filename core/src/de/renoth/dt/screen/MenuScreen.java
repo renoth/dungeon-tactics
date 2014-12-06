@@ -29,7 +29,7 @@ public class MenuScreen extends BaseScreen {
         exitButton.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.exit();
+                exitApplication();
             }
         });
 
@@ -39,5 +39,10 @@ public class MenuScreen extends BaseScreen {
         table.setFillParent(true);
 
         stage.addActor(table);
+    }
+
+    @Override
+    protected void onRender() {
+
     }
 }

@@ -1,0 +1,5 @@
+syntax: glob
+.gradle/*
+core/build/*
+desktop/build/*
+dungeon-tactics.iws
