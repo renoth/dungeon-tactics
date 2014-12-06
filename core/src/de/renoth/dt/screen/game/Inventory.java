@@ -12,6 +12,8 @@ import java.util.Map;
 public class Inventory {
     public Map<Integer, InventorySlot> inventory;
     private final GameWorld gameWorld;
+    public EquipmentSlot weaponSlot;
+    public EquipmentSlot armorSlot;
 
     public Inventory(GameWorld gameWorld) {
         this.gameWorld = gameWorld;
@@ -27,13 +29,14 @@ public class Inventory {
     }
 
     private void fillInitialItems() {
-        inventory.put(getFirstFreeInventorySlot(), new Item(ItemClass.WEAPON, "Sword", Resources.item));
+        inventory.get(getFirstFreeInventorySlot()).item = new Item(ItemClass.WEAPON, "Sword", Resources.item);
     }
 
     private void buildSlots() {
         gameWorld.stage.addActor(new SimpleActor(0, 200, 140, 400, gameWorld, Resources.bgEquipment));
 
-        gameWorld.stage.addActor(new EquipmentSlot(10, 210, 40, 40, gameWorld, Resources.inventory, ItemClass.WEAPON));
+        gameWorld.stage.addActor(weaponSlot = new EquipmentSlot(10, 210, 40, 40, gameWorld, Resources.inventory, ItemClass.WEAPON));
+        gameWorld.stage.addActor(armorSlot = new EquipmentSlot(90, 210, 40, 40, gameWorld, Resources.inventory, ItemClass.BODY_ARMOR));
 
     }
 
@@ -43,6 +46,7 @@ public class Inventory {
                 InventorySlot slot = new InventorySlot(column * Constants.INVENTORY_GRID_SIZE, row * Constants.INVENTORY_GRID_SIZE,
                         Constants.INVENTORY_GRID_SIZE, Constants.INVENTORY_GRID_SIZE, gameWorld, Resources.inventory);
                 gameWorld.stage.addActor(slot);
+                inventory.put(getIndex(column, row), slot);
             }
         }
     }
@@ -54,10 +58,12 @@ public class Inventory {
     public int getFirstFreeInventorySlot() {
         for (int col = 0; col < 7; col ++) {
             for(int row = 0 ; row < 5; row++) {
-                if (inventory.get(getIndex(col, row)) == null) {
+                if (inventory.get(getIndex(col, row)).item == null) {
                     return getIndex(col, row);
                 }
             }
         }
+
+        return -1;
     }
 }
