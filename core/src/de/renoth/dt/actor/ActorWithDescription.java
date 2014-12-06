@@ -53,9 +53,9 @@ public abstract class ActorWithDescription extends Actor {
             }
             return;
         }
-
-        descriptionBox = new DescriptionBox(posX,posY,Resources.descriptionBg, entity.getDescription(), gameWorld);
-        addListener(hoverlistener = new DescriptionHoverListener(descriptionBox));
+        addListener(hoverlistener = new DescriptionHoverListener());
+        descriptionBox = new DescriptionBox(posX,posY,Resources.descriptionBg, entity.getDescription(), gameWorld, hoverlistener);
+        hoverlistener.setDescriptionBox(descriptionBox);
         descriptionBox.setVisible(false);
     }
 
@@ -63,9 +63,6 @@ public abstract class ActorWithDescription extends Actor {
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(tex, getX(), getY(), width, height);
 
-        if(hoverlistener != null && hoverlistener.isOver() && !descriptionBox.labels.isEmpty()) {
-            descriptionBox.updatePositions();
-            descriptionBox.draw(batch, parentAlpha);
-        }
+
     }
 }

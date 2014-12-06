@@ -19,7 +19,7 @@ public class Inventory {
         this.gameWorld = gameWorld;
         this.inventory = new HashMap<>();
 
-        gameWorld.stage.addActor(new SimpleActor(0, 0, 280, 800, gameWorld, Resources.bgMenu));
+        gameWorld.stage.bg.addActor(new SimpleActor(0, 0, 280, 800, gameWorld, Resources.bgMenu));
 
         buildInventory();
 
@@ -33,11 +33,10 @@ public class Inventory {
     }
 
     private void buildSlots() {
-        gameWorld.stage.addActor(new SimpleActor(0, 200, 140, 400, gameWorld, Resources.bgEquipment));
+        gameWorld.stage.bg.addActor(new SimpleActor(0, 200, 140, 400, gameWorld, Resources.bgEquipment));
 
-        gameWorld.stage.addActor(weaponSlot = new EquipmentSlot(10, 210, 40, 40, gameWorld, Resources.inventory, ItemClass.WEAPON));
-        gameWorld.stage.addActor(armorSlot = new EquipmentSlot(90, 210, 40, 40, gameWorld, Resources.inventory, ItemClass.BODY_ARMOR));
-
+        gameWorld.stage.bg.addActor(weaponSlot = new EquipmentSlot(10, 210, 40, 40, gameWorld, Resources.inventory, ItemClass.WEAPON));
+        gameWorld.stage.bg.addActor(armorSlot = new EquipmentSlot(90, 210, 40, 40, gameWorld, Resources.inventory, ItemClass.BODY_ARMOR));
     }
 
     private void buildInventory() {
@@ -45,7 +44,7 @@ public class Inventory {
             for(int row = 0 ; row < 5; row++) {
                 InventorySlot slot = new InventorySlot(column * Constants.INVENTORY_GRID_SIZE, row * Constants.INVENTORY_GRID_SIZE,
                         Constants.INVENTORY_GRID_SIZE, Constants.INVENTORY_GRID_SIZE, gameWorld, Resources.inventory);
-                gameWorld.stage.addActor(slot);
+                gameWorld.stage.bg.addActor(slot);
                 inventory.put(getIndex(column, row), slot);
             }
         }

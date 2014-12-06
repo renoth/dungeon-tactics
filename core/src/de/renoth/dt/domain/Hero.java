@@ -29,7 +29,14 @@ public class Hero implements IDescribable {
         ArrayList<StyledText> description = new ArrayList<>();
 
         description.add(new StyledText(name, Resources.mplus20, Color.WHITE));
+        description.add(new StyledText("HP: " + health, Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("Damage: " + baseDamage, Resources.mplus12, Color.WHITE));
 
         return description;
+    }
+
+    public int dealDamage() {
+        //TODO add bonuses
+        return baseDamage;
     }
 }

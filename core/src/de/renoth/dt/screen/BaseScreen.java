@@ -8,11 +8,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import de.renoth.dt.DungeonTacticsGame;
 import de.renoth.dt.common.Constants;
+import de.renoth.dt.screen.game.GameStage;
 
 public abstract class BaseScreen implements Screen {
     final SpriteBatch batch;
     final OrthographicCamera camera;
-    final Stage[] stages;
+    final GameStage[] stages;
     FitViewport viewport;
 
     DungeonTacticsGame game;
@@ -21,12 +22,12 @@ public abstract class BaseScreen implements Screen {
     protected BaseScreen(DungeonTacticsGame game) {
         this.game = game;
 
-        stages = new Stage[2];
+        stages = new GameStage[2];
 
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
 
-        Stage stage = new Stage();
+        GameStage stage = new GameStage();
 
         stages[0] = stage;
     }

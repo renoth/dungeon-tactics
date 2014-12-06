@@ -19,12 +19,14 @@ public class DescriptionBox extends Actor {
     private final Texture tex;
     public List<PositionedLabel> labels;
     private int width, height;
+    private DescriptionHoverListener hoverlistener;
 
-    public DescriptionBox(int x, int y, Texture tex, List<StyledText> description, GameWorld gameWorld) {
+    public DescriptionBox(int x, int y, Texture tex, List<StyledText> description, GameWorld gameWorld, DescriptionHoverListener hoverListener) {
         int maxHeight = description.size() * ROW_HEIGHT;
         this.tex = tex;
         this.width = 400;
         this.height = maxHeight + 5;
+        this.hoverlistener = hoverListener;
 
         setPosition(x,y);
 
@@ -33,10 +35,9 @@ public class DescriptionBox extends Actor {
 
         labels = new ArrayList<>();
 
-        gameWorld.stage.addActor(this);
+        gameWorld.stage.fg.addActor(this);
 
         createLabels(description, gameWorld, maxHeight);
-
     }
 
     protected void createLabels(List<StyledText> description, GameWorld gameWorld, int maxHeight) {
@@ -46,14 +47,20 @@ public class DescriptionBox extends Actor {
             label.setPosition(Gdx.input.getX(), 800 - Gdx.input.getY());
             label.setVisible(false);
 
-            gameWorld.stage.addActor(label);
             labels.add(label);
         }
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        batch.draw(tex, getX(), getY(), width, height);
+        if(hoverlistener != null && hoverlistener.isOver() && !labels.isEmpty()) {
+            updatePositions();
+            batch.draw(tex, getX(), getY(), width, height);
+            for (PositionedLabel l : labels) {
+                l.getFont().draw(batch, l.getText().toString(), l.getX(), l.getY());
+            }
+        }
+
     }
 
     public void updatePositions() {
