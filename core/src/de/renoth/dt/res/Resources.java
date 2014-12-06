@@ -15,6 +15,7 @@ public class Resources {
     public static Texture hero3;
 
     public static Texture bgMenu;
+    public static Texture descriptionBg;
 
     public static BitmapFont font12;
     public static BitmapFont font36;
@@ -32,6 +33,7 @@ public class Resources {
         hero3 = new Texture("hero3.png");
 
         bgMenu = new Texture("bg_menu.png");
+        descriptionBg = new Texture("description_bg.png");
 
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("font/Bebas.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();

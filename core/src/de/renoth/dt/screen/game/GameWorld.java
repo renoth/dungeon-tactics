@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import de.renoth.dt.actor.DemoActor;
+import de.renoth.dt.actor.ActorWithDescription;
 import de.renoth.dt.res.Resources;
 
 public class GameWorld {
@@ -25,7 +25,7 @@ public class GameWorld {
     }
 
     private void addPlayer() {
-        stage.addActor(new DemoActor(500, 336, 64, 128, this, Resources.hero1));
+        stage.addActor(new ActorWithDescription(500, 336, 64, 128, this, Resources.hero1));
     }
 
     private void addMenu() {

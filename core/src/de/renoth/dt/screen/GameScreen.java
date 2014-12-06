@@ -7,12 +7,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import de.renoth.dt.DungeonTacticsGame;
-import de.renoth.dt.actor.DemoActor;
-import de.renoth.dt.actor.HoverListener;
 import de.renoth.dt.res.Resources;
 import de.renoth.dt.screen.game.GameWorld;
 

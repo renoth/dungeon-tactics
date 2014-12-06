@@ -5,31 +5,29 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import de.renoth.dt.res.Resources;
 import de.renoth.dt.screen.game.GameWorld;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User: hans
  * Date: 12/6/14
  */
-public class DemoActor extends Actor {
+public class ActorWithDescription extends Actor {
     private Body body;
     private final Texture tex;
-    private final HoverListener hoverlistener;
+    private final DescriptionHoverListener hoverlistener;
     private PointLight light;
     private int width, height;
 
     private DescriptionBox descriptionBox;
 
-    public DemoActor(int x, int y,int width, int height, GameWorld gameWorld, Texture tex) {
+    public ActorWithDescription(int x, int y, int width, int height, GameWorld gameWorld, Texture tex) {
         this.tex = tex;
         this.width = width;
         this.height = height;
@@ -39,9 +37,19 @@ public class DemoActor extends Actor {
         setOrigin(x, y);
         setBounds(getX(), getY(), width, height);
 
-        addListener(hoverlistener = new HoverListener());
+        descriptionBox = new DescriptionBox(x,y, Resources.descriptionBg, createDescription(), gameWorld);
 
-        descriptionBox = new DescriptionBox(x + 10, y + 10, Resources.bgMenu);
+        addListener(hoverlistener = new DescriptionHoverListener(descriptionBox));
+    }
+
+    private List<StyledText> createDescription() {
+        ArrayList<StyledText> description = new ArrayList<>();
+
+        description.add(new StyledText("Item  abc 123",Resources.mplus20, Color.CYAN));
+        description.add(new StyledText("Item  abc 123",Resources.mplus20, Color.CYAN));
+        description.add(new StyledText("Item  abc 123",Resources.mplus20, Color.CYAN));
+
+        return description;
     }
 
     @Override
@@ -49,7 +57,8 @@ public class DemoActor extends Actor {
         batch.draw(tex, getX(), getY(), width, height);
 
         if(hoverlistener.isOver()) {
-            descriptionBox.setPosition(Gdx.input.getX(), 800 - Gdx.input.getY());
+            descriptionBox.updatePositions();
+
             descriptionBox.draw(batch, parentAlpha);
         }
     }
