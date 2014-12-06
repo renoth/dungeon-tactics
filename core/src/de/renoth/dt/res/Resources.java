@@ -15,6 +15,13 @@ public class Resources {
     public static Texture hero3;
 
     public static Texture bgMenu;
+    public static Texture bgEquipment;
+    public static Texture inventory;
+    public static Texture inventoryAccept;
+
+    public static Texture item;
+
+
     public static Texture descriptionBg;
 
     public static BitmapFont font12;
@@ -27,13 +34,17 @@ public class Resources {
     public static BitmapFont mplus36;
 
 
-    public static void init() {
-        hero1 = new Texture("hero1.png");
-        hero2 = new Texture("hero2.png");
-        hero3 = new Texture("hero3.png");
 
-        bgMenu = new Texture("bg_menu.png");
-        descriptionBg = new Texture("description_bg.png");
+    public static void init() {
+        hero1 = new Texture("tex/hero1.png");
+        hero2 = new Texture("tex/hero2.png");
+        hero3 = new Texture("tex/hero3.png");
+
+        bgMenu = new Texture("tex/bg_menu.png");
+        inventory = new Texture("tex/inventory.png");
+        inventoryAccept = new Texture("tex/inventory_accept.png");
+        bgEquipment = new Texture("tex/equipment_bg.png");
+        descriptionBg = new Texture("tex/description_bg.png");
 
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("font/Bebas.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();

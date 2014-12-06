@@ -1,4 +1,4 @@
-package de.renoth.dt.actor;
+package de.renoth.dt.domain;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

@@ -1,12 +1,11 @@
 package de.renoth.dt.actor;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import de.renoth.dt.res.Resources;
+import de.renoth.dt.domain.StyledText;
 import de.renoth.dt.screen.game.GameWorld;
 import javafx.geometry.Point2D;
 

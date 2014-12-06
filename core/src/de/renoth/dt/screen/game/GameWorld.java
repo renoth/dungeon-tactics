@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import de.renoth.dt.actor.ActorWithDescription;
+import de.renoth.dt.domain.ItemClass;
 import de.renoth.dt.res.Resources;
 
 public class GameWorld {
@@ -14,6 +15,7 @@ public class GameWorld {
     private final World world;
     public final Stage stage;
     public RayHandler rayhandler;
+    public ItemClass selectedItemClass;
 
     public GameWorld(Stage stage) {
         this.stage = stage;

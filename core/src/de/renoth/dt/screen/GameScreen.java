@@ -31,14 +31,6 @@ public class GameScreen extends BaseScreen {
         stages[0].getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
 
 
-        Label bla = new Label("Ludum Dare 31", new Label.LabelStyle(Resources.mplus20, new Color(1f, 1f, 1f, 1f)));
-        bla.setPosition(10,10);
-        bla.setSize(1,1);
-
-        stages[0].addActor(bla);
-
-
-
         //debug renderer and camera matrix (same as viewport matrix)
         debugRenderer = new Box2DDebugRenderer();
         debugRenderer.setDrawBodies(true);
