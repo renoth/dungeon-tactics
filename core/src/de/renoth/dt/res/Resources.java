@@ -25,6 +25,8 @@ public class Resources {
     public static Texture knife;
     public static Texture sword;
 
+    public static Texture cube_blue;
+
     public static Texture descriptionBg;
 
     public static BitmapFont font12;
@@ -46,6 +48,8 @@ public class Resources {
 	club = new Texture("tex/club.png");
 	knife = new Texture("tex/knife.png");
 	sword = new Texture("tex/sword.png");
+
+	cube_blue = new Texture("tex/cube_blue.png");
 
         bgMenu = new Texture("tex/bg_menu.png");
         item = new Texture("tex/item.png");
