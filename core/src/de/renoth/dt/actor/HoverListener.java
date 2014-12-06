@@ -36,4 +36,9 @@ public class HoverListener extends ClickListener {
 
         return super.touchDown(event, x, y, pointer, button);
     }
+
+    @Override
+    public boolean isOver() {
+        return super.isOver();
+    }
 }

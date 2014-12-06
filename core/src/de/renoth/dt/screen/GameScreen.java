@@ -25,7 +25,7 @@ public class GameScreen extends BaseScreen {
     public GameScreen(DungeonTacticsGame dungeonTacticsGame) {
         super(dungeonTacticsGame);
 
-        gameWorld = new GameWorld();
+        gameWorld = new GameWorld(stages[0]);
 
         gameWorld.createRayhandler(camera);
 
@@ -33,14 +33,9 @@ public class GameScreen extends BaseScreen {
         stages[0].setViewport(viewport);
         stages[0].getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
 
-        stages[0].addActor(new DemoActor(600, 400, 32, 64, gameWorld, Resources.hero1));
-
-        stages[0].addActor(new DemoActor(0, 0, 300, 800, gameWorld, Resources.bgMenu));
 
         Label bla = new Label("Ludum Dare 31", new Label.LabelStyle(Resources.mplus20, new Color(1f, 1f, 1f, 1f)));
         bla.setPosition(10,10);
-        //bla.setScale(0.04f);
-        //bla.setFontScale(0.04f);
         bla.setSize(1,1);
 
         stages[0].addActor(bla);

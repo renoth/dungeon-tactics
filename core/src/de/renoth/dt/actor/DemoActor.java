@@ -1,6 +1,7 @@
 package de.renoth.dt.actor;
 
 import box2dLight.PointLight;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -20,11 +21,13 @@ import de.renoth.dt.screen.game.GameWorld;
  * Date: 12/6/14
  */
 public class DemoActor extends Actor {
-    private final Body body;
+    private Body body;
     private final Texture tex;
     private final HoverListener hoverlistener;
     private PointLight light;
     private int width, height;
+
+    private DescriptionBox descriptionBox;
 
     public DemoActor(int x, int y,int width, int height, GameWorld gameWorld, Texture tex) {
         this.tex = tex;
@@ -36,36 +39,18 @@ public class DemoActor extends Actor {
         setOrigin(x, y);
         setBounds(getX(), getY(), width, height);
 
-        BodyDef bodyDef = new BodyDef();
-        bodyDef.type = BodyDef.BodyType.StaticBody;
-        bodyDef.position.set(x, y);
-
-        body = gameWorld.getWorld().createBody(bodyDef);
-
-        body.setUserData(this);
-
-        PolygonShape gb = new PolygonShape();
-        gb.setAsBox(width/2,height/2, new Vector2(width/2, height/2), 0f);
-
-        FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.shape = gb;
-        fixtureDef.density = 0.5f;
-        fixtureDef.friction = 0.4f;
-        fixtureDef.restitution = 0f;
-        fixtureDef.isSensor = true;
-
-        body.createFixture(fixtureDef);
-
-/*        light = new PointLight(gameWorld.rayhandler, 20, Color.WHITE, 5f, 0, 0);
-        light.attachToBody(body, width/2, height/2);*/
-
-        gb.dispose();
-
         addListener(hoverlistener = new HoverListener());
+
+        descriptionBox = new DescriptionBox(x + 10, y + 10, Resources.bgMenu);
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        if (hoverlistener.isOver()) batch.draw(tex, getX(), getY(), width, height);
+        batch.draw(tex, getX(), getY(), width, height);
+
+        if(hoverlistener.isOver()) {
+            descriptionBox.setPosition(Gdx.input.getX(), 800 - Gdx.input.getY());
+            descriptionBox.draw(batch, parentAlpha);
+        }
     }
 }
