@@ -27,19 +27,27 @@ public class DescriptionBox extends Actor {
         this.height = maxHeight + 5;
 
         setPosition(x,y);
+        setZIndex(2000);
 
         setOrigin(x, y);
         setBounds(getX(), getY(), width, height);
 
         labels = new ArrayList<>();
 
+        gameWorld.stage.addActor(this);
+
+        createLabels(description, gameWorld, maxHeight);
+
+    }
+
+    protected void createLabels(List<StyledText> description, GameWorld gameWorld, int maxHeight) {
         for (int i = 0; i < description.size(); i++) {
             StyledText st = description.get(i);
             PositionedLabel label = new PositionedLabel(st.text, new Label.LabelStyle(st.font, st.color), new Point2D(10, (maxHeight - 20) - ROW_HEIGHT * i));
             label.setPosition(Gdx.input.getX(), 800 - Gdx.input.getY());
             label.setVisible(false);
 
-            label.setZIndex(1000);
+            label.setZIndex(3000);
 
             gameWorld.stage.addActor(label);
             labels.add(label);
@@ -52,10 +60,19 @@ public class DescriptionBox extends Actor {
     }
 
     public void updatePositions() {
+        //remove();
+
         setPosition(Gdx.input.getX() + 5, 800 - Gdx.input.getY() + 5);
         for (Label l : labels) {
-            l.setZIndex(1000);
+            l.setZIndex(3000);
             l.setPosition(Gdx.input.getX(), 800 - Gdx.input.getY());
+        }
+    }
+
+    public void setLabelsInivisbleAndDispose() {
+        for (Label l : labels) {
+            l.setVisible(false);
+            l.remove();
         }
     }
 }

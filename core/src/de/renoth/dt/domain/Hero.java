@@ -1,23 +1,27 @@
 package de.renoth.dt.domain;
 
+
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import de.renoth.dt.res.Resources;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Item implements IDescribable {
-    public ItemClass itemClass;
-    public String name;
-    public Texture texture;
-    public int baseDamage, baseProtection, baseValue;
-    public List<IModifier> modifiers;
+public class Hero implements IDescribable {
+    private final String name;
+    int level;
+    long xp;
+    int health;
+    int baseDefense;
+    int baseDamage;
 
-    public Item(ItemClass itemClass, String name, Texture texture) {
-        this.itemClass = itemClass;
+    public Hero(String name) {
         this.name = name;
-        this.texture = texture;
+        level = 1;
+        xp = 0;
+        health = 100;
+        baseDefense = 0;
+        baseDamage = 5;
     }
 
     @Override

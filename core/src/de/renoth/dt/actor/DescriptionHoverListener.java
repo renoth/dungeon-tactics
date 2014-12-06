@@ -21,6 +21,7 @@ public class DescriptionHoverListener extends ClickListener {
         for (Label label : descriptionBox.labels) {
             label.setVisible(true);
         }
+        descriptionBox.setVisible(true);
     }
 
     @Override
@@ -30,6 +31,7 @@ public class DescriptionHoverListener extends ClickListener {
         for (Label label : descriptionBox.labels) {
             label.setVisible(false);
         }
+        descriptionBox.setVisible(false);
     }
 
     @Override

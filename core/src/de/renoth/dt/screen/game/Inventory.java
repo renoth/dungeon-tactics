@@ -29,7 +29,7 @@ public class Inventory {
     }
 
     private void fillInitialItems() {
-        inventory.get(getFirstFreeInventorySlot()).item = new Item(ItemClass.WEAPON, "Sword", Resources.item);
+        inventory.get(getFirstFreeInventorySlot()).setItem(new Item(ItemClass.WEAPON, "Sword", Resources.item));
     }
 
     private void buildSlots() {
@@ -58,7 +58,7 @@ public class Inventory {
     public int getFirstFreeInventorySlot() {
         for (int col = 0; col < 7; col ++) {
             for(int row = 0 ; row < 5; row++) {
-                if (inventory.get(getIndex(col, row)).item == null) {
+                if (inventory.get(getIndex(col, row)).getItem() == null) {
                     return getIndex(col, row);
                 }
             }

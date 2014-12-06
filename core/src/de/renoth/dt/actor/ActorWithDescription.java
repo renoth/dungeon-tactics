@@ -1,63 +1,70 @@
 package de.renoth.dt.actor;
 
-import box2dLight.PointLight;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import de.renoth.dt.domain.StyledText;
+import de.renoth.dt.domain.IDescribable;
 import de.renoth.dt.res.Resources;
 import de.renoth.dt.screen.game.GameWorld;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * User: hans
- * Date: 12/6/14
- */
-public class ActorWithDescription extends Actor {
-    private Body body;
-    private final Texture tex;
-    private final DescriptionHoverListener hoverlistener;
-    private PointLight light;
+public abstract class ActorWithDescription extends Actor {
+    public final Texture tex;
+    private final int posX;
+    private final int posY;
+    private DescriptionHoverListener hoverlistener;
     private int width, height;
+    protected GameWorld gameWorld;
 
-    private DescriptionBox descriptionBox;
+    protected DescriptionBox descriptionBox;
 
     public ActorWithDescription(int x, int y, int width, int height, GameWorld gameWorld, Texture tex) {
         this.tex = tex;
         this.width = width;
         this.height = height;
+        this.gameWorld = gameWorld;
+        this.posX = x;
+        this.posY = y;
 
         setPosition(x,y);
 
         setOrigin(x, y);
         setBounds(getX(), getY(), width, height);
 
-        descriptionBox = new DescriptionBox(x,y, Resources.descriptionBg, createDescription(), gameWorld);
-
-        addListener(hoverlistener = new DescriptionHoverListener(descriptionBox));
+        createDescriptionBox(getEntity());
     }
 
-    private List<StyledText> createDescription() {
-        ArrayList<StyledText> description = new ArrayList<>();
+    protected abstract IDescribable getEntity();
 
-        description.add(new StyledText("Item  abc 123",Resources.mplus20, Color.CYAN));
-        description.add(new StyledText("Item  abc 123",Resources.mplus20, Color.CYAN));
-        description.add(new StyledText("Item  abc 123",Resources.mplus20, Color.CYAN));
+    public void createDescriptionBox(IDescribable entity) {
+        if (descriptionBox != null) {
+            descriptionBox.setVisible(false);
+            descriptionBox.setLabelsInivisbleAndDispose();
+            removeListener(hoverlistener);
+            hoverlistener = null;
+            descriptionBox.remove();
+        }
+        if (entity == null) {
+            if (descriptionBox != null) {
+                descriptionBox.setVisible(false);
 
-        return description;
+                removeListener(hoverlistener);
+                hoverlistener = null;
+                descriptionBox.remove();
+            }
+            return;
+        }
+
+        descriptionBox = new DescriptionBox(posX,posY,Resources.descriptionBg, entity.getDescription(), gameWorld);
+        addListener(hoverlistener = new DescriptionHoverListener(descriptionBox));
+        descriptionBox.setVisible(false);
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(tex, getX(), getY(), width, height);
 
-        if(hoverlistener.isOver()) {
+        if(hoverlistener != null && hoverlistener.isOver() && !descriptionBox.labels.isEmpty()) {
             descriptionBox.updatePositions();
-
             descriptionBox.draw(batch, parentAlpha);
         }
     }

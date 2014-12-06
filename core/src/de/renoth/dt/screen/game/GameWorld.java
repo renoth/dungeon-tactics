@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import de.renoth.dt.actor.ActorWithDescription;
 import de.renoth.dt.actor.SimpleActor;
 import de.renoth.dt.common.Constants;
 import de.renoth.dt.domain.Item;
@@ -29,11 +28,10 @@ public class GameWorld {
 
         addMenu();
         addPlayer();
-
     }
 
     private void addPlayer() {
-        stage.addActor(new ActorWithDescription(500, 336, 64, 128, this, Resources.hero1));
+        stage.addActor(new HeroActor(500, 336, 64, 128, this, Resources.hero1));
     }
 
     private void addMenu() {
