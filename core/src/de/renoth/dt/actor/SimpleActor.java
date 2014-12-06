@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import de.renoth.dt.screen.game.GameWorld;
 
 public class SimpleActor extends Actor {
-    protected final Texture tex;
+    public final Texture tex;
     protected final GameWorld gameWorld;
     private int width, height;
 

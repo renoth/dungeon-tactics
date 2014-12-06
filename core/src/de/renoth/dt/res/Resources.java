@@ -36,11 +36,12 @@ public class Resources {
 
 
     public static void init() {
-        hero1 = new Texture("tex/hero1.png");
+        hero1 = new Texture("tex/hauptcharakter.png");
         hero2 = new Texture("tex/hero2.png");
         hero3 = new Texture("tex/hero3.png");
 
         bgMenu = new Texture("tex/bg_menu.png");
+        item = new Texture("tex/item.png");
         inventory = new Texture("tex/inventory.png");
         inventoryAccept = new Texture("tex/inventory_accept.png");
         bgEquipment = new Texture("tex/equipment_bg.png");
