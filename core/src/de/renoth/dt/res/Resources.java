@@ -21,6 +21,9 @@ public class Resources {
 
     public static Texture item;
 
+    public static Texture club;
+    public static Texture knife;
+    public static Texture sword;
 
     public static Texture descriptionBg;
 
@@ -39,6 +42,10 @@ public class Resources {
         hero1 = new Texture("tex/hauptcharakter.png");
         hero2 = new Texture("tex/hero2.png");
         hero3 = new Texture("tex/hero3.png");
+
+	club = new Texture("tex/club.png");
+	knife = new Texture("tex/knife.png");
+	sword = new Texture("tex/sword.png");
 
         bgMenu = new Texture("tex/bg_menu.png");
         item = new Texture("tex/item.png");
