@@ -36,8 +36,12 @@ public class EnemyActor extends ActorWithDescription {
 
     private void die() {
         remove();
-        //gameWorld.enemyActors.remove(this);
-        //descriptionBox.destroy();
+        gameWorld.enemyActors.remove(this);
+        descriptionBox.destroy();
+
+        gameWorld.shiftEnemiesByOne();
+
+        gameWorld.addNewEnemy();
         //TODO animate shift, new enemies
     }
 

@@ -77,4 +77,9 @@ public class DescriptionBox extends Actor {
             l.remove();
         }
     }
+
+    public void destroy() {
+        setLabelsInivisbleAndDispose();
+        remove();
+    }
 }

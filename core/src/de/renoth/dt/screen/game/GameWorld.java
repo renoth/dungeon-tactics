@@ -7,7 +7,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import de.renoth.dt.actor.EnemyActor;
 import de.renoth.dt.actor.SimpleActor;
 import de.renoth.dt.common.Constants;
@@ -27,7 +29,7 @@ public class GameWorld {
 
     public Item selectedItem;
     private SimpleActor selectedItemActor;
-    public ArrayList<Object> enemyActors;
+    public ArrayList<EnemyActor> enemyActors;
     public Hero hero;
 
     public GameWorld(GameStage stage) {
@@ -42,7 +44,7 @@ public class GameWorld {
 
     private void addInitialEnemies() {
         enemyActors = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             Enemy e = EnemyFactory.createRandomEnemy();
             EnemyActor ea = new EnemyActor(600 + i * 100, 336, 64, 64, this, e.getType().getTexture(), e);
             stage.bg.addActor(ea);
@@ -67,7 +69,6 @@ public class GameWorld {
 
     private void addMenu() {
         Inventory inventory = new Inventory(this);
-
     }
 
     public World getWorld() {
@@ -89,5 +90,15 @@ public class GameWorld {
     public void setSelectedItem(Item selectedItem) {
         selectedItemActor.setVisible(selectedItem != null);
         this.selectedItem = selectedItem;
+    }
+
+    public void shiftEnemiesByOne() {
+        for (Actor actor : enemyActors) {
+            actor.addAction(Actions.moveTo(actor.getX() - 100, actor.getY(), 1));
+        }
+    }
+
+    public void addNewEnemy() {
+        //enemyActors.add(EnemyFactory.createRandomEnemy());
     }
 }
