@@ -54,7 +54,7 @@ public class GameWorld {
         stage.fg.addActor(selectedItemActor = new SimpleActor(0,0,Constants.ITEM_SIZE,Constants.ITEM_SIZE, this, Resources.item) {
             @Override
             public void draw(Batch batch, float parentAlpha) {
-                batch.draw(tex, Gdx.input.getX(), 800 - Gdx.input.getY(), Constants.ITEM_SIZE, Constants.ITEM_SIZE);
+                batch.draw(selectedItem.texture, Gdx.input.getX(), 800 - Gdx.input.getY(), Constants.ITEM_SIZE, Constants.ITEM_SIZE);
             }
         });
         selectedItemActor.setVisible(false);
