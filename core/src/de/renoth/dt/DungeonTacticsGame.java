@@ -21,6 +21,6 @@ public class DungeonTacticsGame extends Game {
         gameScreen = new GameScreen(this);
         menuScreen = new MenuScreen(this);
 
-        setScreen(intro);
+        setScreen(gameScreen);
 	}
 }

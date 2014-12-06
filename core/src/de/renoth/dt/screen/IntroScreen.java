@@ -14,9 +14,14 @@ public class IntroScreen extends BaseScreen {
         super(dungeonTacticsGame);
 
         Label title = new Label("Dungeon Tactics", new Label.LabelStyle(Resources.font36, new Color(1f, 1f, 1f, 0.8f)));
-        title.setPosition(100,100);
+        title.setPosition((int) (Gdx.graphics.getWidth() * 0.5F),(int) (Gdx.graphics.getHeight() * 0.7F));
 
-        stage.addActor(title);
+        Label bla = new Label("Ludum Dare 31", new Label.LabelStyle(Resources.font36, new Color(1f, 1f, 1f, 1f)));
+        bla.setPosition((int) (Gdx.graphics.getWidth() * 0.5F),(int) (Gdx.graphics.getHeight() * 0.6F));
+
+
+        stages[0].addActor(title);
+        stages[0].addActor(bla);
     }
 
     @Override

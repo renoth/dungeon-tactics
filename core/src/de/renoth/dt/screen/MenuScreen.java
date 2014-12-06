@@ -38,7 +38,7 @@ public class MenuScreen extends BaseScreen {
 
         table.setFillParent(true);
 
-        stage.addActor(table);
+        stages[0].addActor(table);
     }
 
     @Override

@@ -12,10 +12,10 @@ public class DesktopLauncher {
 
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-		config.width = screenSize.width;
-		config.height = screenSize.height;
+		config.width = 1280;
+		config.height = 800;
 
-		config.fullscreen = true;
+		//config.fullscreen = true;
 		config.vSyncEnabled = true;
 		new LwjglApplication(new DungeonTacticsGame(), config);
 	}
