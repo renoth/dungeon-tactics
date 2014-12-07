@@ -43,7 +43,7 @@ public class Hero implements IDescribable, IKillable {
         baseStatList.add(defense = new Defense(0, StatType.DEFENSE));
         baseStatList.add(damage = new Damage(4, StatType.DAMAGE));
         baseStatList.add(xp = new Experience(0, StatType.EXPERIENCE));
-        baseStatList.add(criticalChance = new CriticalChance(50, StatType.CRITICAL_CHANCE));
+        baseStatList.add(criticalChance = new CriticalChance(5, StatType.CRITICAL_CHANCE));
     }
 
     @Override
