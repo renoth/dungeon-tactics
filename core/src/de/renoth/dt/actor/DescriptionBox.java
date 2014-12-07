@@ -15,7 +15,8 @@ import java.util.List;
 
 public class DescriptionBox extends Actor {
 
-    public static final int ROW_HEIGHT = 28;
+    public static final int ROW_HEIGHT = 30;
+    public static final int SMALL_ROW_HEIGHT = 16;
 
     private final Texture tex;
     public List<PositionedLabel> labels;
@@ -23,7 +24,7 @@ public class DescriptionBox extends Actor {
     private DescriptionHoverListener hoverlistener;
 
     public DescriptionBox(int x, int y, Texture tex, List<StyledText> description, GameWorld gameWorld, DescriptionHoverListener hoverListener) {
-        int maxHeight = description.size() * ROW_HEIGHT;
+        int maxHeight = ROW_HEIGHT + (description.size() - 1) * SMALL_ROW_HEIGHT;
         this.tex = tex;
         this.width = 400;
         this.height = maxHeight + 5;
@@ -44,7 +45,7 @@ public class DescriptionBox extends Actor {
     protected void createLabels(List<StyledText> description, GameWorld gameWorld, int maxHeight) {
         for (int i = 0; i < description.size(); i++) {
             StyledText st = description.get(i);
-            PositionedLabel label = new PositionedLabel(st.text, new Label.LabelStyle(st.font, st.color), new Point2D(10, (maxHeight) - ROW_HEIGHT * i));
+            PositionedLabel label = new PositionedLabel(st.text, new Label.LabelStyle(st.font, st.color), new Point2D(10, maxHeight - (i > 0 ? 10 : 0) - SMALL_ROW_HEIGHT * i));
             label.setPosition(Gdx.input.getX(), 800 - Gdx.input.getY());
             label.setVisible(false);
 
