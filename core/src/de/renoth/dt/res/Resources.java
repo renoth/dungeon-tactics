@@ -25,6 +25,10 @@ public class Resources {
     public static Texture knife;
     public static Texture sword;
 
+    public static Texture helmet;
+    public static Texture shield;
+    public static Texture armor;
+
     public static Texture cube_blue;
     public static Texture cube_green;
     public static Texture cube_pink;
@@ -52,6 +56,10 @@ public class Resources {
 	club = new Texture("tex/club.png");
 	knife = new Texture("tex/knife.png");
 	sword = new Texture("tex/sword.png");
+
+	helmet = new Texture("tex/helmet.png");
+	shield = new Texture("tex/shield.png");
+	armor = new Texture("tex/armor.png");
 
 	cube_blue = new Texture("tex/cube_blue.png");
 	cube_green = new Texture("tex/cube_green.png");
