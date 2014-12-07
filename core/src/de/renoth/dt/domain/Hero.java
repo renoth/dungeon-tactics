@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Hero implements IDescribable, IKillable {
-    private final String name;
+    private String name;
     int level;
     long xp;
 
@@ -46,9 +46,9 @@ public class Hero implements IDescribable, IKillable {
         ArrayList<StyledText> description = new ArrayList<>();
 
         description.add(new StyledText(name, Resources.mplus20, Color.WHITE));
-        description.add(new StyledText("Health: " + health.getValue(), Resources.mplus20, Color.WHITE));
-        description.add(new StyledText("Damage: " + damage.getValue(), Resources.mplus20, Color.WHITE));
-        description.add(new StyledText("Defense: " + defense.getValue(), Resources.mplus20, Color.WHITE));
+        description.add(new StyledText("Health: " + health.getValue(), Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("Damage: " + damage.getValue(), Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("Defense: " + defense.getValue(), Resources.mplus12, Color.WHITE));
 
         return description;
     }
@@ -101,5 +101,9 @@ public class Hero implements IDescribable, IKillable {
 
     public List<BaseStat> getBaseStats() {
         return baseStatList;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

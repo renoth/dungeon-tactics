@@ -2,6 +2,7 @@ package de.renoth.dt.screen.game;
 
 import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -92,7 +93,10 @@ public class GameWorld {
     }
 
     private void addPlayer() {
-        hero = new Hero("Nina");
+        hero = new Hero("$NAME");
+        MyTextInputListener listener = new MyTextInputListener();
+        Gdx.input.getTextInput(listener, "Enter Name", "$NAME");
+
         stage.bg.addActor(heroActor = new HeroActor(500, 336, 64, 128, this, Resources.hero1, hero));
     }
 
@@ -148,5 +152,23 @@ public class GameWorld {
 
     public DamageLabelActor getDamageLabelActor() {
         return damageLabelActor;
+    }
+
+    private class MyTextInputListener implements Input.TextInputListener {
+        @Override
+        public void input (String text) {
+            hero.setName(text);
+            heroStatsLabel.remove();
+            addPlayerStats();
+        }
+
+        @Override
+        public void canceled () {
+            hero.setName("NOOB!");
+            heroStatsLabel.remove();
+            addPlayerStats();
+        }
+
+
     }
 }
