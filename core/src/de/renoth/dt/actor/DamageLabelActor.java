@@ -31,7 +31,7 @@ public class DamageLabelActor extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         batch.setColor(1,1,1,getColor().a);
-        batch.draw(Resources.item, getX(), getY(), 64, 64);
+        batch.draw(Resources.explosion, getX(), getY(), 64, 64);
 
         label.getFont().setColor(label.getStyleColor());
 

@@ -3,7 +3,8 @@ package de.renoth.dt.domain.factory;
 import de.renoth.dt.domain.Item;
 import de.renoth.dt.domain.enums.ItemType;
 import de.renoth.dt.domain.enums.RarityType;
-import de.renoth.dt.domain.stats.IStatModifier;
+import de.renoth.dt.domain.stats.modifier.IStatModifier;
+import de.renoth.dt.domain.stats.modifier.StatModifier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +20,15 @@ public class ItemFactory {
         Item item = new Item(type);
         item.setGeneratedName();
         item.setRarityType(rarity);
-        item.setModifiers(generateModifiers(rarity, level));
+        item.setModifiers(generateModifiers(rarity, level, type));
         return item;
     }
 
-    private static List<IStatModifier> generateModifiers(RarityType rarity, int level) {
-        ArrayList<IStatModifier> modifiers = new ArrayList<>();
+    private static List<StatModifier> generateModifiers(RarityType rarity, int level, ItemType type) {
+        ArrayList<StatModifier> modifiers = new ArrayList<>();
 
         for (int i = 0; i < rarity.getMaxModifiers(); i++) {
-
+            StatModifierFactory.createRandomModifier(level, type);
         }
         return modifiers;
     }

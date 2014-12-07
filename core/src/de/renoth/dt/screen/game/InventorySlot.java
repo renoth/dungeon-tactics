@@ -8,6 +8,7 @@ import de.renoth.dt.actor.ActorWithDescription;
 import de.renoth.dt.common.Constants;
 import de.renoth.dt.domain.IDescribable;
 import de.renoth.dt.domain.Item;
+import de.renoth.dt.screen.GameScreen;
 
 public class InventorySlot extends ActorWithDescription {
 
@@ -20,15 +21,21 @@ public class InventorySlot extends ActorWithDescription {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchDown(event, x, y, pointer, button);
-                
+
                 if (item != null && gameWorld.selectedItem == null) {
                     gameWorld.setSelectedItem(item);
                     item = null;
+                    if (InventorySlot.this instanceof EquipmentSlot) {
+                        GameScreen.getGameWorld().heroActor.createDescriptionBox(GameScreen.getGameWorld().hero);
+                    }
 
                 } else if (item == null && gameWorld.selectedItem != null && (((InventorySlot.this instanceof EquipmentSlot) &&
                         ((EquipmentSlot)InventorySlot.this).acceptedItemType == gameWorld.selectedItem.itemType) || !(InventorySlot.this instanceof EquipmentSlot)))  {
                     item = gameWorld.selectedItem;
                     gameWorld.setSelectedItem(null);
+                    if (InventorySlot.this instanceof EquipmentSlot) {
+                        GameScreen.getGameWorld().heroActor.createDescriptionBox(GameScreen.getGameWorld().hero);
+                    }
                 }
 
                 createDescriptionBox(item);

@@ -20,6 +20,7 @@ public class Inventory {
     public List<EquipmentSlot> equipmentSlots;
     private EquipmentSlot helmetSlot;
     private EquipmentSlot shieldSlot;
+    private EquipmentSlot bootSlot;
 
 
     public Inventory(GameWorld gameWorld) {
@@ -38,19 +39,22 @@ public class Inventory {
 
     private void fillInitialItems() {
         inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
+        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
     }
 
     private void buildSlots() {
         gameWorld.stage.bg.addActor(new SimpleActor(0, 200, 140, 400, gameWorld, Resources.bgEquipment));
 
-        gameWorld.stage.bg.addActor(weaponSlot = new EquipmentSlot(10, 210, 40, 40, gameWorld, Resources.inventory, ItemType.WEAPON));
+        gameWorld.stage.bg.addActor(weaponSlot = new EquipmentSlot(10, 450, 40, 40, gameWorld, Resources.inventory, ItemType.WEAPON));
         equipmentSlots.add(weaponSlot);
-        gameWorld.stage.bg.addActor(armorSlot = new EquipmentSlot(90, 210, 40, 40, gameWorld, Resources.inventory, ItemType.BODY_ARMOR));
+        gameWorld.stage.bg.addActor(armorSlot = new EquipmentSlot(50, 350, 40, 40, gameWorld, Resources.inventory, ItemType.BODY_ARMOR));
         equipmentSlots.add(armorSlot);
-        gameWorld.stage.bg.addActor(helmetSlot = new EquipmentSlot(10, 550, 40, 40, gameWorld, Resources.inventory, ItemType.HELMET));
+        gameWorld.stage.bg.addActor(helmetSlot = new EquipmentSlot(50, 550, 40, 40, gameWorld, Resources.inventory, ItemType.HELMET));
         equipmentSlots.add(helmetSlot);
-        gameWorld.stage.bg.addActor(shieldSlot = new EquipmentSlot(90, 550, 40, 40, gameWorld, Resources.inventory, ItemType.SHIELD));
+        gameWorld.stage.bg.addActor(shieldSlot = new EquipmentSlot(90, 450, 40, 40, gameWorld, Resources.inventory, ItemType.SHIELD));
         equipmentSlots.add(shieldSlot);
+        gameWorld.stage.bg.addActor(bootSlot = new EquipmentSlot(50, 250, 40, 40, gameWorld, Resources.inventory, ItemType.BOOTS));
+        equipmentSlots.add(bootSlot);
     }
 
     private void buildInventory() {

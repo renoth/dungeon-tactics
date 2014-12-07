@@ -1,10 +1,10 @@
 package de.renoth.dt.domain;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import de.renoth.dt.domain.enums.ItemType;
 import de.renoth.dt.domain.enums.RarityType;
-import de.renoth.dt.domain.stats.IStatModifier;
+import de.renoth.dt.domain.stats.modifier.IStatModifier;
+import de.renoth.dt.domain.stats.modifier.StatModifier;
 import de.renoth.dt.res.Resources;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class Item implements IDescribable {
     public String name;
     public Texture texture;
     public int baseDamage, baseDefense, baseValue, level;
-    public List<IStatModifier> modifiers;
+    public List<StatModifier> modifiers;
 
     public Item(ItemType itemType) {
         this.itemType = itemType;
@@ -30,6 +30,10 @@ public class Item implements IDescribable {
         ArrayList<StyledText> description = new ArrayList<>();
 
         description.add(new StyledText(name, Resources.mplus20, rarityType.getColor()));
+
+        for (StatModifier m : modifiers) {
+            description.add(new StyledText(m.toString(),Resources.mplus12,m.getColor()));
+        }
 
         return description;
     }
@@ -46,7 +50,7 @@ public class Item implements IDescribable {
         return "";
     }
 
-    public void setModifiers(List<IStatModifier> modifiers) {
+    public void setModifiers(List<StatModifier> modifiers) {
         this.modifiers = modifiers;
     }
 
