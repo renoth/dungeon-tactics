@@ -17,6 +17,7 @@ public class ItemFactory {
         ItemType type = getRandomItemType();
         RarityType rarity = getRandomRarity();
         Item item = new Item(type);
+        item.setLevel(level);
         item.setGeneratedName();
         item.setRarityType(rarity);
         item.setModifiers(generateModifiers(rarity, level, type));
@@ -42,9 +43,9 @@ public class ItemFactory {
     public static RarityType getRandomRarity() {
         double random = Math.random();
 
-        if (random < 0.7f) {
+        if (random < 0.75f) {
             return RarityType.COMMON;
-        } else if (random < 0.9f) {
+        } else if (random < 0.94f) {
             return RarityType.MAGIC;
         } else if (random < 0.98f) {
             return RarityType.RARE;

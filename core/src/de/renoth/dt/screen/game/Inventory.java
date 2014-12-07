@@ -7,6 +7,7 @@ import de.renoth.dt.domain.Item;
 import de.renoth.dt.domain.enums.ItemType;
 import de.renoth.dt.domain.factory.ItemFactory;
 import de.renoth.dt.res.Resources;
+import de.renoth.dt.res.SoundResources;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +24,7 @@ public class Inventory {
     private EquipmentSlot shieldSlot;
     private EquipmentSlot bootSlot;
     private SellSlot sellSlot;
+    private EquipmentSlot amuletSlot;
 
 
     public Inventory(GameWorld gameWorld) {
@@ -41,6 +43,7 @@ public class Inventory {
 
     private void fillInitialItems() {
         inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
+        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
     }
 
     private void buildSlots() {
@@ -57,6 +60,8 @@ public class Inventory {
         equipmentSlots.add(shieldSlot);
         gameWorld.stage.bg.addActor(bootSlot = new EquipmentSlot(50, 250, 40, 40, gameWorld, Resources.inventory, ItemType.BOOTS));
         equipmentSlots.add(bootSlot);
+        gameWorld.stage.bg.addActor(amuletSlot = new EquipmentSlot(50, 400, 40, 40, gameWorld, Resources.inventory, ItemType.AMULET));
+        equipmentSlots.add(amuletSlot);
     }
 
     private void buildInventory() {
@@ -108,7 +113,8 @@ public class Inventory {
             return;
         }
         if (Math.random() > 0.6f - 0.02f * enemy.getLevel()) {
-            inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(gameWorld.hero.getLevel()));
+            SoundResources.newItem.play();
+            inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(enemy.getLevel() + enemy.getBonusLevels()));
         }
     }
 }

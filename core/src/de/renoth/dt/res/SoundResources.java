@@ -16,9 +16,10 @@ public class SoundResources {
     public static Sound levelUp;
     public static Sound powerUp;
     public static Sound sword;
+    public static Sound newItem;
 
     public static void init() {
-        //gitarrenmusik = Gdx.audio.newSound(Gdx.files.internal("music/gitarrenmusik.mp3"));
+        gitarrenmusik = Gdx.audio.newSound(Gdx.files.internal("music/gitarrenmusik.mp3"));
         blipPut = Gdx.audio.newSound(Gdx.files.internal("sound/blip_put.wav"));
         blipSelect = Gdx.audio.newSound(Gdx.files.internal("sound/blip_select.wav"));
         club = Gdx.audio.newSound(Gdx.files.internal("sound/club.wav"));
@@ -29,5 +30,6 @@ public class SoundResources {
         levelUp = Gdx.audio.newSound(Gdx.files.internal("sound/level_up.wav"));
         powerUp = Gdx.audio.newSound(Gdx.files.internal("sound/power_up.wav"));
         sword = Gdx.audio.newSound(Gdx.files.internal("sound/sword.wav"));
+        newItem = Gdx.audio.newSound(Gdx.files.internal("sound/newItem.wav"));
     }
 }

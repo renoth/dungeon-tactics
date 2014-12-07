@@ -3,10 +3,7 @@ package de.renoth.dt.domain.factory;
 import de.renoth.dt.domain.enums.ItemType;
 import de.renoth.dt.domain.enums.ModifierType;
 import de.renoth.dt.domain.enums.StatType;
-import de.renoth.dt.domain.stats.modifier.DamageModifier;
-import de.renoth.dt.domain.stats.modifier.DefenseModifier;
-import de.renoth.dt.domain.stats.modifier.HealthModifier;
-import de.renoth.dt.domain.stats.modifier.StatModifier;
+import de.renoth.dt.domain.stats.modifier.*;
 
 import java.util.Random;
 
@@ -23,8 +20,14 @@ public class StatModifierFactory {
                 return new DamageModifier(ModifierType.ABSOLUTE, getDamageBonus(level));
             case DEFENSE:
                 return new DefenseModifier(ModifierType.ABSOLUTE, getDefenseBonus(level));
+            case CRITICAL_CHANCE:
+                return new CriticalChaceModifier(ModifierType.ABSOLUTE, getCriticalBonus(level));
         }
         return null;
+    }
+
+    private static int getCriticalBonus(int level) {
+        return Math.max(Math.round(random.nextInt(level) / 4), 1);
     }
 
     private static int getDefenseBonus(int level) {
@@ -32,10 +35,10 @@ public class StatModifierFactory {
     }
 
     private static int getDamageBonus(int level) {
-        return Math.max(Math.round(random.nextInt(level) / 4), 1);
+        return Math.max(Math.round(random.nextInt(level) / 3), 1);
     }
 
     private static int getHealthBonus(int level) {
-        return random.nextInt(level) + 1;
+        return random.nextInt(level) + 5;
     }
 }

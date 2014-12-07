@@ -19,6 +19,7 @@ import de.renoth.dt.domain.Item;
 import de.renoth.dt.domain.enums.AttackType;
 import de.renoth.dt.domain.factory.EnemyFactory;
 import de.renoth.dt.res.Resources;
+import de.renoth.dt.res.SoundResources;
 
 import java.util.ArrayList;
 
@@ -55,7 +56,7 @@ public class GameWorld {
 
         addDamageLabelActors();
 
-        //SoundResources.gitarrenmusik.loop(0.5f);
+        SoundResources.gitarrenmusik.loop(0.5f);
     }
 
     private void addHighscoreInfo() {

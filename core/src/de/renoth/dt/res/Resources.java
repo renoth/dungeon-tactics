@@ -31,6 +31,7 @@ public class Resources {
     public static Texture helmet;
     public static Texture shield;
     public static Texture armor;
+    public static Texture amulet;
 
     public static Texture cube_blue;
     public static Texture cube_green;
@@ -79,6 +80,7 @@ public class Resources {
         helmet = new Texture("tex/helmet.png");
         shield = new Texture("tex/shield.png");
         armor = new Texture("tex/armor.png");
+        amulet = new Texture("tex/amulet.png");
 
         cube_blue = new Texture("tex/cube_blue.png");
         cube_green = new Texture("tex/cube_green.png");

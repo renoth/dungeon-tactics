@@ -4,7 +4,8 @@ public enum StatType {
     HEALTH("Health"),
     DAMAGE("Damage"),
     DEFENSE("Defense"),
-    EXPERIENCE("XP");
+    EXPERIENCE("XP"),
+    CRITICAL_CHANCE("Crit.%");
 
     private String label;
 

@@ -80,6 +80,19 @@ public class Item implements IDescribable {
     }
 
     public int getXpValue() {
-        return (1 + 3 * modifiers.size() + level * 4);
+        int value = 0;
+        for (StatModifier sm : modifiers) {
+            value += sm.getModifier();
+        }
+        value += level * 4;
+        return value;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getLevel() {
+        return level;
     }
 }

@@ -22,6 +22,7 @@ public class Hero implements IDescribable, IKillable {
     Health health;
     Defense defense;
     Damage damage;
+    CriticalChance criticalChance;
     Random random;
     AttackType attackType;
     List<BaseStat> baseStatList;
@@ -40,8 +41,9 @@ public class Hero implements IDescribable, IKillable {
 
         baseStatList.add(health = new Health(Constants.INITIAL_HEALTH, StatType.HEALTH, this));
         baseStatList.add(defense = new Defense(0, StatType.DEFENSE));
-        baseStatList.add(damage = new Damage(400, StatType.DAMAGE));
+        baseStatList.add(damage = new Damage(4, StatType.DAMAGE));
         baseStatList.add(xp = new Experience(0, StatType.EXPERIENCE));
+        baseStatList.add(criticalChance = new CriticalChance(50, StatType.CRITICAL_CHANCE));
     }
 
     @Override
@@ -53,11 +55,15 @@ public class Hero implements IDescribable, IKillable {
         description.add(new StyledText("Health : " + health.getValue() + " / " + (maxHealth + health.getBonus()), Resources.mplus12, Color.WHITE));
         description.add(new StyledText("Damage : " + damage.getBaseValue() + " (+ " + damage.getBonus() + ")", Resources.mplus12, Color.WHITE));
         description.add(new StyledText("Defense: " + defense.getBaseValue() + " (+ " + defense.getBonus() + ")", Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("Crit.% : " + criticalChance.getBaseValue() + " (+ " + criticalChance.getBonus() + ")", Resources.mplus12, Color.WHITE));
 
         return description;
     }
 
     public int dealDamage() {
+        if (Math.random() * 100 < criticalChance.getValue()) {
+            return damage.getValue() * 3;
+        }
         return damage.getValue();
     }
 
@@ -85,6 +91,9 @@ public class Hero implements IDescribable, IKillable {
                         break;
                     case DEFENSE:
                         defense.modifiers.add(statModifier);
+                        break;
+                    case CRITICAL_CHANCE:
+                        criticalChance.modifiers.add(statModifier);
                         break;
                 }
             }

@@ -25,6 +25,7 @@ public class Enemy implements IDescribable, IKillable {
     List<AttackType> resistances;
     AttackType weakness;
     private String name;
+    private int bonusLevels;
 
     public Enemy(String name, EnemyType type) {
         this.name = name;
@@ -113,7 +114,7 @@ public class Enemy implements IDescribable, IKillable {
             GameStats.reset();
 
             SoundResources.gameOver.play();
-            //SoundResources.gitarrenmusik.stop();
+            SoundResources.gitarrenmusik.stop();
 
             GameScreen.getGameWorld().heroDied = true;
             GameScreen.getGameWorld().stage.addActor(new SimpleActor(0, 0, 1280, 800, GameScreen.getGameWorld(), Resources.deathBanner));
@@ -200,5 +201,13 @@ public class Enemy implements IDescribable, IKillable {
 
     public void setWeakness(AttackType at) {
         this.weakness = at;
+    }
+
+    public void setBonusLevels(int bonusLevels) {
+        this.bonusLevels = bonusLevels;
+    }
+
+    public int getBonusLevels() {
+        return bonusLevels;
     }
 }

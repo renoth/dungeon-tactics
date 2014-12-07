@@ -21,6 +21,7 @@ public class EnemyFactory {
         e.setResistances(generateRandomResistances());
         e.setWeakness(genrateRandomWeakness());
         e.setXp(1);
+        e.setBonusLevels(bonuslevels);
 
         while (e.getLevel() < baseLevel + generateBonusLevelCount()) {
             e.levelUp();
