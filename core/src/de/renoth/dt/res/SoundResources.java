@@ -11,6 +11,7 @@ public class SoundResources {
     public static Sound club;
     public static Sound explosion;
     public static Sound gameOver;
+    public static Sound takeDamage;
     public static Sound knife;
     public static Sound levelUp;
     public static Sound powerUp;
@@ -23,6 +24,7 @@ public class SoundResources {
         club = Gdx.audio.newSound(Gdx.files.internal("sound/club.wav"));
         explosion = Gdx.audio.newSound(Gdx.files.internal("sound/explosion.wav"));
         gameOver = Gdx.audio.newSound(Gdx.files.internal("sound/game_over.wav"));
+        takeDamage = Gdx.audio.newSound(Gdx.files.internal("sound/hero_take_damage.wav"));
         knife = Gdx.audio.newSound(Gdx.files.internal("sound/knife.wav"));
         levelUp = Gdx.audio.newSound(Gdx.files.internal("sound/level_up.wav"));
         powerUp = Gdx.audio.newSound(Gdx.files.internal("sound/power_up.wav"));
