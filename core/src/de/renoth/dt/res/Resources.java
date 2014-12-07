@@ -40,6 +40,11 @@ public class Resources {
     public static Texture snake_blue;
     public static Texture snake_red;
 
+    public static Texture goblin;
+    public static Texture goblin_baton;
+    public static Texture goblin_baton_helmet;
+    public static Texture goblin_baton_helmet_armor;
+
     public static Texture explosion;
 
     public static Texture deathBanner;
@@ -81,6 +86,11 @@ public class Resources {
         snake_green = new Texture("tex/snake_green.png");
         snake_blue = new Texture("tex/snake_blue.png");
         snake_red = new Texture("tex/snake_red.png");
+
+        goblin = new Texture("tex/goblin.png");
+        goblin_baton = new Texture("tex/goblin_baton.png");
+        goblin_baton_helmet = new Texture("tex/goblin_baton_helmet.png");
+        goblin_baton_helmet_armor = new Texture("tex/goblin_baton_helmet_armor.png");
 
         explosion = new Texture("tex/explosion.png");
 
