@@ -46,7 +46,8 @@ public class EnemyActor extends ActorWithDescription {
         gameWorld.shiftEnemiesByOne();
 
         gameWorld.addNewEnemy();
-        //TODO animate shift, new enemies
+
+        gameWorld.inventory.spawnNewItemPerhaps(enemy);
     }
 
     private boolean isHittableByHero(GameWorld gameWorld) {

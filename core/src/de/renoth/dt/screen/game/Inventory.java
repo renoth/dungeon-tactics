@@ -2,6 +2,7 @@ package de.renoth.dt.screen.game;
 
 import de.renoth.dt.actor.SimpleActor;
 import de.renoth.dt.common.Constants;
+import de.renoth.dt.domain.Enemy;
 import de.renoth.dt.domain.Item;
 import de.renoth.dt.domain.enums.ItemType;
 import de.renoth.dt.domain.factory.ItemFactory;
@@ -38,14 +39,6 @@ public class Inventory {
     }
 
     private void fillInitialItems() {
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
         inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
     }
 
@@ -100,5 +93,15 @@ public class Inventory {
         }
 
         return allEquippedItems;
+    }
+
+    public void spawnNewItemPerhaps(Enemy enemy) {
+        int freeSlot = getFirstFreeInventorySlot();
+        if (freeSlot < 0) {
+            return;
+        }
+        if (Math.random() > 0.6f - 0.02f * enemy.getLevel()) {
+            inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
+        }
     }
 }
