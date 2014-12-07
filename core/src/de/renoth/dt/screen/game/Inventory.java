@@ -18,6 +18,8 @@ public class Inventory {
     public EquipmentSlot weaponSlot;
     public EquipmentSlot armorSlot;
     public List<EquipmentSlot> equipmentSlots;
+    private EquipmentSlot helmetSlot;
+    private EquipmentSlot shieldSlot;
 
 
     public Inventory(GameWorld gameWorld) {
@@ -45,6 +47,10 @@ public class Inventory {
         equipmentSlots.add(weaponSlot);
         gameWorld.stage.bg.addActor(armorSlot = new EquipmentSlot(90, 210, 40, 40, gameWorld, Resources.inventory, ItemType.BODY_ARMOR));
         equipmentSlots.add(armorSlot);
+        gameWorld.stage.bg.addActor(helmetSlot = new EquipmentSlot(10, 550, 40, 40, gameWorld, Resources.inventory, ItemType.HELMET));
+        equipmentSlots.add(helmetSlot);
+        gameWorld.stage.bg.addActor(shieldSlot = new EquipmentSlot(90, 550, 40, 40, gameWorld, Resources.inventory, ItemType.SHIELD));
+        equipmentSlots.add(shieldSlot);
     }
 
     private void buildInventory() {

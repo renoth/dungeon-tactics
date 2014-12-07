@@ -49,4 +49,8 @@ public class Item implements IDescribable {
     public void setModifiers(List<IStatModifier> modifiers) {
         this.modifiers = modifiers;
     }
+
+    public void setRarityType(RarityType rarityType) {
+        this.rarityType = rarityType;
+    }
 }

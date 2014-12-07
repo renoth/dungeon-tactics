@@ -5,10 +5,10 @@ import de.renoth.dt.res.Resources;
 
 public enum ItemType {
     WEAPON(0,"Sword", Resources.sword),
-    BODY_ARMOR(1,"Armor", Resources.item),
-    HELMET(2,"Helmet",Resources.item),
+    BODY_ARMOR(1,"Armor", Resources.armor),
+    HELMET(2,"Helmet",Resources.helmet),
     BOOTS(3,"Boots", Resources.item),
-    SHIELD(4,"Shield", Resources.item);
+    SHIELD(4,"Shield", Resources.shield);
 
     private int index;
     private Texture texture;

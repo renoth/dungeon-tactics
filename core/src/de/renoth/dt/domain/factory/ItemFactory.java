@@ -18,6 +18,7 @@ public class ItemFactory {
         RarityType rarity = getRandomRarity();
         Item item = new Item(type);
         item.setGeneratedName();
+        item.setRarityType(rarity);
         item.setModifiers(generateModifiers(rarity, level));
         return item;
     }
