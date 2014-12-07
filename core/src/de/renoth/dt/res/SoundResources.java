@@ -18,7 +18,7 @@ public class SoundResources {
     public static Sound sword;
 
     public static void init() {
-        gitarrenmusik = Gdx.audio.newSound(Gdx.files.internal("music/gitarrenmusik.mp3"));
+        //gitarrenmusik = Gdx.audio.newSound(Gdx.files.internal("music/gitarrenmusik.mp3"));
         blipPut = Gdx.audio.newSound(Gdx.files.internal("sound/blip_put.wav"));
         blipSelect = Gdx.audio.newSound(Gdx.files.internal("sound/blip_select.wav"));
         club = Gdx.audio.newSound(Gdx.files.internal("sound/club.wav"));

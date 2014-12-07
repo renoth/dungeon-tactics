@@ -106,4 +106,12 @@ public class Hero implements IDescribable, IKillable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public long getXp() {
+        return xp;
+    }
 }

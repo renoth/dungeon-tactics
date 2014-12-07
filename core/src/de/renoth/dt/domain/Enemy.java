@@ -2,6 +2,7 @@ package de.renoth.dt.domain;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Timer;
 import de.renoth.dt.actor.EnemyActor;
 import de.renoth.dt.actor.SimpleActor;
 import de.renoth.dt.common.GameStats;
@@ -69,7 +70,20 @@ public class Enemy implements IDescribable, IKillable {
         //the enemy gets attacked
         int damage = (int) Math.max(0, Math.round(hero.dealDamage() - baseDefense) * applyResistance(hero) * applyWeakness(hero));
         GameScreen.getGameWorld().getDamageLabelActor().animateDamage(victim, damage);
+        GameStats.damageDealt += damage;
         health -= damage;
+        switch (hero.getAttackType()) {
+            case SLICE:
+                SoundResources.sword.play();
+                break;
+            case STAB:
+                SoundResources.knife.play();
+                break;
+            case BLUDGEON:
+                SoundResources.club.play();
+                break;
+        }
+
 
         return health;
     }
@@ -85,6 +99,7 @@ public class Enemy implements IDescribable, IKillable {
     public void attack(Hero hero) {
         //the hero gets attacked
         int damage = getDamage() - hero.getDefense();
+        GameStats.damageTaken += damage;
         hero.health.setBaseValue(hero.health.getBaseValue() - damage);
 
         GameScreen.getGameWorld().getDamageLabelActor().animateDamage(GameScreen.getGameWorld().heroActor, damage);
@@ -92,10 +107,11 @@ public class Enemy implements IDescribable, IKillable {
         GameScreen.getGameWorld().heroActor.createDescriptionBox(hero);
 
         if (hero.health.getValue() <= 0) {
-            //GameStats.writeScoreToDisk();
+            GameStats.writeScoreToDisk();
+            GameStats.reset();
 
             SoundResources.gameOver.play();
-            SoundResources.gitarrenmusik.stop();
+            //SoundResources.gitarrenmusik.stop();
 
             GameScreen.getGameWorld().heroDied = true;
             GameScreen.getGameWorld().stage.addActor(new SimpleActor(0, 0, 1280, 800, GameScreen.getGameWorld(), Resources.deathBanner));
@@ -103,7 +119,7 @@ public class Enemy implements IDescribable, IKillable {
             label.setPosition(500, 100);
             GameScreen.getGameWorld().stage.addActor(label);
         } else {
-            SoundResources.explosion.play();
+            SoundResources.takeDamage.play();
         }
     }
 

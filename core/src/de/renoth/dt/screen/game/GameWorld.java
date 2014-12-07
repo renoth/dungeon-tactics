@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.utils.Timer;
 import de.renoth.dt.actor.*;
 import de.renoth.dt.common.Constants;
 import de.renoth.dt.common.GameStats;
@@ -48,6 +49,7 @@ public class GameWorld {
         addMenu();
         addAttackTypeMenu();
 
+        addHighscoreInfo();
         addPlayer();
         addPlayerStats();
         addSelectedItemIcon();
@@ -55,7 +57,11 @@ public class GameWorld {
 
         addDamageLabelActors();
 
-        SoundResources.gitarrenmusik.loop(0.5f);
+        //SoundResources.gitarrenmusik.loop(0.5f);
+    }
+
+    private void addHighscoreInfo() {
+        stage.fg.addActor(new HighScoreLabel(1000, 600, 280, 200));
     }
 
     public void addPlayerStats() {

@@ -13,6 +13,7 @@ import de.renoth.dt.screen.game.GameWorld;
 
 public class EnemyActor extends ActorWithDescription {
     private Enemy enemy;
+    private boolean waitForEnemy;
 
     public EnemyActor(int x, int y, int width, int height, final GameWorld gameWorld, Texture tex, Enemy e) {
         super(x,y,width,height,gameWorld,tex);
@@ -28,13 +29,15 @@ public class EnemyActor extends ActorWithDescription {
                         createDescriptionBox(enemy);
                     }
                     //wait for 1 second
+                    waitForEnemy = true;
                     Timer.schedule(new Timer.Task() {
                         @Override
                         public void run() {
-
+                            gameWorld.enemiesAttack();
+                            waitForEnemy = false;
                         }
                     }, 1);
-                    gameWorld.enemiesAttack();
+
                 }
                 return false;
             }
@@ -59,6 +62,9 @@ public class EnemyActor extends ActorWithDescription {
     }
 
     private boolean isHittableByHero(GameWorld gameWorld) {
+        if (waitForEnemy) {
+            return false;
+        }
         if (gameWorld.enemyActors.get(0).equals(this)) {
             return true;
         }
