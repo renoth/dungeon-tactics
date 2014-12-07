@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseStat {
+    public List<StatModifier> modifiers;
     private int baseValue;
     private StatType statType;
-    public List<StatModifier> modifiers;
     private int maxValue;
 
     public BaseStat(int baseValue, StatType statType) {

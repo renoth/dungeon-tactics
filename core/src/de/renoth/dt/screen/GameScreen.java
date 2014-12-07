@@ -3,25 +3,16 @@ package de.renoth.dt.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Matrix4;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import de.renoth.dt.DungeonTacticsGame;
-import de.renoth.dt.res.Resources;
 import de.renoth.dt.screen.game.GameStage;
 import de.renoth.dt.screen.game.GameWorld;
 
 public class GameScreen extends BaseScreen {
 
-    private Matrix4 debugMatrix;
     private static GameWorld gameWorld;
-
-    public static GameWorld getGameWorld() {
-        return gameWorld;
-    }
+    private Matrix4 debugMatrix;
 
     public GameScreen(DungeonTacticsGame dungeonTacticsGame) {
         super(dungeonTacticsGame);
@@ -33,6 +24,10 @@ public class GameScreen extends BaseScreen {
         stages[0].getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
 
         setInputProcessor();
+    }
+
+    public static GameWorld getGameWorld() {
+        return gameWorld;
     }
 
     @Override

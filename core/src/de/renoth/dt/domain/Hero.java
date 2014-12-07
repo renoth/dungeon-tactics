@@ -16,21 +16,16 @@ import java.util.List;
 import java.util.Random;
 
 public class Hero implements IDescribable, IKillable {
-    private String name;
     int level;
     Experience xp;
-
     int maxHealth;
-
     Health health;
     Defense defense;
     Damage damage;
-
     Random random;
-
     AttackType attackType;
-
     List<BaseStat> baseStatList;
+    private String name;
 
     public Hero(String name) {
         this.name = name;
@@ -44,9 +39,9 @@ public class Hero implements IDescribable, IKillable {
         maxHealth = Constants.INITIAL_HEALTH;
 
         baseStatList.add(health = new Health(Constants.INITIAL_HEALTH, StatType.HEALTH, this));
-        baseStatList.add(defense = new Defense(0,StatType.DEFENSE));
-        baseStatList.add(damage = new Damage(4,StatType.DAMAGE));
-        baseStatList.add(xp = new Experience(0,StatType.EXPERIENCE));
+        baseStatList.add(defense = new Defense(0, StatType.DEFENSE));
+        baseStatList.add(damage = new Damage(400, StatType.DAMAGE));
+        baseStatList.add(xp = new Experience(0, StatType.EXPERIENCE));
     }
 
     @Override
@@ -100,24 +95,24 @@ public class Hero implements IDescribable, IKillable {
         return GameScreen.getGameWorld().inventory.weaponSlot.getItem();
     }
 
-    public void setAttackType(AttackType attackType) {
-        this.attackType = attackType;
-    }
-
     public AttackType getAttackType() {
         return attackType;
+    }
+
+    public void setAttackType(AttackType attackType) {
+        this.attackType = attackType;
     }
 
     public List<BaseStat> getBaseStats() {
         return baseStatList;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Experience getXp() {
@@ -127,7 +122,7 @@ public class Hero implements IDescribable, IKillable {
     public void addXP(int xp) {
         this.xp.setBaseValue(this.xp.getValue() + xp);
 
-        if (this.xp.getBaseValue() > xpNeededForLevelUp()) {
+        if (this.xp.getBaseValue() >= xpNeededForLevelUp()) {
             levelUp();
         }
     }
@@ -137,7 +132,7 @@ public class Hero implements IDescribable, IKillable {
 
         health.setBaseValue(health.getMaxValue());
 
-        for (int i = 1; i <=2 ; i++) {
+        for (int i = 1; i <= 2; i++) {
             int randomIndex = random.nextInt(baseStatList.size());
             baseStatList.get(randomIndex).setBaseValue(baseStatList.get(randomIndex).getBaseValue() + 1);
         }
@@ -155,5 +150,9 @@ public class Hero implements IDescribable, IKillable {
 
     public int getLevel() {
         return level;
+    }
+
+    public void sellItem(Item selectedItem) {
+        addXP(selectedItem.getXpValue());
     }
 }

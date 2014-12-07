@@ -5,9 +5,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class GameStage extends Stage {
 
-    private GameWorld world;
-
     public Group bg, fg;
+    private GameWorld world;
 
     public GameStage() {
         fg = new Group();

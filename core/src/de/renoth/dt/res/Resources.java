@@ -63,6 +63,7 @@ public class Resources {
     public static Texture magicFrame;
     public static Texture rareFrame;
     public static Texture uniqueFrame;
+    public static Texture sellSlot;
 
 
     public static void init() {
@@ -98,6 +99,7 @@ public class Resources {
         background = new Texture("tex/background.png");
         item = new Texture("tex/item.png");
         inventory = new Texture("tex/inventory.png");
+        sellSlot = new Texture("tex/sellslot.png");
         inventoryAccept = new Texture("tex/inventory_accept.png");
         bgEquipment = new Texture("tex/equipment_bg.png");
         descriptionBg = new Texture("tex/description_bg.png");

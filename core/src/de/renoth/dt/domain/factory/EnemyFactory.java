@@ -10,14 +10,13 @@ import java.util.Random;
 
 public class EnemyFactory {
 
-    private static int baseLevel = 1;
     static Random random = new Random();
-
-
+    private static int baseLevel = 1;
 
     public static Enemy createRandomEnemy() {
         EnemyType type = getRandomEnemyType();
-        Enemy e = new Enemy(createRandomName(type), type);
+        int bonuslevels = generateBonusLevelCount();
+        Enemy e = new Enemy(createRandomName(type, bonuslevels), type);
 
         e.setResistances(generateRandomResistances());
         e.setWeakness(genrateRandomWeakness());
@@ -42,14 +41,18 @@ public class EnemyFactory {
 
         double random = Math.random();
 
-        if (random < 0.6f) {
+        if (random < 0.3f) {
             bonusLevels = 0;
-        } else if (random < 0.9f) {
+        } else if (random < 0.6f) {
             bonusLevels = 1;
-        } else if (random < 0.98f) {
+        } else if (random < 0.8f) {
             bonusLevels = 2;
-        } else {
+        } else if (random < 0.9f) {
             bonusLevels = 3;
+        } else if (random < 0.97f) {
+            bonusLevels = 4;
+        } else {
+            bonusLevels = 5;
         }
         return bonusLevels;
     }
@@ -64,8 +67,26 @@ public class EnemyFactory {
         return resistances;
     }
 
-    private static String createRandomName(EnemyType type) {
-        return type.name() + " the Killer";
+    private static String createRandomName(EnemyType type, int bonuslevels) {
+        return type.name() + generateSuffix(bonuslevels);
+    }
+
+    private static String generateSuffix(int bonuslevels) {
+        switch (bonuslevels) {
+            case 0:
+                return "";
+            case 1:
+                return " the Experienced";
+            case 2:
+                return " the Fighter";
+            case 3:
+                return " the Elite Soldier";
+            case 4:
+                return " the Crusher";
+            case 5:
+                return " the Boss";
+        }
+        return null;
     }
 
     private static EnemyType getRandomEnemyType() {

@@ -5,14 +5,14 @@ import com.badlogic.gdx.graphics.Texture;
 import de.renoth.dt.res.Resources;
 
 public enum RarityType {
-    COMMON(0,1, Color.WHITE, Resources.commonFrame),
-    MAGIC(1,4, Color.BLUE, Resources.magicFrame),
-    RARE(2,10, Color.YELLOW, Resources.rareFrame),
-    UNIQUE(8,20, Color.PURPLE, Resources.uniqueFrame);
+    COMMON(0, 1, Color.WHITE, Resources.commonFrame),
+    MAGIC(1, 4, Color.BLUE, Resources.magicFrame),
+    RARE(2, 10, Color.YELLOW, Resources.rareFrame),
+    UNIQUE(8, 20, Color.PURPLE, Resources.uniqueFrame);
 
     private int minModifiers, maxModifiers;
     private Color color;
-    private  Texture frame;
+    private Texture frame;
     private Texture texture;
 
     RarityType(int minModifiers, int maxModifiers, Color c, Texture frame) {

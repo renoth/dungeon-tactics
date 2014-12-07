@@ -19,7 +19,6 @@ public class HeroStatsLabel extends DescriptionBox {
         setBounds(getX(), getY(), width, height);
 
 
-
         createLabels(description, gameWorld, maxHeight);
     }
 

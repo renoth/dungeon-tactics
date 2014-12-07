@@ -1,8 +1,6 @@
 package de.renoth.dt.actor;
 
-import box2dLight.PointLight;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.utils.Timer;
@@ -16,10 +14,10 @@ public class EnemyActor extends ActorWithDescription {
     private boolean waitForEnemy;
 
     public EnemyActor(int x, int y, int width, int height, final GameWorld gameWorld, Texture tex, Enemy e) {
-        super(x,y,width,height,gameWorld,tex);
+        super(x, y, width, height, gameWorld, tex);
         this.enemy = e;
 
-        addListener(new InputListener(){
+        addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 if (EnemyActor.this.isHittableByHero(gameWorld)) {

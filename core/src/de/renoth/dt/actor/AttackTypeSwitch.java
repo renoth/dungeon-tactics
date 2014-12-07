@@ -22,7 +22,7 @@ public class AttackTypeSwitch extends ActorWithDescription {
         super(x, y, width, height, gameWorld, tex);
         this.attackType = attackType;
 
-        addListener(new InputListener(){
+        addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 gameWorld.hero.setAttackType(attackType);

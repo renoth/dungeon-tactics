@@ -3,7 +3,10 @@ package de.renoth.dt.domain.factory;
 import de.renoth.dt.domain.enums.ItemType;
 import de.renoth.dt.domain.enums.ModifierType;
 import de.renoth.dt.domain.enums.StatType;
-import de.renoth.dt.domain.stats.modifier.*;
+import de.renoth.dt.domain.stats.modifier.DamageModifier;
+import de.renoth.dt.domain.stats.modifier.DefenseModifier;
+import de.renoth.dt.domain.stats.modifier.HealthModifier;
+import de.renoth.dt.domain.stats.modifier.StatModifier;
 
 import java.util.Random;
 

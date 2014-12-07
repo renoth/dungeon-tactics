@@ -9,7 +9,7 @@ public class DungeonTacticsGame extends Game {
     public GameScreen gameScreen;
 
     @Override
-	public void create () {
+    public void create() {
         Resources.init();
 
         SoundResources.init();
@@ -17,5 +17,5 @@ public class DungeonTacticsGame extends Game {
         gameScreen = new GameScreen(this);
 
         setScreen(gameScreen);
-	}
+    }
 }

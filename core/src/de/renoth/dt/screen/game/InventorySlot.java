@@ -1,6 +1,5 @@
 package de.renoth.dt.screen.game;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -17,7 +16,7 @@ public class InventorySlot extends ActorWithDescription {
     private Item item;
 
     public InventorySlot(int x, int y, int width, int height, final GameWorld gameWorld, Texture tex) {
-        super(x,y,width,height,gameWorld, tex);
+        super(x, y, width, height, gameWorld, tex);
 
         addListener(new InputListener() {
             @Override
@@ -35,7 +34,7 @@ public class InventorySlot extends ActorWithDescription {
                     SoundResources.blipSelect.play();
 
                 } else if (gameWorld.selectedItem != null && (((InventorySlot.this instanceof EquipmentSlot) &&
-                        ((EquipmentSlot)InventorySlot.this).acceptedItemType == gameWorld.selectedItem.itemType) || !(InventorySlot.this instanceof EquipmentSlot)))  {
+                        ((EquipmentSlot) InventorySlot.this).acceptedItemType == gameWorld.selectedItem.itemType) || !(InventorySlot.this instanceof EquipmentSlot))) {
                     //put something into slot
                     Item existingItem = item;
 
@@ -79,12 +78,12 @@ public class InventorySlot extends ActorWithDescription {
         }
     }
 
+    public Item getItem() {
+        return item;
+    }
+
     public void setItem(Item item) {
         if (item != null) createDescriptionBox(item);
         this.item = item;
-    }
-
-    public Item getItem() {
-        return item;
     }
 }

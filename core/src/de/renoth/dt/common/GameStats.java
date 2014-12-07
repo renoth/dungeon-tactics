@@ -16,7 +16,9 @@ public class GameStats {
         killCount = 0;
         damageDealt = 0;
         damageTaken = 0;
-    };
+    }
+
+    ;
 
     public static void writeScoreToDisk() {
         FileHandle scoreFile = Gdx.files.local("dungeonTacticsHighScores.txt");
@@ -26,7 +28,7 @@ public class GameStats {
     private static String generateStatsLine() {
         GameWorld gw = GameScreen.getGameWorld();
         StringJoiner joiner = new StringJoiner(";");
-        joiner.add(gw.hero.getName()).add(gw.hero.getXp().getBaseValue()+"").add(killCount+"").add(damageDealt+"");
+        joiner.add(gw.hero.getName()).add(gw.hero.getXp().getBaseValue() + "").add(killCount + "").add(damageDealt + "");
         return joiner.toString();
     }
 

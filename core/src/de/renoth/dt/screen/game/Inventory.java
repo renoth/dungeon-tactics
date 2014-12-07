@@ -14,14 +14,15 @@ import java.util.List;
 import java.util.Map;
 
 public class Inventory {
-    public Map<Integer, InventorySlot> inventorySlots;
     private final GameWorld gameWorld;
+    public Map<Integer, InventorySlot> inventorySlots;
     public EquipmentSlot weaponSlot;
     public EquipmentSlot armorSlot;
     public List<EquipmentSlot> equipmentSlots;
     private EquipmentSlot helmetSlot;
     private EquipmentSlot shieldSlot;
     private EquipmentSlot bootSlot;
+    private SellSlot sellSlot;
 
 
     public Inventory(GameWorld gameWorld) {
@@ -39,16 +40,6 @@ public class Inventory {
     }
 
     private void fillInitialItems() {
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
         inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
     }
 
@@ -69,15 +60,20 @@ public class Inventory {
     }
 
     private void buildInventory() {
-        for (int column = 0; column < 7; column ++) {
-            for(int row = 0 ; row < 5; row++) {
-                InventorySlot slot = new InventorySlot(column * Constants.INVENTORY_GRID_SIZE, row * Constants.INVENTORY_GRID_SIZE,
-                        Constants.INVENTORY_GRID_SIZE, Constants.INVENTORY_GRID_SIZE, gameWorld, Resources.inventory);
-                gameWorld.stage.bg.addActor(slot);
-                inventorySlots.put(getIndex(column, row), slot);
+        for (int column = 0; column < 7; column++) {
+            for (int row = 0; row < 5; row++) {
+                if (column == 6 && row == 0) {
+                    sellSlot = new SellSlot(column * Constants.INVENTORY_GRID_SIZE, row * Constants.INVENTORY_GRID_SIZE,
+                            Constants.INVENTORY_GRID_SIZE, Constants.INVENTORY_GRID_SIZE, gameWorld, Resources.sellSlot);
+                    gameWorld.stage.bg.addActor(sellSlot);
+                } else {
+                    InventorySlot slot = new InventorySlot(column * Constants.INVENTORY_GRID_SIZE, row * Constants.INVENTORY_GRID_SIZE,
+                            Constants.INVENTORY_GRID_SIZE, Constants.INVENTORY_GRID_SIZE, gameWorld, Resources.inventory);
+                    gameWorld.stage.bg.addActor(slot);
+                    inventorySlots.put(getIndex(column, row), slot);
+                }
             }
         }
-        sellSlot = new SellSlot();
     }
 
     private int getIndex(int column, int row) {
@@ -85,8 +81,8 @@ public class Inventory {
     }
 
     public int getFirstFreeInventorySlot() {
-        for (int col = 0; col < 7; col ++) {
-            for(int row = 0 ; row < 5; row++) {
+        for (int col = 0; col < 7; col++) {
+            for (int row = 0; row < 5; row++) {
                 if (inventorySlots.get(getIndex(col, row)).getItem() == null) {
                     return getIndex(col, row);
                 }

@@ -19,7 +19,7 @@ public class HighScoreLabel extends Actor {
     private List<PositionedLabel> labels;
 
     public HighScoreLabel(int x, int y, int width, int height) {
-        setPosition(x,y);
+        setPosition(x, y);
         setSize(width, height);
 
         FileHandle scoreFile = Gdx.files.local("dungeonTacticsHighScores.txt");
@@ -42,7 +42,7 @@ public class HighScoreLabel extends Actor {
             }
 
             PositionedLabel label = new PositionedLabel(joiner.toString(), style, new Point2D(10, 170 - SMALL_ROW_HEIGHT * entries.indexOf(entry)));
-            label.setPosition(x,y);
+            label.setPosition(x, y);
             labels.add(label);
             if (entries.indexOf(entry) > 10) break;
         }

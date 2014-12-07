@@ -1,10 +1,9 @@
 package de.renoth.dt.domain;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import de.renoth.dt.domain.enums.AttackType;
 import de.renoth.dt.domain.enums.ItemType;
 import de.renoth.dt.domain.enums.RarityType;
-import de.renoth.dt.domain.stats.modifier.IStatModifier;
 import de.renoth.dt.domain.stats.modifier.StatModifier;
 import de.renoth.dt.res.Resources;
 
@@ -16,7 +15,7 @@ public class Item implements IDescribable {
     public RarityType rarityType;
     public String name;
     public Texture texture;
-    public int baseDamage, baseDefense, baseValue, level;
+    public int level;
     public List<StatModifier> modifiers;
 
     public Item(ItemType itemType) {
@@ -32,8 +31,10 @@ public class Item implements IDescribable {
 
         description.add(new StyledText(name, Resources.mplus20, rarityType.getColor()));
 
+        description.add(new StyledText("XP Value: " + getXpValue(), Resources.mplus12, Color.WHITE));
+
         for (StatModifier m : modifiers) {
-            description.add(new StyledText(m.getStatType().getLabel() + ": " + m.getModifierLabel(),Resources.mplus12,m.getColor()));
+            description.add(new StyledText(m.getStatType().getLabel() + ": " + m.getModifierLabel(), Resources.mplus12, m.getColor()));
         }
 
         return description;
@@ -76,5 +77,9 @@ public class Item implements IDescribable {
 
     public void setRarityType(RarityType rarityType) {
         this.rarityType = rarityType;
+    }
+
+    public int getXpValue() {
+        return (1 + 3 * modifiers.size() + level * 4);
     }
 }

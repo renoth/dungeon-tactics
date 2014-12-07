@@ -10,7 +10,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.utils.Timer;
 import de.renoth.dt.actor.*;
 import de.renoth.dt.common.Constants;
 import de.renoth.dt.common.GameStats;
@@ -20,7 +19,6 @@ import de.renoth.dt.domain.Item;
 import de.renoth.dt.domain.enums.AttackType;
 import de.renoth.dt.domain.factory.EnemyFactory;
 import de.renoth.dt.res.Resources;
-import de.renoth.dt.res.SoundResources;
 
 import java.util.ArrayList;
 
@@ -36,9 +34,9 @@ public class GameWorld {
     public HeroActor heroActor;
     public Inventory inventory;
     public boolean heroDied = false;
+    public HeroStatsLabel heroStatsLabel;
     private SimpleActor selectedItemActor;
     private DamageLabelActor damageLabelActor;
-    public HeroStatsLabel heroStatsLabel;
 
     public GameWorld(GameStage stage, OrthographicCamera camera) {
         this.stage = stage;
@@ -65,7 +63,7 @@ public class GameWorld {
     }
 
     public void addPlayerStats() {
-        stage.fg.addActor(heroStatsLabel = new HeroStatsLabel(0,600,Resources.descriptionBg, hero.getDescription(), this, null));
+        stage.fg.addActor(heroStatsLabel = new HeroStatsLabel(0, 600, Resources.descriptionBg, hero.getDescription(), this, null));
     }
 
     private void addAttackTypeMenu() {
@@ -80,9 +78,9 @@ public class GameWorld {
 
     private void addInitialEnemies() {
         enemyActors = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             Enemy e = EnemyFactory.createRandomEnemy();
-            EnemyActor ea = new EnemyActor(600 + i * 100, 336, 64, 64, this, e.getType().getTexture(), e);
+            EnemyActor ea = new EnemyActor(600 + i * 100, 336, Constants.ENEMY_ACTOR_SIZE, Constants.ENEMY_ACTOR_SIZE, this, e.getType().getTexture(), e);
             stage.bg.addActor(ea);
             enemyActors.add(ea);
         }
@@ -141,10 +139,10 @@ public class GameWorld {
 
     public void addNewEnemy() {
         Enemy e = EnemyFactory.createRandomEnemy();
-        EnemyActor ea = new EnemyActor(600 + (enemyActors.size() + 1) * 100, 336, 64, 64, this, e.getType().getTexture(), e);
+        EnemyActor ea = new EnemyActor(600 + (enemyActors.size() + 1) * 100, 336, Constants.ENEMY_ACTOR_SIZE, Constants.ENEMY_ACTOR_SIZE, this, e.getType().getTexture(), e);
         enemyActors.add(ea);
         stage.bg.addActor(ea);
-        if (GameStats.killCount % 10 == 0) {
+        if (GameStats.killCount % 8 == 0) {
             EnemyFactory.increaseBaseLevelByOne();
         }
         ea.setColor(1, 1, 1, 0);
@@ -163,14 +161,14 @@ public class GameWorld {
 
     private class MyTextInputListener implements Input.TextInputListener {
         @Override
-        public void input (String text) {
+        public void input(String text) {
             hero.setName(text);
             heroStatsLabel.remove();
             addPlayerStats();
         }
 
         @Override
-        public void canceled () {
+        public void canceled() {
             hero.setName("NOOB!");
             heroStatsLabel.remove();
             addPlayerStats();

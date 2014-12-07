@@ -31,7 +31,7 @@ public class DescriptionBox extends Actor {
         this.height = maxHeight + 5;
         this.hoverlistener = hoverListener;
 
-        setPosition(x,y);
+        setPosition(x, y);
 
         setOrigin(x, y);
         setBounds(getX(), getY(), width, height);
@@ -56,7 +56,7 @@ public class DescriptionBox extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        if(hoverlistener != null && hoverlistener.isOver() && !labels.isEmpty()) {
+        if (hoverlistener != null && hoverlistener.isOver() && !labels.isEmpty()) {
             updatePositions();
             batch.draw(tex, getX(), getY(), width, height);
             for (PositionedLabel l : labels) {

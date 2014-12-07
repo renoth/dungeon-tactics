@@ -11,11 +11,10 @@ public abstract class ActorWithDescription extends Actor {
     public final Texture tex;
     private final int posX;
     private final int posY;
+    protected GameWorld gameWorld;
+    protected DescriptionBox descriptionBox;
     private DescriptionHoverListener hoverlistener;
     private int width, height;
-    protected GameWorld gameWorld;
-
-    protected DescriptionBox descriptionBox;
 
     public ActorWithDescription(int x, int y, int width, int height, GameWorld gameWorld, Texture tex) {
         this.tex = tex;
@@ -25,7 +24,7 @@ public abstract class ActorWithDescription extends Actor {
         this.posX = x;
         this.posY = y;
 
-        setPosition(x,y);
+        setPosition(x, y);
 
         setOrigin(x, y);
         setBounds(getX(), getY(), width, height);
@@ -62,15 +61,15 @@ public abstract class ActorWithDescription extends Actor {
         }
 
         addListener(hoverlistener = new DescriptionHoverListener());
-        descriptionBox = new DescriptionBox(posX,posY,Resources.descriptionBg, entity.getDescription(), gameWorld, hoverlistener);
+        descriptionBox = new DescriptionBox(posX, posY, Resources.descriptionBg, entity.getDescription(), gameWorld, hoverlistener);
         hoverlistener.setDescriptionBox(descriptionBox);
         descriptionBox.setVisible(false);
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        batch.setColor(1,1,1,getColor().a);
+        batch.setColor(1, 1, 1, getColor().a);
         batch.draw(tex, getX(), getY(), width, height);
-        batch.setColor(1,1,1,1);
+        batch.setColor(1, 1, 1, 1);
     }
 }

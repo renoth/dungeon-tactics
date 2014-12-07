@@ -31,15 +31,15 @@ public abstract class StatModifier {
         return modifier;
     }
 
+    public void setModifier(int modifier) {
+        this.modifier = modifier;
+    }
+
     public String getModifierLabel() {
         return (modifier > 0 ? "+ " : "- ") + modifier;
     }
 
     public ModifierType getModifierType() {
         return modifierType;
-    }
-
-    public void setModifier(int modifier) {
-        this.modifier = modifier;
     }
 }

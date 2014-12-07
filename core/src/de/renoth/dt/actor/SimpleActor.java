@@ -16,7 +16,7 @@ public class SimpleActor extends Actor {
         this.height = height;
         this.gameWorld = gameWorld;
 
-        setPosition(x,y);
+        setPosition(x, y);
 
         setOrigin(x, y);
         setBounds(getX(), getY(), width, height);

@@ -6,7 +6,7 @@ import de.renoth.dt.res.Resources;
 public enum EnemyType {
     GELATINOUS_CUBE(0, Resources.cube_blue, 8, 1, 0),
     GELATINOUS_ELITE_CUBE(1, Resources.cube_pink, 15, 2, 1),
-    GELATINOUS_GREEN_CUBE(2, Resources.cube_green, 12, 2, 0),
+    GELATINOUS_GREEN_CUBE(2, Resources.cube_green, 12, 4, 0),
     SNAKE(3, Resources.snake_blue, 10, 2, 0),
     SNAKE_GREEN(4, Resources.snake_green, 15, 3, 0),
     SNAKE_RED(5, Resources.snake_green, 20, 4, 0),

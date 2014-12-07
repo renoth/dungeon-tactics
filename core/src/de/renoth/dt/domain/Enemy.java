@@ -2,7 +2,6 @@ package de.renoth.dt.domain;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.utils.Timer;
 import de.renoth.dt.actor.EnemyActor;
 import de.renoth.dt.actor.SimpleActor;
 import de.renoth.dt.common.GameStats;
@@ -11,14 +10,12 @@ import de.renoth.dt.domain.enums.EnemyType;
 import de.renoth.dt.res.Resources;
 import de.renoth.dt.res.SoundResources;
 import de.renoth.dt.screen.GameScreen;
-import de.renoth.dt.screen.game.GameWorld;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Enemy implements IDescribable, IKillable {
 
-    private String name;
     int level;
     long xp;
     int health;
@@ -27,6 +24,7 @@ public class Enemy implements IDescribable, IKillable {
     EnemyType type;
     List<AttackType> resistances;
     AttackType weakness;
+    private String name;
 
     public Enemy(String name, EnemyType type) {
         this.name = name;
@@ -55,16 +53,17 @@ public class Enemy implements IDescribable, IKillable {
         if (random < 0.55d) {
             health += 5;
         } else if (random < 0.8d) {
-            baseDamage += 1;
+            baseDamage += 2;
         } else if (random < 0.95d) {
-            baseDefense += 1;
+            baseDefense += 2;
             xp++;
         } else {
             //gnihihi
-            health += 5;
+            health += 10;
             baseDamage += 2;
             baseDefense += 2;
-            xp++;xp++;
+            xp++;
+            xp++;
         }
         level++;
         xp += level;
@@ -101,7 +100,7 @@ public class Enemy implements IDescribable, IKillable {
 
     public void attack(Hero hero) {
         //the hero gets attacked
-        int damage = Math.max(getDamage() - hero.getDefense(),0);
+        int damage = Math.max(getDamage() - hero.getDefense(), 0);
         GameStats.damageTaken += damage;
         hero.health.setBaseValue(hero.health.getBaseValue() - damage);
 
