@@ -68,6 +68,7 @@ public class InventorySlot extends ActorWithDescription {
     void drawItem(Batch batch) {
         if (item != null) {
             batch.draw(item.texture, getX() + 4, getY() + 4, Constants.ITEM_SIZE, Constants.ITEM_SIZE);
+            batch.draw(item.rarityType.getTexture(), getX() + 4, getY() + 4, Constants.ITEM_SIZE, Constants.ITEM_SIZE);
         }
     }
 

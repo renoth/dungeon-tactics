@@ -47,6 +47,10 @@ public class Resources {
     public static BitmapFont mplus12;
     public static BitmapFont mplus20;
     public static BitmapFont mplus36;
+    public static Texture commonFrame;
+    public static Texture magicFrame;
+    public static Texture rareFrame;
+    public static Texture uniqueFrame;
 
 
     public static void init() {
@@ -76,6 +80,11 @@ public class Resources {
         bgEquipment = new Texture("tex/equipment_bg.png");
         descriptionBg = new Texture("tex/description_bg.png");
         selectedFrame = new Texture("tex/selected_frame.png");
+
+        commonFrame = new Texture("tex/common_item.png");
+        magicFrame = new Texture("tex/magic_item.png");
+        rareFrame = new Texture("tex/rare_item.png");
+        uniqueFrame = new Texture("tex/unique_item.png");
 
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("font/Bebas.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();

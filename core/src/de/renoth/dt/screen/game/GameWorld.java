@@ -80,6 +80,8 @@ public class GameWorld {
             @Override
             public void draw(Batch batch, float parentAlpha) {
                 batch.draw(selectedItem.texture, Gdx.input.getX(), 800 - Gdx.input.getY(), Constants.ITEM_SIZE, Constants.ITEM_SIZE);
+                batch.draw(selectedItem.rarityType.getTexture(), Gdx.input.getX(), 800 - Gdx.input.getY(), Constants.ITEM_SIZE, Constants.ITEM_SIZE);
+
             }
         });
         selectedItemActor.setVisible(false);
