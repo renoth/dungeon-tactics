@@ -14,6 +14,7 @@ public class Hero implements IDescribable {
     int health;
     int baseDefense;
     int baseDamage;
+    private Object defense;
 
     public Hero(String name) {
         this.name = name;
@@ -38,5 +39,9 @@ public class Hero implements IDescribable {
     public int dealDamage() {
         //TODO add bonuses
         return baseDamage;
+    }
+
+    public int getDefense() {
+        return baseDefense;
     }
 }

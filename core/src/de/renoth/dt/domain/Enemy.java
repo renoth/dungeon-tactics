@@ -2,6 +2,7 @@ package de.renoth.dt.domain;
 
 import com.badlogic.gdx.graphics.Color;
 import de.renoth.dt.res.Resources;
+import de.renoth.dt.screen.GameScreen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,5 +114,17 @@ public class Enemy implements IDescribable {
     public int takeDamage(Hero hero) {
         health -= Math.max(0, (hero.dealDamage() - baseDefense));
         return health;
+    }
+
+    public void attack(Hero hero) {
+        hero.health -= (getDamage() - hero.getDefense());
+
+        GameScreen.getGameWorld().heroActor.createDescriptionBox(hero);
+
+        //TODO check for death
+    }
+
+    public int getDamage() {
+        return baseDamage;
     }
 }

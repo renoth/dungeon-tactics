@@ -31,10 +31,13 @@ public class GameWorld {
     private SimpleActor selectedItemActor;
     public ArrayList<EnemyActor> enemyActors;
     public Hero hero;
+    public HeroActor heroActor;
 
-    public GameWorld(GameStage stage) {
+    public GameWorld(GameStage stage, OrthographicCamera camera) {
         this.stage = stage;
         world = new World(new Vector2(0.5f, 0), true);
+
+        createRayhandler(camera);
 
         addMenu();
         addPlayer();
@@ -64,7 +67,7 @@ public class GameWorld {
 
     private void addPlayer() {
         hero = new Hero("Nina");
-        stage.bg.addActor(new HeroActor(500, 336, 64, 128, this, Resources.hero1, hero));
+        stage.bg.addActor(heroActor = new HeroActor(500, 336, 64, 128, this, Resources.hero1, hero));
     }
 
     private void addMenu() {
@@ -100,5 +103,9 @@ public class GameWorld {
 
     public void addNewEnemy() {
         //enemyActors.add(EnemyFactory.createRandomEnemy());
+    }
+
+    public void enemiesAttack() {
+        enemyActors.get(0).getEnemy().attack(hero);
     }
 }

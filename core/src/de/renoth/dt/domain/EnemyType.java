@@ -5,6 +5,7 @@ import de.renoth.dt.res.Resources;
 
 public enum EnemyType {
     GELATINOUS_CUBE(0, Resources.cube_blue, 15, 1, 0),
+    GELATINOUS_ELITE_CUBE(0, Resources.cube_pink, 25, 2, 0),
     GOBLIN(1, Resources.hero3, 10, 2, 0);
 
 
