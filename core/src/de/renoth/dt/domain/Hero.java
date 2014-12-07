@@ -2,6 +2,7 @@ package de.renoth.dt.domain;
 
 
 import com.badlogic.gdx.graphics.Color;
+import de.renoth.dt.domain.enums.AttackType;
 import de.renoth.dt.domain.enums.StatType;
 import de.renoth.dt.domain.stats.BaseStat;
 import de.renoth.dt.domain.stats.Damage;
@@ -23,6 +24,8 @@ public class Hero implements IDescribable, IKillable {
     Defense defense;
     Damage damage;
 
+    AttackType attackType;
+
     List<BaseStat> baseStatList;
 
     public Hero(String name) {
@@ -31,6 +34,7 @@ public class Hero implements IDescribable, IKillable {
         xp = 0;
 
         baseStatList = new ArrayList<>();
+        attackType = AttackType.SLICE;
 
         baseStatList.add(health = new Health(100, StatType.HEALTH, this));
         baseStatList.add(defense = new Defense(0,StatType.DEFENSE));
@@ -82,5 +86,17 @@ public class Hero implements IDescribable, IKillable {
                 }
             }
         }
+    }
+
+    public Item getWeapon() {
+        return GameScreen.getGameWorld().inventory.weaponSlot.getItem();
+    }
+
+    public void setAttackType(AttackType attackType) {
+        this.attackType = attackType;
+    }
+
+    public AttackType getAttackType() {
+        return attackType;
     }
 }

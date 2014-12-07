@@ -1,6 +1,7 @@
 package de.renoth.dt.domain;
 
 import com.badlogic.gdx.graphics.Texture;
+import de.renoth.dt.domain.enums.AttackType;
 import de.renoth.dt.domain.enums.ItemType;
 import de.renoth.dt.domain.enums.RarityType;
 import de.renoth.dt.domain.stats.modifier.IStatModifier;

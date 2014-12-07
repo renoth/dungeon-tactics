@@ -2,6 +2,7 @@ package de.renoth.dt.domain;
 
 import com.badlogic.gdx.graphics.Color;
 import de.renoth.dt.actor.EnemyActor;
+import de.renoth.dt.domain.enums.AttackType;
 import de.renoth.dt.domain.enums.EnemyType;
 import de.renoth.dt.res.Resources;
 import de.renoth.dt.screen.GameScreen;
@@ -18,6 +19,8 @@ public class Enemy implements IDescribable, IKillable {
     int baseDefense;
     int baseDamage;
     EnemyType type;
+    List<AttackType> resistances;
+    AttackType weakness;
 
     public Enemy(String name, EnemyType type) {
         this.name = name;
@@ -25,6 +28,71 @@ public class Enemy implements IDescribable, IKillable {
         this.health = type.getHealth();
         this.baseDamage = type.getBaseDamage();
         this.baseDefense = type.getBaseDefense();
+    }
+
+    @Override
+    public List<StyledText> getDescription() {
+        ArrayList<StyledText> description = new ArrayList<>();
+
+        description.add(new StyledText(name, Resources.mplus20, Color.WHITE));
+        description.add(new StyledText("Level: " + level, Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("HP: " + health, Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("Damage: " + baseDamage, Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("Defense: " + baseDefense, Resources.mplus12, Color.WHITE));
+
+        return description;
+    }
+
+    public void levelUp() {
+        double random = Math.random();
+        if (random < 0.55d) {
+            health += 3;
+        } else if (random < 0.8d) {
+            baseDamage += 1;
+        } else if (random < 0.95d) {
+            baseDefense += 1;
+        } else {
+            //gnihihi
+            health += 5;
+            baseDamage += 1;
+            baseDefense += 1;
+        }
+        level++;
+    }
+
+    public int takeDamage(Hero hero, EnemyActor victim) {
+        int damage = (int) Math.max(0, Math.round(hero.dealDamage() - baseDefense) * applyResistance(hero) * applyWeakness(hero));
+        GameScreen.getGameWorld().getDamageLabelActor().animateDamage(victim, damage);
+        health -= damage;
+        return health;
+    }
+
+    private int applyWeakness(Hero hero) {
+        return hero.attackType == weakness ? 2 : 1;
+    }
+
+    private float applyResistance(Hero hero) {
+        return resistances.contains(hero.getAttackType()) ? 0.5f : 1f;
+    }
+
+    public void attack(Hero hero) {
+        int damage = getDamage() - hero.getDefense();
+        hero.health.setBaseValue(hero.health.getBaseValue() - damage);
+
+        GameScreen.getGameWorld().getDamageLabelActor().animateDamage(GameScreen.getGameWorld().heroActor, damage);
+
+        GameScreen.getGameWorld().heroActor.createDescriptionBox(hero);
+
+        //TODO check for death
+    }
+
+    public int getDamage() {
+        return baseDamage;
+    }
+
+    @Override
+    public void die() {
+
     }
 
     public String getName() {
@@ -83,60 +151,15 @@ public class Enemy implements IDescribable, IKillable {
         this.type = type;
     }
 
-    @Override
-    public List<StyledText> getDescription() {
-        ArrayList<StyledText> description = new ArrayList<>();
-
-        description.add(new StyledText(name, Resources.mplus20, Color.WHITE));
-        description.add(new StyledText("Level: " + level, Resources.mplus12, Color.WHITE));
-        description.add(new StyledText("HP: " + health, Resources.mplus12, Color.WHITE));
-        description.add(new StyledText("Damage: " + baseDamage, Resources.mplus12, Color.WHITE));
-        description.add(new StyledText("Defense: " + baseDefense, Resources.mplus12, Color.WHITE));
-
-        return description;
+    public List<AttackType> getResistances() {
+        return resistances;
     }
 
-    public void levelUp() {
-        double random = Math.random();
-        if (random < 0.55d) {
-            health += 3;
-        } else if (random < 0.8d) {
-            baseDamage += 1;
-        } else if (random < 0.95d) {
-            baseDefense += 1;
-        } else {
-            //gnihihi
-            health += 5;
-            baseDamage += 1;
-            baseDefense += 1;
-        }
-        level++;
+    public void setResistances(List<AttackType> resistances) {
+        this.resistances = resistances;
     }
 
-    public int takeDamage(Hero hero, EnemyActor victim) {
-        int damage = Math.max(0, (hero.dealDamage() - baseDefense));
-        GameScreen.getGameWorld().getDamageLabelActor().animateDamage(victim, damage);
-        health -= damage;
-        return health;
-    }
-
-    public void attack(Hero hero) {
-        int damage = getDamage() - hero.getDefense();
-        hero.health.setBaseValue(hero.health.getBaseValue() - damage);
-
-        GameScreen.getGameWorld().getDamageLabelActor().animateDamage(GameScreen.getGameWorld().heroActor, damage);
-
-        GameScreen.getGameWorld().heroActor.createDescriptionBox(hero);
-
-        //TODO check for death
-    }
-
-    public int getDamage() {
-        return baseDamage;
-    }
-
-    @Override
-    public void die() {
-
+    public void setWeakness(AttackType at) {
+        this.weakness = at;
     }
 }

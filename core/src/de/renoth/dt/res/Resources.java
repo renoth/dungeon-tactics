@@ -18,6 +18,7 @@ public class Resources {
     public static Texture bgEquipment;
     public static Texture inventory;
     public static Texture inventoryAccept;
+    public static Texture selectedFrame;
 
     public static Texture item;
 
@@ -72,6 +73,7 @@ public class Resources {
         inventoryAccept = new Texture("tex/inventory_accept.png");
         bgEquipment = new Texture("tex/equipment_bg.png");
         descriptionBg = new Texture("tex/description_bg.png");
+        selectedFrame = new Texture("tex/selected_frame.png");
 
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("font/Bebas.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();

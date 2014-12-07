@@ -20,13 +20,10 @@ public class EnemyActor extends ActorWithDescription {
         addListener(new InputListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Hit");
                 if (EnemyActor.this.isHittableByHero(gameWorld)) {
                     if (enemy.takeDamage(gameWorld.hero, EnemyActor.this) <= 0) {
                         EnemyActor.this.die();
-                        System.out.println("Enemy dies");
                     } else {
-                        System.out.println("Update info");
                         createDescriptionBox(enemy);
                     }
                     gameWorld.enemiesAttack();

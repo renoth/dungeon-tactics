@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import de.renoth.dt.actor.AttackTypeSwitch;
 import de.renoth.dt.actor.DamageLabelActor;
 import de.renoth.dt.actor.EnemyActor;
 import de.renoth.dt.actor.SimpleActor;
@@ -17,6 +18,7 @@ import de.renoth.dt.common.GameStats;
 import de.renoth.dt.domain.Enemy;
 import de.renoth.dt.domain.Hero;
 import de.renoth.dt.domain.Item;
+import de.renoth.dt.domain.enums.AttackType;
 import de.renoth.dt.domain.factory.EnemyFactory;
 import de.renoth.dt.res.Resources;
 
@@ -43,6 +45,7 @@ public class GameWorld {
         createRayhandler(camera);
 
         addMenu();
+        addAttackTypeMenu();
         addPlayer();
         addSelectedItemIcon();
         addInitialEnemies();
@@ -52,8 +55,13 @@ public class GameWorld {
         //Resources.gitarrenmusik.loop(0.5f);
     }
 
+    private void addAttackTypeMenu() {
+        stage.bg.addActor(new AttackTypeSwitch(140, 205, 40, 40, this, Resources.club, AttackType.BLUDGEON));
+        stage.bg.addActor(new AttackTypeSwitch(180, 205, 40, 40, this, Resources.sword, AttackType.SLICE));
+        stage.bg.addActor(new AttackTypeSwitch(220, 205, 40, 40, this, Resources.knife, AttackType.STAB));
+    }
+
     private void addDamageLabelActors() {
-        //TODO this
         damageLabelActor = new DamageLabelActor(this);
     }
 

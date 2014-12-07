@@ -30,7 +30,9 @@ public abstract class ActorWithDescription extends Actor {
         setOrigin(x, y);
         setBounds(getX(), getY(), width, height);
 
-        createDescriptionBox(getEntity());
+        if (!(this instanceof AttackTypeSwitch)) {
+            createDescriptionBox(getEntity());
+        }
     }
 
     protected abstract IDescribable getEntity();

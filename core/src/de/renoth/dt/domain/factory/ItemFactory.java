@@ -3,7 +3,6 @@ package de.renoth.dt.domain.factory;
 import de.renoth.dt.domain.Item;
 import de.renoth.dt.domain.enums.ItemType;
 import de.renoth.dt.domain.enums.RarityType;
-import de.renoth.dt.domain.stats.modifier.IStatModifier;
 import de.renoth.dt.domain.stats.modifier.StatModifier;
 
 import java.util.ArrayList;
