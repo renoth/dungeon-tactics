@@ -27,6 +27,7 @@ public class Resources {
     public static Texture knife;
     public static Texture sword;
 
+    public static Texture boots;
     public static Texture helmet;
     public static Texture shield;
     public static Texture armor;
@@ -64,6 +65,7 @@ public class Resources {
         knife = new Texture("tex/knife.png");
         sword = new Texture("tex/sword.png");
 
+        boots = new Texture("tex/boots.png");
         helmet = new Texture("tex/helmet.png");
         shield = new Texture("tex/shield.png");
         armor = new Texture("tex/armor.png");
