@@ -1,6 +1,7 @@
 package de.renoth.dt.actor;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -43,7 +44,7 @@ public class DescriptionBox extends Actor {
     protected void createLabels(List<StyledText> description, GameWorld gameWorld, int maxHeight) {
         for (int i = 0; i < description.size(); i++) {
             StyledText st = description.get(i);
-            PositionedLabel label = new PositionedLabel(st.text, new Label.LabelStyle(st.font, st.color), new Point2D(10, (maxHeight - 20) - ROW_HEIGHT * i));
+            PositionedLabel label = new PositionedLabel(st.text, new Label.LabelStyle(st.font, st.color), new Point2D(10, (maxHeight) - ROW_HEIGHT * i));
             label.setPosition(Gdx.input.getX(), 800 - Gdx.input.getY());
             label.setVisible(false);
 
@@ -57,16 +58,16 @@ public class DescriptionBox extends Actor {
             updatePositions();
             batch.draw(tex, getX(), getY(), width, height);
             for (PositionedLabel l : labels) {
+                l.getFont().setColor(l.getStyleColor());
                 l.getFont().draw(batch, l.getText().toString(), l.getX(), l.getY());
+                l.getFont().setColor(Color.WHITE);
             }
         }
-
     }
 
     public void updatePositions() {
         setPosition(Gdx.input.getX() + 5, 800 - Gdx.input.getY() + 5);
         for (Label l : labels) {
-            l.setZIndex(3000);
             l.setPosition(Gdx.input.getX(), 800 - Gdx.input.getY());
         }
     }

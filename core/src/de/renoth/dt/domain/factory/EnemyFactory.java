@@ -31,7 +31,7 @@ public class EnemyFactory {
         return EnemyType.getByIndex(random.nextInt(EnemyType.values().length));
     }
 
-    public void increaseBaseLevelByOne() {
+    public static void increaseBaseLevelByOne() {
         baseLevel++;
     }
 }

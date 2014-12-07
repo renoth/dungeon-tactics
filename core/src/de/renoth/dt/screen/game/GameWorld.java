@@ -8,11 +8,12 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import de.renoth.dt.actor.DamageLabelActor;
 import de.renoth.dt.actor.EnemyActor;
 import de.renoth.dt.actor.SimpleActor;
 import de.renoth.dt.common.Constants;
+import de.renoth.dt.common.GameStats;
 import de.renoth.dt.domain.Enemy;
 import de.renoth.dt.domain.Hero;
 import de.renoth.dt.domain.Item;
@@ -32,6 +33,7 @@ public class GameWorld {
     public ArrayList<EnemyActor> enemyActors;
     public Hero hero;
     public HeroActor heroActor;
+    private DamageLabelActor damageLabelActor;
 
     public GameWorld(GameStage stage, OrthographicCamera camera) {
         this.stage = stage;
@@ -45,15 +47,18 @@ public class GameWorld {
         addInitialEnemies();
 
         addDamageLabelActors();
+
+        //Resources.gitarrenmusik.loop(0.5f);
     }
 
     private void addDamageLabelActors() {
         //TODO this
+        damageLabelActor = new DamageLabelActor(this);
     }
 
     private void addInitialEnemies() {
         enemyActors = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 4; i++) {
             Enemy e = EnemyFactory.createRandomEnemy();
             EnemyActor ea = new EnemyActor(600 + i * 100, 336, 64, 64, this, e.getType().getTexture(), e);
             stage.bg.addActor(ea);
@@ -108,10 +113,24 @@ public class GameWorld {
     }
 
     public void addNewEnemy() {
-        //enemyActors.add(EnemyFactory.createRandomEnemy());
+        Enemy e = EnemyFactory.createRandomEnemy();
+        EnemyActor ea = new EnemyActor(600 + (enemyActors.size() + 1) * 100, 336, 64, 64, this, e.getType().getTexture(), e);
+        enemyActors.add(ea);
+        stage.bg.addActor(ea);
+        if (GameStats.killCount % 10 == 0) {
+            EnemyFactory.increaseBaseLevelByOne();
+        }
+        ea.setColor(1,1,1,0);
+
+        ea.addAction(Actions.alpha(1f, 1));
+        ea.addAction(Actions.moveTo(ea.getX() - 100, ea.getY(), 1));
     }
 
     public void enemiesAttack() {
         enemyActors.get(0).getEnemy().attack(hero);
+    }
+
+    public DamageLabelActor getDamageLabelActor() {
+        return damageLabelActor;
     }
 }

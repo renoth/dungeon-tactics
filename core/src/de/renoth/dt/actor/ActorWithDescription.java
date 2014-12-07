@@ -61,8 +61,8 @@ public abstract class ActorWithDescription extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        batch.setColor(1,1,1,getColor().a);
         batch.draw(tex, getX(), getY(), width, height);
-
-
+        batch.setColor(1,1,1,1);
     }
 }

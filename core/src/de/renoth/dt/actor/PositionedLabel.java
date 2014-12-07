@@ -1,5 +1,6 @@
 package de.renoth.dt.actor;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import javafx.geometry.Point2D;
@@ -22,5 +23,9 @@ public class PositionedLabel extends Label {
 
     public BitmapFont getFont() {
         return labelStyle.font;
+    }
+
+    Color getStyleColor() {
+        return labelStyle.fontColor;
     }
 }

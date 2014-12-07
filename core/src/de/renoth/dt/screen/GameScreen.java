@@ -31,7 +31,6 @@ public class GameScreen extends BaseScreen {
         stages[0].setViewport(viewport);
         stages[0].getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
 
-
         setInputProcessor();
     }
 

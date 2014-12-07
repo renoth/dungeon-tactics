@@ -1,6 +1,7 @@
 package de.renoth.dt.domain;
 
 import com.badlogic.gdx.graphics.Color;
+import de.renoth.dt.actor.EnemyActor;
 import de.renoth.dt.res.Resources;
 import de.renoth.dt.screen.GameScreen;
 
@@ -111,13 +112,18 @@ public class Enemy implements IDescribable {
         level++;
     }
 
-    public int takeDamage(Hero hero) {
-        health -= Math.max(0, (hero.dealDamage() - baseDefense));
+    public int takeDamage(Hero hero, EnemyActor victim) {
+        int damage = hero.dealDamage();
+        GameScreen.getGameWorld().getDamageLabelActor().animateDamage(victim, damage);
+        health -= Math.max(0, (damage - baseDefense));
         return health;
     }
 
     public void attack(Hero hero) {
-        hero.health -= (getDamage() - hero.getDefense());
+        int damage = getDamage() - hero.getDefense();
+        hero.health -= damage;
+
+        GameScreen.getGameWorld().getDamageLabelActor().animateDamage(GameScreen.getGameWorld().heroActor, damage);
 
         GameScreen.getGameWorld().heroActor.createDescriptionBox(hero);
 
