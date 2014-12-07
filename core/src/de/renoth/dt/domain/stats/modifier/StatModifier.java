@@ -38,4 +38,8 @@ public abstract class StatModifier {
     public ModifierType getModifierType() {
         return modifierType;
     }
+
+    public void setModifier(int modifier) {
+        this.modifier = modifier;
+    }
 }

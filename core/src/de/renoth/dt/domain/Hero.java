@@ -36,7 +36,7 @@ public class Hero implements IDescribable, IKillable {
         baseStatList = new ArrayList<>();
         attackType = AttackType.SLICE;
 
-        baseStatList.add(health = new Health(100, StatType.HEALTH, this));
+        baseStatList.add(health = new Health(1, StatType.HEALTH, this));
         baseStatList.add(defense = new Defense(0,StatType.DEFENSE));
         baseStatList.add(damage = new Damage(4,StatType.DAMAGE));
     }
@@ -54,7 +54,6 @@ public class Hero implements IDescribable, IKillable {
     }
 
     public int dealDamage() {
-        //TODO add bonuses
         return damage.getValue();
     }
 
@@ -64,7 +63,7 @@ public class Hero implements IDescribable, IKillable {
 
     @Override
     public void die() {
-        //TODO game ends
+        //legacy
     }
 
     public void applyModifiers() {

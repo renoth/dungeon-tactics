@@ -37,6 +37,8 @@ public class Resources {
 
     public static Texture explosion;
 
+    public static Texture deathBanner;
+
     public static Texture descriptionBg;
 
     public static BitmapFont font12;
@@ -80,6 +82,8 @@ public class Resources {
         bgEquipment = new Texture("tex/equipment_bg.png");
         descriptionBg = new Texture("tex/description_bg.png");
         selectedFrame = new Texture("tex/selected_frame.png");
+
+        deathBanner = new Texture("tex/deathbanner.png");
 
         commonFrame = new Texture("tex/common_item.png");
         magicFrame = new Texture("tex/magic_item.png");

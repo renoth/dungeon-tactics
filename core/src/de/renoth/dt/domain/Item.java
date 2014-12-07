@@ -53,6 +53,25 @@ public class Item implements IDescribable {
 
     public void setModifiers(List<StatModifier> modifiers) {
         this.modifiers = modifiers;
+        groupModifiers();
+    }
+
+    private void groupModifiers() {
+        List<StatModifier> condensedModifiers = new ArrayList<>();
+        for (StatModifier modifier : modifiers) {
+            boolean alreadExisting = false;
+            for (StatModifier existingModifier : condensedModifiers) {
+                if (existingModifier.getStatType() == modifier.getStatType() && existingModifier.getModifierType() == modifier.getModifierType()) {
+                    existingModifier.setModifier(existingModifier.getModifier() + modifier.getModifier());
+                    alreadExisting = true;
+                    break;
+                }
+            }
+            if (!alreadExisting) {
+                condensedModifiers.add(modifier);
+            }
+        }
+        modifiers = condensedModifiers;
     }
 
     public void setRarityType(RarityType rarityType) {

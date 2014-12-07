@@ -1,11 +1,15 @@
 package de.renoth.dt.domain;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import de.renoth.dt.actor.EnemyActor;
+import de.renoth.dt.actor.SimpleActor;
+import de.renoth.dt.common.GameStats;
 import de.renoth.dt.domain.enums.AttackType;
 import de.renoth.dt.domain.enums.EnemyType;
 import de.renoth.dt.res.Resources;
 import de.renoth.dt.screen.GameScreen;
+import de.renoth.dt.screen.game.GameWorld;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +87,14 @@ public class Enemy implements IDescribable, IKillable {
 
         GameScreen.getGameWorld().heroActor.createDescriptionBox(hero);
 
-        //TODO check for death
+        if (hero.health.getValue() <= 0) {
+            //GameStats.writeScoreToDisk();
+            GameScreen.getGameWorld().heroDied = true;
+            GameScreen.getGameWorld().stage.addActor(new SimpleActor(0, 0, 1280, 800, GameScreen.getGameWorld(), Resources.deathBanner));
+            Label label = new Label("Press N to start a new game", new Label.LabelStyle(Resources.mplus20, Color.WHITE));
+            label.setPosition(500, 100);
+            GameScreen.getGameWorld().stage.addActor(label);
+        }
     }
 
     public int getDamage() {

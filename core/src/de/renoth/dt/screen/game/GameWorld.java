@@ -37,6 +37,7 @@ public class GameWorld {
     public HeroActor heroActor;
     private DamageLabelActor damageLabelActor;
     public Inventory inventory;
+    public boolean heroDied = false;
 
     public GameWorld(GameStage stage, OrthographicCamera camera) {
         this.stage = stage;
@@ -81,7 +82,6 @@ public class GameWorld {
             public void draw(Batch batch, float parentAlpha) {
                 batch.draw(selectedItem.texture, Gdx.input.getX(), 800 - Gdx.input.getY(), Constants.ITEM_SIZE, Constants.ITEM_SIZE);
                 batch.draw(selectedItem.rarityType.getTexture(), Gdx.input.getX(), 800 - Gdx.input.getY(), Constants.ITEM_SIZE, Constants.ITEM_SIZE);
-
             }
         });
         selectedItemActor.setVisible(false);

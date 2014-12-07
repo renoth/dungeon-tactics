@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import de.renoth.dt.DungeonTacticsGame;
 import de.renoth.dt.res.Resources;
+import de.renoth.dt.screen.game.GameStage;
 import de.renoth.dt.screen.game.GameWorld;
 
 public class GameScreen extends BaseScreen {
@@ -51,11 +52,10 @@ public class GameScreen extends BaseScreen {
     }
 
     private void handleInput() {
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            ((OrthographicCamera)stages[0].getCamera()).zoom *= 1.03;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            ((OrthographicCamera)stages[0].getCamera()).zoom *= 0.97;
+        if (gameWorld.heroDied && Gdx.input.isKeyPressed(Input.Keys.N)) {
+            stages[0] = new GameStage();
+            gameWorld = new GameWorld(stages[0], camera);
+            setInputProcessor();
         }
     }
 }
