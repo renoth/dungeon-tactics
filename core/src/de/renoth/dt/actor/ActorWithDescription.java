@@ -55,6 +55,12 @@ public abstract class ActorWithDescription extends Actor {
             }
             return;
         }
+
+        if (entity.equals(gameWorld.hero) && gameWorld.heroStatsLabel != null) {
+            gameWorld.heroStatsLabel.remove();
+            gameWorld.addPlayerStats();
+        }
+
         addListener(hoverlistener = new DescriptionHoverListener());
         descriptionBox = new DescriptionBox(posX,posY,Resources.descriptionBg, entity.getDescription(), gameWorld, hoverlistener);
         hoverlistener.setDescriptionBox(descriptionBox);

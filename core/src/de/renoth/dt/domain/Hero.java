@@ -46,9 +46,9 @@ public class Hero implements IDescribable, IKillable {
         ArrayList<StyledText> description = new ArrayList<>();
 
         description.add(new StyledText(name, Resources.mplus20, Color.WHITE));
-        description.add(new StyledText("Health: " + health.getValue(), Resources.mplus12, Color.WHITE));
-        description.add(new StyledText("Damage: " + damage.getValue(), Resources.mplus12, Color.WHITE));
-        description.add(new StyledText("Defense: " + defense.getValue(), Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("Health: " + health.getValue(), Resources.mplus20, Color.WHITE));
+        description.add(new StyledText("Damage: " + damage.getValue(), Resources.mplus20, Color.WHITE));
+        description.add(new StyledText("Defense: " + defense.getValue(), Resources.mplus20, Color.WHITE));
 
         return description;
     }
@@ -97,5 +97,9 @@ public class Hero implements IDescribable, IKillable {
 
     public AttackType getAttackType() {
         return attackType;
+    }
+
+    public List<BaseStat> getBaseStats() {
+        return baseStatList;
     }
 }

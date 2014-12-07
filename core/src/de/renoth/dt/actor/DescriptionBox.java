@@ -18,15 +18,16 @@ public class DescriptionBox extends Actor {
     public static final int ROW_HEIGHT = 30;
     public static final int SMALL_ROW_HEIGHT = 16;
 
-    private final Texture tex;
+    final Texture tex;
     public List<PositionedLabel> labels;
-    private int width, height;
+    int width;
+    int height;
     private DescriptionHoverListener hoverlistener;
 
     public DescriptionBox(int x, int y, Texture tex, List<StyledText> description, GameWorld gameWorld, DescriptionHoverListener hoverListener) {
         int maxHeight = ROW_HEIGHT + (description.size() - 1) * SMALL_ROW_HEIGHT;
         this.tex = tex;
-        this.width = 400;
+        this.width = 280;
         this.height = maxHeight + 5;
         this.hoverlistener = hoverListener;
 

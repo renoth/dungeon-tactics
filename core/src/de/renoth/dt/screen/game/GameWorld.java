@@ -9,10 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import de.renoth.dt.actor.AttackTypeSwitch;
-import de.renoth.dt.actor.DamageLabelActor;
-import de.renoth.dt.actor.EnemyActor;
-import de.renoth.dt.actor.SimpleActor;
+import de.renoth.dt.actor.*;
 import de.renoth.dt.common.Constants;
 import de.renoth.dt.common.GameStats;
 import de.renoth.dt.domain.Enemy;
@@ -26,18 +23,19 @@ import java.util.ArrayList;
 
 public class GameWorld {
 
-    private final World world;
     public final GameStage stage;
+    private final World world;
     public RayHandler rayhandler;
 
     public Item selectedItem;
-    private SimpleActor selectedItemActor;
     public ArrayList<EnemyActor> enemyActors;
     public Hero hero;
     public HeroActor heroActor;
-    private DamageLabelActor damageLabelActor;
     public Inventory inventory;
     public boolean heroDied = false;
+    private SimpleActor selectedItemActor;
+    private DamageLabelActor damageLabelActor;
+    public HeroStatsLabel heroStatsLabel;
 
     public GameWorld(GameStage stage, OrthographicCamera camera) {
         this.stage = stage;
@@ -47,13 +45,19 @@ public class GameWorld {
 
         addMenu();
         addAttackTypeMenu();
+
         addPlayer();
+        addPlayerStats();
         addSelectedItemIcon();
         addInitialEnemies();
 
         addDamageLabelActors();
 
         //Resources.gitarrenmusik.loop(0.5f);
+    }
+
+    public void addPlayerStats() {
+        stage.fg.addActor(heroStatsLabel = new HeroStatsLabel(0,600,Resources.descriptionBg, hero.getDescription(), this, null));
     }
 
     private void addAttackTypeMenu() {
@@ -77,7 +81,7 @@ public class GameWorld {
     }
 
     private void addSelectedItemIcon() {
-        stage.fg.addActor(selectedItemActor = new SimpleActor(0,0,Constants.ITEM_SIZE,Constants.ITEM_SIZE, this, Resources.item) {
+        stage.fg.addActor(selectedItemActor = new SimpleActor(0, 0, Constants.ITEM_SIZE, Constants.ITEM_SIZE, this, Resources.item) {
             @Override
             public void draw(Batch batch, float parentAlpha) {
                 batch.draw(selectedItem.texture, Gdx.input.getX(), 800 - Gdx.input.getY(), Constants.ITEM_SIZE, Constants.ITEM_SIZE);
@@ -93,7 +97,7 @@ public class GameWorld {
     }
 
     private void addMenu() {
-        stage.bg.addActor(new SimpleActor(280,0,1000, 800, this, Resources.background));
+        stage.bg.addActor(new SimpleActor(280, 0, 1000, 800, this, Resources.background));
         inventory = new Inventory(this);
     }
 
@@ -105,7 +109,7 @@ public class GameWorld {
         rayhandler = new RayHandler(world);
         rayhandler.setCombinedMatrix(cam.combined);
         rayhandler.setCulling(true);
-        rayhandler.setAmbientLight(new Color(0,0,0,0.8f));
+        rayhandler.setAmbientLight(new Color(0, 0, 0, 0.8f));
     }
 
     public void updateRayhandler(OrthographicCamera cam) {
@@ -132,7 +136,7 @@ public class GameWorld {
         if (GameStats.killCount % 10 == 0) {
             EnemyFactory.increaseBaseLevelByOne();
         }
-        ea.setColor(1,1,1,0);
+        ea.setColor(1, 1, 1, 0);
 
         ea.addAction(Actions.alpha(1f, 1));
         ea.addAction(Actions.moveTo(ea.getX() - 100, ea.getY(), 1));

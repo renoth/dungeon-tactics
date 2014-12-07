@@ -45,7 +45,8 @@ public abstract class BaseStat {
         }
         for (StatModifier sm : modifiers) {
             if (sm.getModifierType() == ModifierType.PERCENTAGE) {
-                value *= (int) (sm.getModifier() * value);
+                value *= (100 + sm.getModifier());
+                value /= 100;
             }
         }
         return value;
