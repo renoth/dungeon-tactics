@@ -43,6 +43,12 @@ public class GameWorld {
         addPlayer();
         addSelectedItemIcon();
         addInitialEnemies();
+
+        addDamageLabelActors();
+    }
+
+    private void addDamageLabelActors() {
+        //TODO this
     }
 
     private void addInitialEnemies() {
