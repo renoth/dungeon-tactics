@@ -122,7 +122,7 @@ public class Enemy implements IDescribable, IKillable {
 
     public void attack(Hero hero) {
         int damage = getDamage() - hero.getDefense();
-        hero.health.setBaseValue(hero.health.getValue() - damage);
+        hero.health.setBaseValue(hero.health.getBaseValue() - damage);
 
         GameScreen.getGameWorld().getDamageLabelActor().animateDamage(GameScreen.getGameWorld().heroActor, damage);
 
