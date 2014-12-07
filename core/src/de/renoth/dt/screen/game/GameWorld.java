@@ -91,6 +91,7 @@ public class GameWorld {
     }
 
     private void addMenu() {
+        stage.bg.addActor(new SimpleActor(280,0,1000, 800, this, Resources.background));
         inventory = new Inventory(this);
     }
 

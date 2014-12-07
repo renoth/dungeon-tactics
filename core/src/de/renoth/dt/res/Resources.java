@@ -15,6 +15,7 @@ public class Resources {
     public static Texture hero3;
 
     public static Texture bgMenu;
+    public static Texture background;
     public static Texture bgEquipment;
     public static Texture inventory;
     public static Texture inventoryAccept;
@@ -68,6 +69,7 @@ public class Resources {
         explosion = new Texture("tex/explosion.png");
 
         bgMenu = new Texture("tex/bg_menu.png");
+        background = new Texture("tex/background.png");
         item = new Texture("tex/item.png");
         inventory = new Texture("tex/inventory.png");
         inventoryAccept = new Texture("tex/inventory_accept.png");
