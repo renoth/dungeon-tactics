@@ -36,6 +36,10 @@ public class Resources {
     public static Texture cube_green;
     public static Texture cube_pink;
 
+    public static Texture snake_green;
+    public static Texture snake_blue;
+    public static Texture snake_red;
+
     public static Texture explosion;
 
     public static Texture deathBanner;
@@ -73,6 +77,10 @@ public class Resources {
         cube_blue = new Texture("tex/cube_blue.png");
         cube_green = new Texture("tex/cube_green.png");
         cube_pink = new Texture("tex/cube_pink.png");
+
+        snake_green = new Texture("tex/snake_green.png");
+        snake_blue = new Texture("tex/snake_blue.png");
+        snake_red = new Texture("tex/snake_red.png");
 
         explosion = new Texture("tex/explosion.png");
 
