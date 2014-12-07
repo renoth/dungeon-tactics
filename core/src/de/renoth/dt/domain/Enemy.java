@@ -8,6 +8,7 @@ import de.renoth.dt.common.GameStats;
 import de.renoth.dt.domain.enums.AttackType;
 import de.renoth.dt.domain.enums.EnemyType;
 import de.renoth.dt.res.Resources;
+import de.renoth.dt.res.SoundResources;
 import de.renoth.dt.screen.GameScreen;
 import de.renoth.dt.screen.game.GameWorld;
 
@@ -65,9 +66,11 @@ public class Enemy implements IDescribable, IKillable {
     }
 
     public int takeDamage(Hero hero, EnemyActor victim) {
+        //the enemy gets attacked
         int damage = (int) Math.max(0, Math.round(hero.dealDamage() - baseDefense) * applyResistance(hero) * applyWeakness(hero));
         GameScreen.getGameWorld().getDamageLabelActor().animateDamage(victim, damage);
         health -= damage;
+
         return health;
     }
 
@@ -80,6 +83,7 @@ public class Enemy implements IDescribable, IKillable {
     }
 
     public void attack(Hero hero) {
+        //the hero gets attacked
         int damage = getDamage() - hero.getDefense();
         hero.health.setBaseValue(hero.health.getBaseValue() - damage);
 
@@ -89,11 +93,17 @@ public class Enemy implements IDescribable, IKillable {
 
         if (hero.health.getValue() <= 0) {
             //GameStats.writeScoreToDisk();
+
+            SoundResources.gameOver.play();
+            SoundResources.gitarrenmusik.stop();
+
             GameScreen.getGameWorld().heroDied = true;
             GameScreen.getGameWorld().stage.addActor(new SimpleActor(0, 0, 1280, 800, GameScreen.getGameWorld(), Resources.deathBanner));
             Label label = new Label("Press N to start a new game", new Label.LabelStyle(Resources.mplus20, Color.WHITE));
             label.setPosition(500, 100);
             GameScreen.getGameWorld().stage.addActor(label);
+        } else {
+            SoundResources.explosion.play();
         }
     }
 

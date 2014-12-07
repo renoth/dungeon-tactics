@@ -1,5 +1,6 @@
 package de.renoth.dt.screen.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -8,6 +9,7 @@ import de.renoth.dt.actor.ActorWithDescription;
 import de.renoth.dt.common.Constants;
 import de.renoth.dt.domain.IDescribable;
 import de.renoth.dt.domain.Item;
+import de.renoth.dt.res.SoundResources;
 import de.renoth.dt.screen.GameScreen;
 
 public class InventorySlot extends ActorWithDescription {
@@ -30,6 +32,7 @@ public class InventorySlot extends ActorWithDescription {
                         updateHero(GameScreen.getGameWorld().heroActor);
 
                     }
+                    SoundResources.blipSelect.play();
 
                 } else if (item == null && gameWorld.selectedItem != null && (((InventorySlot.this instanceof EquipmentSlot) &&
                         ((EquipmentSlot)InventorySlot.this).acceptedItemType == gameWorld.selectedItem.itemType) || !(InventorySlot.this instanceof EquipmentSlot)))  {
@@ -39,6 +42,7 @@ public class InventorySlot extends ActorWithDescription {
                     if (InventorySlot.this instanceof EquipmentSlot) {
                         updateHero(GameScreen.getGameWorld().heroActor);
                     }
+                    SoundResources.blipPut.play();
                 }
 
                 createDescriptionBox(item);

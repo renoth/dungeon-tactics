@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.utils.Timer;
 import de.renoth.dt.common.GameStats;
 import de.renoth.dt.domain.Enemy;
 import de.renoth.dt.domain.IDescribable;
@@ -26,6 +27,13 @@ public class EnemyActor extends ActorWithDescription {
                     } else {
                         createDescriptionBox(enemy);
                     }
+                    //wait for 1 second
+                    Timer.schedule(new Timer.Task() {
+                        @Override
+                        public void run() {
+
+                        }
+                    }, 1);
                     gameWorld.enemiesAttack();
                 }
                 return false;
