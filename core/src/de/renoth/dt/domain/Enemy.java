@@ -53,7 +53,7 @@ public class Enemy implements IDescribable, IKillable {
     public void levelUp() {
         double random = Math.random();
         if (random < 0.55d) {
-            health += 3;
+            health += 5;
         } else if (random < 0.8d) {
             baseDamage += 1;
         } else if (random < 0.95d) {
@@ -62,12 +62,12 @@ public class Enemy implements IDescribable, IKillable {
         } else {
             //gnihihi
             health += 5;
-            baseDamage += 1;
-            baseDefense += 1;
+            baseDamage += 2;
+            baseDefense += 2;
             xp++;xp++;
         }
         level++;
-        xp += level * 2;
+        xp += level;
     }
 
     public int takeDamage(Hero hero, EnemyActor victim) {

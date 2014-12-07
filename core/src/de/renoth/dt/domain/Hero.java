@@ -152,4 +152,8 @@ public class Hero implements IDescribable, IKillable {
         }
         return xpNeeded;
     }
+
+    public int getLevel() {
+        return level;
+    }
 }

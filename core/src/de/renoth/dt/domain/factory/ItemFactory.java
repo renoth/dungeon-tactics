@@ -28,6 +28,9 @@ public class ItemFactory {
 
         for (int i = 0; i < rarity.getMaxModifiers(); i++) {
             modifiers.add(StatModifierFactory.createRandomModifier(level, type));
+            if (i >= rarity.getMinModifiers() && Math.random() > 0.6f) {
+                break;
+            }
         }
         return modifiers;
     }
@@ -43,7 +46,7 @@ public class ItemFactory {
             return RarityType.COMMON;
         } else if (random < 0.9f) {
             return RarityType.MAGIC;
-        } else if (random < 1.1f) {
+        } else if (random < 0.98f) {
             return RarityType.RARE;
         } else {
             return RarityType.UNIQUE;

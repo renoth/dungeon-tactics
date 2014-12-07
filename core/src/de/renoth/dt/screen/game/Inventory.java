@@ -77,6 +77,7 @@ public class Inventory {
                 inventorySlots.put(getIndex(column, row), slot);
             }
         }
+        sellSlot = new SellSlot();
     }
 
     private int getIndex(int column, int row) {
@@ -111,7 +112,7 @@ public class Inventory {
             return;
         }
         if (Math.random() > 0.6f - 0.02f * enemy.getLevel()) {
-            inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
+            inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(gameWorld.hero.getLevel()));
         }
     }
 }

@@ -8,7 +8,7 @@ public enum RarityType {
     COMMON(0,1, Color.WHITE, Resources.commonFrame),
     MAGIC(1,4, Color.BLUE, Resources.magicFrame),
     RARE(2,10, Color.YELLOW, Resources.rareFrame),
-    UNIQUE(0,0, Color.PURPLE, Resources.uniqueFrame);
+    UNIQUE(8,20, Color.PURPLE, Resources.uniqueFrame);
 
     private int minModifiers, maxModifiers;
     private Color color;
@@ -33,5 +33,9 @@ public enum RarityType {
 
     public Texture getTexture() {
         return texture;
+    }
+
+    public int getMinModifiers() {
+        return minModifiers;
     }
 }
