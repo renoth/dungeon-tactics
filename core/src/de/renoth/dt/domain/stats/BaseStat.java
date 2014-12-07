@@ -11,11 +11,13 @@ public abstract class BaseStat {
     private int baseValue;
     private StatType statType;
     public List<StatModifier> modifiers;
+    private int maxValue;
 
     public BaseStat(int baseValue, StatType statType) {
         this.baseValue = baseValue;
         this.statType = statType;
         modifiers = new ArrayList<>();
+        this.maxValue = baseValue;
     }
 
     public int getBaseValue() {
@@ -52,5 +54,9 @@ public abstract class BaseStat {
 
     public int getBonus() {
         return getValue() - getBaseValue();
+    }
+
+    public int getMaxValue() {
+        return maxValue;
     }
 }

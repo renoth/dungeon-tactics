@@ -8,19 +8,25 @@ import de.renoth.dt.domain.enums.StatType;
 import de.renoth.dt.domain.stats.*;
 import de.renoth.dt.domain.stats.modifier.StatModifier;
 import de.renoth.dt.res.Resources;
+import de.renoth.dt.res.SoundResources;
 import de.renoth.dt.screen.GameScreen;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Hero implements IDescribable, IKillable {
     private String name;
     int level;
     Experience xp;
 
+    int maxHealth;
+
     Health health;
     Defense defense;
     Damage damage;
+
+    Random random;
 
     AttackType attackType;
 
@@ -30,11 +36,14 @@ public class Hero implements IDescribable, IKillable {
         this.name = name;
         level = 1;
 
+        random = new Random();
 
         baseStatList = new ArrayList<>();
         attackType = AttackType.SLICE;
 
-        baseStatList.add(health = new Health(10, StatType.HEALTH, this));
+        maxHealth = Constants.INITIAL_HEALTH;
+
+        baseStatList.add(health = new Health(Constants.INITIAL_HEALTH, StatType.HEALTH, this));
         baseStatList.add(defense = new Defense(0,StatType.DEFENSE));
         baseStatList.add(damage = new Damage(4,StatType.DAMAGE));
         baseStatList.add(xp = new Experience(0,StatType.EXPERIENCE));
@@ -46,7 +55,7 @@ public class Hero implements IDescribable, IKillable {
 
         description.add(new StyledText(name, Resources.mplus20, Color.WHITE));
         description.add(new StyledText("XP     : " + xp.getBaseValue() + " / " + xpNeededForLevelUp(), Resources.mplus12, Color.WHITE));
-        description.add(new StyledText("Health : " + health.getValue() + " (+ " + health.getBonus() + ")", Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("Health : " + health.getValue() + " / " + maxHealth, Resources.mplus12, Color.WHITE));
         description.add(new StyledText("Damage : " + damage.getBaseValue() + " (+ " + damage.getBonus() + ")", Resources.mplus12, Color.WHITE));
         description.add(new StyledText("Defense: " + defense.getBaseValue() + " (+ " + defense.getBonus() + ")", Resources.mplus12, Color.WHITE));
 
@@ -126,7 +135,14 @@ public class Hero implements IDescribable, IKillable {
     private void levelUp() {
         level++;
 
+        health.setBaseValue(health.getMaxValue());
 
+        for (int i = 1; i <=2 ; i++) {
+            int randomIndex = random.nextInt(baseStatList.size());
+            baseStatList.get(randomIndex).setBaseValue(baseStatList.get(randomIndex).getBaseValue() + 10);
+        }
+
+        SoundResources.levelUp.play();
     }
 
     private int xpNeededForLevelUp() {

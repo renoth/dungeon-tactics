@@ -101,7 +101,7 @@ public class Enemy implements IDescribable, IKillable {
 
     public void attack(Hero hero) {
         //the hero gets attacked
-        int damage = getDamage() - hero.getDefense();
+        int damage = Math.max(getDamage() - hero.getDefense(),0);
         GameStats.damageTaken += damage;
         hero.health.setBaseValue(hero.health.getBaseValue() - damage);
 
