@@ -13,10 +13,10 @@ public class Health extends BaseStat {
     }
 
     @Override
-    public void setValue(int value) {
+    public void setBaseValue(int value) {
         if (value <= 0) {
             owner.die();
         }
-        super.setValue(value);
+        super.setBaseValue(value);
     }
 }

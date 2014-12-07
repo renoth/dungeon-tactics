@@ -32,7 +32,7 @@ public class Item implements IDescribable {
         description.add(new StyledText(name, Resources.mplus20, rarityType.getColor()));
 
         for (StatModifier m : modifiers) {
-            description.add(new StyledText(m.toString(),Resources.mplus12,m.getColor()));
+            description.add(new StyledText(m.getStatType().getLabel() + ": " + m.getModifierLabel(),Resources.mplus12,m.getColor()));
         }
 
         return description;

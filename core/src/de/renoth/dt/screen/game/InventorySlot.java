@@ -23,18 +23,21 @@ public class InventorySlot extends ActorWithDescription {
                 super.touchDown(event, x, y, pointer, button);
 
                 if (item != null && gameWorld.selectedItem == null) {
+                    //take something from slot
                     gameWorld.setSelectedItem(item);
                     setItem(null);
                     if (InventorySlot.this instanceof EquipmentSlot) {
-                        GameScreen.getGameWorld().heroActor.createDescriptionBox(GameScreen.getGameWorld().hero);
+                        updateHero(GameScreen.getGameWorld().heroActor);
+
                     }
 
                 } else if (item == null && gameWorld.selectedItem != null && (((InventorySlot.this instanceof EquipmentSlot) &&
                         ((EquipmentSlot)InventorySlot.this).acceptedItemType == gameWorld.selectedItem.itemType) || !(InventorySlot.this instanceof EquipmentSlot)))  {
+                    //put something into slot
                     setItem(gameWorld.selectedItem);
                     gameWorld.setSelectedItem(null);
                     if (InventorySlot.this instanceof EquipmentSlot) {
-                        GameScreen.getGameWorld().heroActor.createDescriptionBox(GameScreen.getGameWorld().hero);
+                        updateHero(GameScreen.getGameWorld().heroActor);
                     }
                 }
 
@@ -43,6 +46,11 @@ public class InventorySlot extends ActorWithDescription {
                 return true;
             }
         });
+    }
+
+    private void updateHero(HeroActor heroActor) {
+        heroActor.getHero().applyModifiers();
+        heroActor.createDescriptionBox(heroActor.getHero());
     }
 
     @Override

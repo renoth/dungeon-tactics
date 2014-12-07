@@ -47,25 +47,24 @@ public class Resources {
     public static BitmapFont mplus36;
 
 
-
     public static void init() {
         hero1 = new Texture("tex/hauptcharakter.png");
         hero2 = new Texture("tex/hero2.png");
         hero3 = new Texture("tex/hero3.png");
 
-	club = new Texture("tex/club.png");
-	knife = new Texture("tex/knife.png");
-	sword = new Texture("tex/sword.png");
+        club = new Texture("tex/club.png");
+        knife = new Texture("tex/knife.png");
+        sword = new Texture("tex/sword.png");
 
-	helmet = new Texture("tex/helmet.png");
-	shield = new Texture("tex/shield.png");
-	armor = new Texture("tex/armor.png");
+        helmet = new Texture("tex/helmet.png");
+        shield = new Texture("tex/shield.png");
+        armor = new Texture("tex/armor.png");
 
-	cube_blue = new Texture("tex/cube_blue.png");
-	cube_green = new Texture("tex/cube_green.png");
-	cube_pink = new Texture("tex/cube_pink.png");
+        cube_blue = new Texture("tex/cube_blue.png");
+        cube_green = new Texture("tex/cube_green.png");
+        cube_pink = new Texture("tex/cube_pink.png");
 
-	explosion = new Texture("tex/explosion.png");
+        explosion = new Texture("tex/explosion.png");
 
         bgMenu = new Texture("tex/bg_menu.png");
         item = new Texture("tex/item.png");

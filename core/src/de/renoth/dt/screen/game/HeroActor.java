@@ -23,4 +23,8 @@ public class HeroActor extends ActorWithDescription {
     protected IDescribable getEntity() {
         return hero;
     }
+
+    public Hero getHero() {
+        return hero;
+    }
 }

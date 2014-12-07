@@ -22,4 +22,20 @@ public abstract class StatModifier {
     public void setColor(Color color) {
         this.color = color;
     }
+
+    public StatType getStatType() {
+        return statType;
+    }
+
+    public int getModifier() {
+        return modifier;
+    }
+
+    public String getModifierLabel() {
+        return (modifier > 0 ? "+ " : "- ") + modifier;
+    }
+
+    public ModifierType getModifierType() {
+        return modifierType;
+    }
 }

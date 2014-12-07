@@ -25,11 +25,11 @@ public class StatModifierFactory {
     }
 
     private static int getDefenseBonus(int level) {
-        return Math.round(random.nextInt(level) / 8);
+        return Math.max(Math.round(random.nextInt(level) / 8), 1);
     }
 
     private static int getDamageBonus(int level) {
-        return Math.round(random.nextInt(level) / 4);
+        return Math.max(Math.round(random.nextInt(level) / 4), 1);
     }
 
     private static int getHealthBonus(int level) {

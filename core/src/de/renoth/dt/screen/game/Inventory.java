@@ -44,6 +44,7 @@ public class Inventory {
 
     private void buildSlots() {
         gameWorld.stage.bg.addActor(new SimpleActor(0, 200, 140, 400, gameWorld, Resources.bgEquipment));
+        gameWorld.stage.bg.addActor(new SimpleActor(20, 250, 100, 300, gameWorld, Resources.hero1));
 
         gameWorld.stage.bg.addActor(weaponSlot = new EquipmentSlot(10, 450, 40, 40, gameWorld, Resources.inventory, ItemType.WEAPON));
         equipmentSlots.add(weaponSlot);
