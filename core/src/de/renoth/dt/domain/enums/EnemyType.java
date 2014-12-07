@@ -1,4 +1,4 @@
-package de.renoth.dt.domain;
+package de.renoth.dt.domain.enums;
 
 import com.badlogic.gdx.graphics.Texture;
 import de.renoth.dt.res.Resources;

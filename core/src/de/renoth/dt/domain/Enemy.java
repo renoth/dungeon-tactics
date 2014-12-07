@@ -2,13 +2,14 @@ package de.renoth.dt.domain;
 
 import com.badlogic.gdx.graphics.Color;
 import de.renoth.dt.actor.EnemyActor;
+import de.renoth.dt.domain.enums.EnemyType;
 import de.renoth.dt.res.Resources;
 import de.renoth.dt.screen.GameScreen;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Enemy implements IDescribable {
+public class Enemy implements IDescribable, IKillable {
 
     private String name;
     int level;
@@ -121,7 +122,7 @@ public class Enemy implements IDescribable {
 
     public void attack(Hero hero) {
         int damage = getDamage() - hero.getDefense();
-        hero.health -= damage;
+        hero.health.setValue(hero.health.getValue() - damage);
 
         GameScreen.getGameWorld().getDamageLabelActor().animateDamage(GameScreen.getGameWorld().heroActor, damage);
 
@@ -132,5 +133,10 @@ public class Enemy implements IDescribable {
 
     public int getDamage() {
         return baseDamage;
+    }
+
+    @Override
+    public void die() {
+
     }
 }

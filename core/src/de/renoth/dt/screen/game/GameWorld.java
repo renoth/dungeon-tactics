@@ -34,6 +34,7 @@ public class GameWorld {
     public Hero hero;
     public HeroActor heroActor;
     private DamageLabelActor damageLabelActor;
+    public Inventory inventory;
 
     public GameWorld(GameStage stage, OrthographicCamera camera) {
         this.stage = stage;
@@ -82,7 +83,7 @@ public class GameWorld {
     }
 
     private void addMenu() {
-        Inventory inventory = new Inventory(this);
+        inventory = new Inventory(this);
     }
 
     public World getWorld() {

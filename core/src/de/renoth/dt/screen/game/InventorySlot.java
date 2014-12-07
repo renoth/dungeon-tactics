@@ -26,7 +26,7 @@ public class InventorySlot extends ActorWithDescription {
                     item = null;
 
                 } else if (item == null && gameWorld.selectedItem != null && (((InventorySlot.this instanceof EquipmentSlot) &&
-                        ((EquipmentSlot)InventorySlot.this).acceptedItemClass == gameWorld.selectedItem.itemClass) || !(InventorySlot.this instanceof EquipmentSlot)))  {
+                        ((EquipmentSlot)InventorySlot.this).acceptedItemType == gameWorld.selectedItem.itemType) || !(InventorySlot.this instanceof EquipmentSlot)))  {
                     item = gameWorld.selectedItem;
                     gameWorld.setSelectedItem(null);
                 }

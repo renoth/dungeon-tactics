@@ -1,7 +1,7 @@
 package de.renoth.dt.domain.factory;
 
 import de.renoth.dt.domain.Enemy;
-import de.renoth.dt.domain.EnemyType;
+import de.renoth.dt.domain.enums.EnemyType;
 
 import java.util.Random;
 
