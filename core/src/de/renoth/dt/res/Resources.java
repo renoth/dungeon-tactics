@@ -29,6 +29,8 @@ public class Resources {
     public static Texture cube_green;
     public static Texture cube_pink;
 
+    public static Texture explosion;
+
     public static Texture descriptionBg;
 
     public static BitmapFont font12;
@@ -54,6 +56,8 @@ public class Resources {
 	cube_blue = new Texture("tex/cube_blue.png");
 	cube_green = new Texture("tex/cube_green.png");
 	cube_pink = new Texture("tex/cube_pink.png");
+
+	explosion = new Texture("tex/explosion.png");
 
         bgMenu = new Texture("tex/bg_menu.png");
         item = new Texture("tex/item.png");
