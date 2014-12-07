@@ -59,6 +59,8 @@ public class EnemyActor extends ActorWithDescription {
         gameWorld.addNewEnemy();
 
         gameWorld.inventory.spawnNewItemPerhaps(enemy);
+
+        gameWorld.hero.addXP((int) enemy.getXp());
     }
 
     private boolean isHittableByHero(GameWorld gameWorld) {

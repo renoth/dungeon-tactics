@@ -2,12 +2,10 @@ package de.renoth.dt.domain;
 
 
 import com.badlogic.gdx.graphics.Color;
+import de.renoth.dt.common.Constants;
 import de.renoth.dt.domain.enums.AttackType;
 import de.renoth.dt.domain.enums.StatType;
-import de.renoth.dt.domain.stats.BaseStat;
-import de.renoth.dt.domain.stats.Damage;
-import de.renoth.dt.domain.stats.Defense;
-import de.renoth.dt.domain.stats.Health;
+import de.renoth.dt.domain.stats.*;
 import de.renoth.dt.domain.stats.modifier.StatModifier;
 import de.renoth.dt.res.Resources;
 import de.renoth.dt.screen.GameScreen;
@@ -18,7 +16,7 @@ import java.util.List;
 public class Hero implements IDescribable, IKillable {
     private String name;
     int level;
-    long xp;
+    Experience xp;
 
     Health health;
     Defense defense;
@@ -31,14 +29,15 @@ public class Hero implements IDescribable, IKillable {
     public Hero(String name) {
         this.name = name;
         level = 1;
-        xp = 0;
+
 
         baseStatList = new ArrayList<>();
         attackType = AttackType.SLICE;
 
-        baseStatList.add(health = new Health(1, StatType.HEALTH, this));
+        baseStatList.add(health = new Health(10, StatType.HEALTH, this));
         baseStatList.add(defense = new Defense(0,StatType.DEFENSE));
         baseStatList.add(damage = new Damage(4,StatType.DAMAGE));
+        baseStatList.add(xp = new Experience(0,StatType.EXPERIENCE));
     }
 
     @Override
@@ -46,9 +45,10 @@ public class Hero implements IDescribable, IKillable {
         ArrayList<StyledText> description = new ArrayList<>();
 
         description.add(new StyledText(name, Resources.mplus20, Color.WHITE));
-        description.add(new StyledText("Health: " + health.getValue(), Resources.mplus12, Color.WHITE));
-        description.add(new StyledText("Damage: " + damage.getValue(), Resources.mplus12, Color.WHITE));
-        description.add(new StyledText("Defense: " + defense.getValue(), Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("XP     : " + xp.getBaseValue() + " / " + xpNeededForLevelUp(), Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("Health : " + health.getValue() + " (+ " + health.getBonus() + ")", Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("Damage : " + damage.getBaseValue() + " (+ " + damage.getBonus() + ")", Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("Defense: " + defense.getBaseValue() + " (+ " + defense.getBonus() + ")", Resources.mplus12, Color.WHITE));
 
         return description;
     }
@@ -111,7 +111,29 @@ public class Hero implements IDescribable, IKillable {
         return name;
     }
 
-    public long getXp() {
+    public Experience getXp() {
         return xp;
+    }
+
+    public void addXP(int xp) {
+        this.xp.setBaseValue(this.xp.getValue() + xp);
+
+        if (this.xp.getBaseValue() > xpNeededForLevelUp()) {
+            levelUp();
+        }
+    }
+
+    private void levelUp() {
+        level++;
+
+
+    }
+
+    private int xpNeededForLevelUp() {
+        int xpNeeded = 0;
+        for (int i = 1; i <= level; i++) {
+            xpNeeded += i * Constants.XP_PER_LEVEL_NEEDED;
+        }
+        return xpNeeded;
     }
 }

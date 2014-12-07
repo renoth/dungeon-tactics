@@ -41,9 +41,10 @@ public class Enemy implements IDescribable, IKillable {
         ArrayList<StyledText> description = new ArrayList<>();
 
         description.add(new StyledText(name, Resources.mplus20, Color.WHITE));
-        description.add(new StyledText("Level: " + level, Resources.mplus12, Color.WHITE));
-        description.add(new StyledText("HP: " + health, Resources.mplus12, Color.WHITE));
-        description.add(new StyledText("Damage: " + baseDamage, Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("Level  : " + level, Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("XP     : " + xp, Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("HP     : " + health, Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("Damage : " + baseDamage, Resources.mplus12, Color.WHITE));
         description.add(new StyledText("Defense: " + baseDefense, Resources.mplus12, Color.WHITE));
 
         return description;
@@ -57,13 +58,16 @@ public class Enemy implements IDescribable, IKillable {
             baseDamage += 1;
         } else if (random < 0.95d) {
             baseDefense += 1;
+            xp++;
         } else {
             //gnihihi
             health += 5;
             baseDamage += 1;
             baseDefense += 1;
+            xp++;xp++;
         }
         level++;
+        xp += level * 2;
     }
 
     public int takeDamage(Hero hero, EnemyActor victim) {
@@ -83,7 +87,6 @@ public class Enemy implements IDescribable, IKillable {
                 SoundResources.club.play();
                 break;
         }
-
 
         return health;
     }

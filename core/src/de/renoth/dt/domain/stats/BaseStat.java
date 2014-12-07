@@ -1,12 +1,10 @@
 package de.renoth.dt.domain.stats;
 
-import de.renoth.dt.domain.IKillable;
 import de.renoth.dt.domain.enums.ModifierType;
 import de.renoth.dt.domain.enums.StatType;
 import de.renoth.dt.domain.stats.modifier.StatModifier;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public abstract class BaseStat {
@@ -50,5 +48,9 @@ public abstract class BaseStat {
             }
         }
         return value;
+    }
+
+    public int getBonus() {
+        return getValue() - getBaseValue();
     }
 }

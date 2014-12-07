@@ -7,7 +7,7 @@ public enum ItemType {
     WEAPON(0,"Sword", Resources.sword, new StatType[]{StatType.DAMAGE}),
     BODY_ARMOR(1,"Armor", Resources.armor, new StatType[]{StatType.HEALTH, StatType.DEFENSE}),
     HELMET(2,"Helmet",Resources.helmet, new StatType[]{StatType.HEALTH, StatType.DEFENSE}),
-    BOOTS(3,"Boots", Resources.item, new StatType[]{StatType.HEALTH, StatType.DEFENSE}),
+    BOOTS(3,"Boots", Resources.boots, new StatType[]{StatType.HEALTH, StatType.DEFENSE}),
     SHIELD(4,"Shield", Resources.shield, new StatType[]{StatType.HEALTH, StatType.DEFENSE});
 
     private int index;

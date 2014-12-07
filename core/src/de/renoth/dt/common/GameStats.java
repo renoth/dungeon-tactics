@@ -26,7 +26,7 @@ public class GameStats {
     private static String generateStatsLine() {
         GameWorld gw = GameScreen.getGameWorld();
         StringJoiner joiner = new StringJoiner(";");
-        joiner.add(gw.hero.getName()).add(gw.hero.getXp()+"").add(killCount+"").add(damageDealt+"");
+        joiner.add(gw.hero.getName()).add(gw.hero.getXp().getBaseValue()+"").add(killCount+"").add(damageDealt+"");
         return joiner.toString();
     }
 

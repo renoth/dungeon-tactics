@@ -3,7 +3,8 @@ package de.renoth.dt.domain.enums;
 public enum StatType {
     HEALTH("Health"),
     DAMAGE("Damage"),
-    DEFENSE("Defense");
+    DEFENSE("Defense"),
+    EXPERIENCE("XP");
 
     private String label;
 
