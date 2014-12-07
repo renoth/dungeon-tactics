@@ -24,14 +24,14 @@ public class InventorySlot extends ActorWithDescription {
 
                 if (item != null && gameWorld.selectedItem == null) {
                     gameWorld.setSelectedItem(item);
-                    item = null;
+                    setItem(null);
                     if (InventorySlot.this instanceof EquipmentSlot) {
                         GameScreen.getGameWorld().heroActor.createDescriptionBox(GameScreen.getGameWorld().hero);
                     }
 
                 } else if (item == null && gameWorld.selectedItem != null && (((InventorySlot.this instanceof EquipmentSlot) &&
                         ((EquipmentSlot)InventorySlot.this).acceptedItemType == gameWorld.selectedItem.itemType) || !(InventorySlot.this instanceof EquipmentSlot)))  {
-                    item = gameWorld.selectedItem;
+                    setItem(gameWorld.selectedItem);
                     gameWorld.setSelectedItem(null);
                     if (InventorySlot.this instanceof EquipmentSlot) {
                         GameScreen.getGameWorld().heroActor.createDescriptionBox(GameScreen.getGameWorld().hero);
@@ -64,7 +64,7 @@ public class InventorySlot extends ActorWithDescription {
     }
 
     public void setItem(Item item) {
-        createDescriptionBox(item);
+        if (item != null) createDescriptionBox(item);
         this.item = item;
     }
 

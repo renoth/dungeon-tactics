@@ -12,7 +12,7 @@ public class StatModifierFactory {
     static Random random = new Random();
 
     public static StatModifier createRandomModifier(int level, ItemType itemType) {
-        StatType statType = itemType.getStatTypeByIndex(random.nextInt(itemType.getMaxStatTypeIndex()));
+        StatType statType = itemType.getStatTypeByIndex(itemType.getMaxStatTypeIndex() == 0 ? 0 : random.nextInt(itemType.getMaxStatTypeIndex()));
         switch (statType) {
             case HEALTH:
                 return new HealthModifier(ModifierType.ABSOLUTE, getHealthBonus(level));

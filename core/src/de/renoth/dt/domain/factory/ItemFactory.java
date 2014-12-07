@@ -28,7 +28,7 @@ public class ItemFactory {
         ArrayList<StatModifier> modifiers = new ArrayList<>();
 
         for (int i = 0; i < rarity.getMaxModifiers(); i++) {
-            StatModifierFactory.createRandomModifier(level, type);
+            modifiers.add(StatModifierFactory.createRandomModifier(level, type));
         }
         return modifiers;
     }

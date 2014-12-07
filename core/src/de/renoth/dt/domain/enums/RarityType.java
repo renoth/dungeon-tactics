@@ -3,7 +3,7 @@ package de.renoth.dt.domain.enums;
 import com.badlogic.gdx.graphics.Color;
 
 public enum RarityType {
-    COMMON(0,0, Color.WHITE),
+    COMMON(0,1, Color.WHITE),
     MAGIC(1,4, Color.BLUE),
     RARE(2,10, Color.YELLOW),
     UNIQUE(0,0, Color.PURPLE);
