@@ -55,7 +55,7 @@ public class Hero implements IDescribable, IKillable {
 
         description.add(new StyledText(name, Resources.mplus20, Color.WHITE));
         description.add(new StyledText("XP     : " + xp.getBaseValue() + " / " + xpNeededForLevelUp(), Resources.mplus12, Color.WHITE));
-        description.add(new StyledText("Health : " + health.getValue() + " / " + maxHealth, Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("Health : " + health.getValue() + " / " + (maxHealth + health.getBonus()), Resources.mplus12, Color.WHITE));
         description.add(new StyledText("Damage : " + damage.getBaseValue() + " (+ " + damage.getBonus() + ")", Resources.mplus12, Color.WHITE));
         description.add(new StyledText("Defense: " + defense.getBaseValue() + " (+ " + defense.getBonus() + ")", Resources.mplus12, Color.WHITE));
 
@@ -139,7 +139,7 @@ public class Hero implements IDescribable, IKillable {
 
         for (int i = 1; i <=2 ; i++) {
             int randomIndex = random.nextInt(baseStatList.size());
-            baseStatList.get(randomIndex).setBaseValue(baseStatList.get(randomIndex).getBaseValue() + 10);
+            baseStatList.get(randomIndex).setBaseValue(baseStatList.get(randomIndex).getBaseValue() + 1);
         }
 
         SoundResources.levelUp.play();

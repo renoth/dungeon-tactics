@@ -34,11 +34,14 @@ public class InventorySlot extends ActorWithDescription {
                     }
                     SoundResources.blipSelect.play();
 
-                } else if (item == null && gameWorld.selectedItem != null && (((InventorySlot.this instanceof EquipmentSlot) &&
+                } else if (gameWorld.selectedItem != null && (((InventorySlot.this instanceof EquipmentSlot) &&
                         ((EquipmentSlot)InventorySlot.this).acceptedItemType == gameWorld.selectedItem.itemType) || !(InventorySlot.this instanceof EquipmentSlot)))  {
                     //put something into slot
+                    Item existingItem = item;
+
                     setItem(gameWorld.selectedItem);
-                    gameWorld.setSelectedItem(null);
+                    gameWorld.setSelectedItem(existingItem);
+
                     if (InventorySlot.this instanceof EquipmentSlot) {
                         updateHero(GameScreen.getGameWorld().heroActor);
                     }

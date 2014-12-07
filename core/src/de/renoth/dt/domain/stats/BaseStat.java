@@ -26,6 +26,7 @@ public abstract class BaseStat {
 
     public void setBaseValue(int value) {
         this.baseValue = value;
+        maxValue = baseValue;
     }
 
     public StatType getStatType() {
