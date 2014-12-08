@@ -45,16 +45,18 @@ public class GameWorld {
 
         createRayhandler(camera);
 
+
+        addPlayer();
         addMenu();
         addAttackTypeMenu();
-
         addHighscoreInfo();
-        addPlayer();
         addPlayerStats();
         addSelectedItemIcon();
         addInitialEnemies();
 
         addDamageLabelActors();
+
+        stage.bg.addActor(heroActor = new HeroActor(500, 336, 64, 128, this, Resources.hero1, hero));
 
         SoundResources.gitarrenmusik.loop(0.5f);
     }
@@ -103,7 +105,9 @@ public class GameWorld {
         MyTextInputListener listener = new MyTextInputListener();
         Gdx.input.getTextInput(listener, "Enter Name", "$NAME");
 
-        stage.bg.addActor(heroActor = new HeroActor(500, 336, 64, 128, this, Resources.hero1, hero));
+
+
+        GameStats.hero = hero;
     }
 
     private void addMenu() {

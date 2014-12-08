@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Hero implements IDescribable, IKillable {
-    int level;
+    public int level;
     Experience xp;
     int maxHealth;
     Health health;
@@ -160,7 +160,7 @@ public class Hero implements IDescribable, IKillable {
     private int xpNeededForLevelUp() {
         int xpNeeded = 0;
         for (int i = 1; i <= level; i++) {
-            xpNeeded += i * Constants.XP_PER_LEVEL_NEEDED;
+            xpNeeded += (int) (Math.pow(i, 1.5d) * Constants.XP_PER_LEVEL_NEEDED);
         }
         return xpNeeded;
     }

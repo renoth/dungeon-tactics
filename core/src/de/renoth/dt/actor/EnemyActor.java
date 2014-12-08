@@ -39,7 +39,7 @@ public class EnemyActor extends ActorWithDescription {
                                 gameWorld.enemiesAttack();
                                 waitForEnemy = false;
                             }
-                        }, 1);
+                        }, 0.5f);
                     }
                 }
                 return false;

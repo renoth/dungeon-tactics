@@ -2,6 +2,7 @@ package de.renoth.dt.common;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import de.renoth.dt.domain.Hero;
 import de.renoth.dt.screen.GameScreen;
 import de.renoth.dt.screen.game.GameWorld;
 
@@ -11,6 +12,7 @@ public class GameStats {
     public static int killCount = 0;
     public static int damageDealt = 0;
     public static int damageTaken = 0;
+    public static Hero hero = null;
 
     public static void reset() {
         killCount = 0;

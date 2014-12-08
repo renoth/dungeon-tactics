@@ -7,9 +7,9 @@ public enum ItemType {
     WEAPON(0, "Sword", Resources.sword, new StatType[]{StatType.DAMAGE, StatType.CRITICAL_CHANCE}),
     BODY_ARMOR(1, "Armor", Resources.armor, new StatType[]{StatType.HEALTH, StatType.DEFENSE}),
     HELMET(2, "Helmet", Resources.helmet, new StatType[]{StatType.HEALTH, StatType.DEFENSE}),
-    BOOTS(3, "Boots", Resources.boots, new StatType[]{StatType.HEALTH, StatType.DEFENSE, StatType.CRITICAL_CHANCE}),
+    BOOTS(3, "Boots", Resources.boots, new StatType[]{StatType.HEALTH, StatType.CRITICAL_CHANCE}),
     SHIELD(4, "Shield", Resources.shield, new StatType[]{StatType.HEALTH, StatType.DEFENSE}),
-    AMULET(5,"Amulet",Resources.amulet, new StatType[]{StatType.HEALTH, StatType.DEFENSE, StatType.CRITICAL_CHANCE, StatType.DAMAGE});
+    AMULET(5,"Amulet",Resources.amulet, new StatType[]{StatType.HEALTH, StatType.DAMAGE, StatType.CRITICAL_CHANCE});
 
     private int index;
     private Texture texture;

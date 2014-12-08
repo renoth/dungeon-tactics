@@ -39,7 +39,7 @@ public class Enemy implements IDescribable, IKillable {
     public List<StyledText> getDescription() {
         ArrayList<StyledText> description = new ArrayList<>();
 
-        description.add(new StyledText(name, Resources.mplus20, Color.WHITE));
+        description.add(new StyledText(name, Resources.mplus20, determineBonusLevelColor()));
         description.add(new StyledText("Level  : " + level, Resources.mplus12, Color.WHITE));
         description.add(new StyledText("XP     : " + xp, Resources.mplus12, Color.WHITE));
         description.add(new StyledText("HP     : " + health, Resources.mplus12, Color.WHITE));
@@ -49,19 +49,31 @@ public class Enemy implements IDescribable, IKillable {
         return description;
     }
 
+    private Color determineBonusLevelColor() {
+        if (bonusLevels <= 1) {
+            return Color.WHITE;
+        } else if (bonusLevels <= 3) {
+            return Color.CYAN;
+        } else if (bonusLevels == 4) {
+            return Color.YELLOW;
+        } else {
+            return Color.PINK;
+        }
+    }
+
     public void levelUp() {
         double random = Math.random();
-        if (random < 0.55d) {
+        if (random < 0.45d) {
             health += 5;
         } else if (random < 0.8d) {
-            baseDamage += 2;
+            baseDamage += 3;
         } else if (random < 0.95d) {
-            baseDefense += 2;
+            baseDefense += 1;
             xp++;
         } else {
             //gnihihi
             health += 10;
-            baseDamage += 2;
+            baseDamage += 4;
             baseDefense += 2;
             xp++;
             xp++;

@@ -13,11 +13,11 @@ public class ItemFactory {
 
     static Random random = new Random();
 
-    public static Item createRandomItem(int level) {
+    public static Item createRandomItem(int level, int bonusLevels) {
         ItemType type = getRandomItemType();
-        RarityType rarity = getRandomRarity();
+        RarityType rarity = getRandomRarity(bonusLevels);
         Item item = new Item(type);
-        item.setLevel(level);
+        item.setLevel(level + bonusLevels);
         item.setGeneratedName();
         item.setRarityType(rarity);
         item.setModifiers(generateModifiers(rarity, level, type));
@@ -29,7 +29,7 @@ public class ItemFactory {
 
         for (int i = 0; i < rarity.getMaxModifiers(); i++) {
             modifiers.add(StatModifierFactory.createRandomModifier(level, type));
-            if (i >= rarity.getMinModifiers() && Math.random() > 0.6f) {
+            if (i >= rarity.getMinModifiers() && Math.random() > 0.65f) {
                 break;
             }
         }
@@ -40,14 +40,14 @@ public class ItemFactory {
         return ItemType.getByIndex(random.nextInt(ItemType.values().length));
     }
 
-    public static RarityType getRandomRarity() {
+    public static RarityType getRandomRarity(int bonusLevels) {
         double random = Math.random();
 
-        if (random < 0.75f) {
+        if (random < 0.75f - bonusLevels * 0.06f) {
             return RarityType.COMMON;
-        } else if (random < 0.94f) {
+        } else if (random < 0.94f - bonusLevels * 0.03f) {
             return RarityType.MAGIC;
-        } else if (random < 0.98f) {
+        } else if (random < 1f  - bonusLevels * 0.01f) {
             return RarityType.RARE;
         } else {
             return RarityType.UNIQUE;

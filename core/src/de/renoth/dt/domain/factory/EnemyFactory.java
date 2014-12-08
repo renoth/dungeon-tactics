@@ -1,5 +1,6 @@
 package de.renoth.dt.domain.factory;
 
+import de.renoth.dt.common.GameStats;
 import de.renoth.dt.domain.Enemy;
 import de.renoth.dt.domain.enums.AttackType;
 import de.renoth.dt.domain.enums.EnemyType;
@@ -24,7 +25,7 @@ public class EnemyFactory {
         e.setXp(1);
         e.setBonusLevels(bonuslevels);
 
-        while (e.getLevel() < baseLevel + bonuslevels) {
+        while (e.getLevel() < GameStats.hero.level + bonuslevels) {
             e.levelUp();
         }
 

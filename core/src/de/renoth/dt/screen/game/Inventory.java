@@ -42,8 +42,8 @@ public class Inventory {
     }
 
     private void fillInitialItems() {
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
-        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1));
+        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1, 0));
+        inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(1, 0));
     }
 
     private void buildSlots() {
@@ -112,9 +112,9 @@ public class Inventory {
         if (freeSlot < 0) {
             return;
         }
-        if (Math.random() > 0.6f - 0.02f * enemy.getLevel()) {
+        if (Math.random() > 0.6f - 0.1f * enemy.getBonusLevels()) {
             SoundResources.newItem.play();
-            inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(enemy.getLevel() + enemy.getBonusLevels()));
+            inventorySlots.get(getFirstFreeInventorySlot()).setItem(ItemFactory.createRandomItem(enemy.getLevel(), enemy.getBonusLevels()));
         }
     }
 }

@@ -47,7 +47,7 @@ public class DamageLabelActor extends Actor {
         newActor.setColor(1, 1, 1, 1);
         newActor.label.setText(damage + "");
         newActor.setPosition(actor.getX(), actor.getY());
-        newActor.addAction(Actions.moveTo(newActor.getX(), newActor.getY() + 64, 1));
-        newActor.addAction(Actions.sequence(Actions.alpha(0f, 1.1f), Actions.removeActor(newActor)));
+        newActor.addAction(Actions.moveTo(newActor.getX(), newActor.getY() + 64, 0.5f));
+        newActor.addAction(Actions.sequence(Actions.delay(0.3f), Actions.alpha(0f, 0.3f), Actions.removeActor(newActor)));
     }
 }
