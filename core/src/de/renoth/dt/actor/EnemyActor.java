@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Timer;
 import de.renoth.dt.common.GameStats;
 import de.renoth.dt.domain.Enemy;
 import de.renoth.dt.domain.IDescribable;
+import de.renoth.dt.screen.GameScreen;
 import de.renoth.dt.screen.game.GameWorld;
 
 public class EnemyActor extends ActorWithDescription {
@@ -21,21 +22,25 @@ public class EnemyActor extends ActorWithDescription {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 if (EnemyActor.this.isHittableByHero(gameWorld)) {
+                    boolean enemyDied = false;
                     if (enemy.takeDamage(gameWorld.hero, EnemyActor.this) <= 0) {
+                        enemyDied = true;
                         EnemyActor.this.die();
                     } else {
                         createDescriptionBox(enemy);
                     }
-                    //wait for 1 second
-                    waitForEnemy = true;
-                    Timer.schedule(new Timer.Task() {
-                        @Override
-                        public void run() {
-                            gameWorld.enemiesAttack();
-                            waitForEnemy = false;
-                        }
-                    }, 1);
 
+                    if (!enemyDied) {
+                        //wait for 1 second
+                        waitForEnemy = true;
+                        Timer.schedule(new Timer.Task() {
+                            @Override
+                            public void run() {
+                                gameWorld.enemiesAttack();
+                                waitForEnemy = false;
+                            }
+                        }, 1);
+                    }
                 }
                 return false;
             }
@@ -59,6 +64,8 @@ public class EnemyActor extends ActorWithDescription {
         gameWorld.inventory.spawnNewItemPerhaps(enemy);
 
         gameWorld.hero.addXP((int) enemy.getXp());
+
+        GameScreen.getGameWorld().heroActor.createDescriptionBox(gameWorld.hero);
     }
 
     private boolean isHittableByHero(GameWorld gameWorld) {

@@ -11,12 +11,4 @@ public class Health extends BaseStat {
         super(value, statType);
         this.owner = owner;
     }
-
-    @Override
-    public void setBaseValue(int value) {
-        if (value <= 0) {
-            owner.die();
-        }
-        super.setBaseValue(value);
-    }
 }

@@ -72,7 +72,7 @@ public class Enemy implements IDescribable, IKillable {
 
     public int takeDamage(Hero hero, EnemyActor victim) {
         //the enemy gets attacked
-        int damage = (int) Math.max(0, Math.round(hero.dealDamage() - baseDefense) * applyResistance(hero) * applyWeakness(hero));
+        int damage = (int) Math.max(0, Math.round((hero.dealDamage() * applyResistance(hero) * applyWeakness(hero))- baseDefense) );
         GameScreen.getGameWorld().getDamageLabelActor().animateDamage(victim, damage);
         GameStats.damageDealt += damage;
         health -= damage;
@@ -87,6 +87,8 @@ public class Enemy implements IDescribable, IKillable {
                 SoundResources.club.play();
                 break;
         }
+
+
 
         return health;
     }

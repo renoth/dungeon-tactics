@@ -26,7 +26,6 @@ public abstract class BaseStat {
 
     public void setBaseValue(int value) {
         this.baseValue = value;
-        maxValue = baseValue;
     }
 
     public StatType getStatType() {
@@ -53,11 +52,32 @@ public abstract class BaseStat {
         return value;
     }
 
+    public int getMaxPossibleValue() {
+        int maxPossibleValue = maxValue;
+        for (StatModifier sm : modifiers) {
+            if (sm.getModifierType() == ModifierType.ABSOLUTE) {
+                maxPossibleValue += sm.getModifier();
+            }
+        }
+        for (StatModifier sm : modifiers) {
+            if (sm.getModifierType() == ModifierType.PERCENTAGE) {
+                maxPossibleValue *= (100 + sm.getModifier());
+                maxPossibleValue /= 100;
+            }
+        }
+        return maxPossibleValue;
+    }
+
     public int getBonus() {
         return getValue() - getBaseValue();
     }
 
     public int getMaxValue() {
         return maxValue;
+    }
+
+    public void increaseBaseValue(int i) {
+        baseValue += i;
+        maxValue += i;
     }
 }

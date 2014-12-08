@@ -50,9 +50,9 @@ public class Hero implements IDescribable, IKillable {
     public List<StyledText> getDescription() {
         ArrayList<StyledText> description = new ArrayList<>();
 
-        description.add(new StyledText(name, Resources.mplus20, Color.WHITE));
+        description.add(new StyledText(name + " Level " + level, Resources.mplus20, Color.WHITE));
         description.add(new StyledText("XP     : " + xp.getBaseValue() + " / " + xpNeededForLevelUp(), Resources.mplus12, Color.WHITE));
-        description.add(new StyledText("Health : " + health.getValue() + " / " + (maxHealth + health.getBonus()), Resources.mplus12, Color.WHITE));
+        description.add(new StyledText("Health : " + health.getValue() + " / " + (health.getMaxPossibleValue()), Resources.mplus12, Color.WHITE));
         description.add(new StyledText("Damage : " + damage.getBaseValue() + " (+ " + damage.getBonus() + ")", Resources.mplus12, Color.WHITE));
         description.add(new StyledText("Defense: " + defense.getBaseValue() + " (+ " + defense.getBonus() + ")", Resources.mplus12, Color.WHITE));
         description.add(new StyledText("Crit.% : " + criticalChance.getBaseValue() + " (+ " + criticalChance.getBonus() + ")", Resources.mplus12, Color.WHITE));
@@ -141,9 +141,17 @@ public class Hero implements IDescribable, IKillable {
 
         health.setBaseValue(health.getMaxValue());
 
-        for (int i = 1; i <= 2; i++) {
-            int randomIndex = random.nextInt(baseStatList.size());
-            baseStatList.get(randomIndex).setBaseValue(baseStatList.get(randomIndex).getBaseValue() + 1);
+        for (int i = 1; i <= 3; i++) {
+            BaseStat bs = baseStatList.get(random.nextInt(baseStatList.size()));
+            if (bs instanceof Experience) {
+                continue;
+            } else if (bs instanceof Health) {
+                System.out.println("Raised Health by 5 " + health.getMaxValue() + " -> " + (health.getMaxValue() + 5));
+                bs.increaseBaseValue(5);
+            } else {
+                System.out.println("Raised " + bs.getStatType().getLabel() + " by 1 " + bs.getMaxValue() + " -> " + (bs.getMaxValue() + 1));
+                bs.increaseBaseValue(1);
+            }
         }
 
         SoundResources.levelUp.play();
@@ -157,11 +165,11 @@ public class Hero implements IDescribable, IKillable {
         return xpNeeded;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
     public void sellItem(Item selectedItem) {
         addXP(selectedItem.getXpValue());
+    }
+
+    public Damage getDamage() {
+        return damage;
     }
 }

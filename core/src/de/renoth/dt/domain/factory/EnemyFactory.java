@@ -3,6 +3,7 @@ package de.renoth.dt.domain.factory;
 import de.renoth.dt.domain.Enemy;
 import de.renoth.dt.domain.enums.AttackType;
 import de.renoth.dt.domain.enums.EnemyType;
+import de.renoth.dt.screen.GameScreen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +24,19 @@ public class EnemyFactory {
         e.setXp(1);
         e.setBonusLevels(bonuslevels);
 
-        while (e.getLevel() < baseLevel + generateBonusLevelCount()) {
+        while (e.getLevel() < baseLevel + bonuslevels) {
             e.levelUp();
         }
+
+        //monsters with higher base defense than hero attack shift from defense to health
+        if (GameScreen.getGameWorld() != null) {
+            int damageToDefenseDifference = GameScreen.getGameWorld().hero.getDamage().getValue() - e.getBaseDefense();
+            if (damageToDefenseDifference < 0) {
+                e.setBaseDefense(GameScreen.getGameWorld().hero.getDamage().getValue() - 1);
+                e.setHealth(e.getHealth() + damageToDefenseDifference);
+            }
+        }
+
 
         return e;
     }

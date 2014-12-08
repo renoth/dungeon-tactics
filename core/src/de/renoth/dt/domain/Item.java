@@ -84,7 +84,7 @@ public class Item implements IDescribable {
         for (StatModifier sm : modifiers) {
             value += sm.getModifier();
         }
-        value += level * 4;
+        value += level;
         return value;
     }
 
