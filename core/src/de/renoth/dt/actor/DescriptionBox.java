@@ -8,8 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import de.renoth.dt.domain.StyledText;
 import de.renoth.dt.screen.game.GameWorld;
-import javafx.geometry.Point2D;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class DescriptionBox extends Actor {
     protected void createLabels(List<StyledText> description, GameWorld gameWorld, int maxHeight) {
         for (int i = 0; i < description.size(); i++) {
             StyledText st = description.get(i);
-            PositionedLabel label = new PositionedLabel(st.text, new Label.LabelStyle(st.font, st.color), new Point2D(10, maxHeight - (i > 0 ? 10 : 0) - SMALL_ROW_HEIGHT * i));
+            PositionedLabel label = new PositionedLabel(st.text, new Label.LabelStyle(st.font, st.color), new Point(10, maxHeight - (i > 0 ? 10 : 0) - SMALL_ROW_HEIGHT * i));
             label.setPosition(Gdx.input.getX(), 800 - Gdx.input.getY());
             label.setVisible(false);
 

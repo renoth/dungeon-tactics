@@ -3,14 +3,15 @@ package de.renoth.dt.actor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import javafx.geometry.Point2D;
+
+import java.awt.*;
 
 public class PositionedLabel extends Label {
 
     private final LabelStyle labelStyle;
-    private Point2D relativePosition;
+    private Point relativePosition;
 
-    public PositionedLabel(CharSequence text, LabelStyle style, Point2D relativePosition) {
+    public PositionedLabel(CharSequence text, LabelStyle style, Point relativePosition) {
         super(text, style);
         this.labelStyle = style;
         this.relativePosition = relativePosition;

@@ -10,9 +10,9 @@ allprojects {
     apply plugin: "eclipse"
     apply plugin: "idea"
 
-    version = '1.0.1'
+    version = '1.0.3'
     ext {
-        appName = 'dungeon-tactics'
+        appName = 'dt'
         gdxVersion = '1.4.1'
         roboVMVersion = '1.0.0-alpha-04'
         box2DLightsVersion = '1.2'
@@ -45,6 +45,8 @@ project(":core") {
 
 
     dependencies {
+        compile "com.google.collections:google-collections:1.0"
+
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         compile "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"

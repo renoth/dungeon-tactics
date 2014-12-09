@@ -8,7 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import de.renoth.dt.res.Resources;
 import de.renoth.dt.screen.GameScreen;
 import de.renoth.dt.screen.game.GameWorld;
-import javafx.geometry.Point2D;
+
+import java.awt.*;
 
 public class DamageLabelActor extends Actor {
     private PositionedLabel label;
@@ -16,7 +17,7 @@ public class DamageLabelActor extends Actor {
     public DamageLabelActor(GameWorld gameWorld) {
         gameWorld.stage.fg.addActor(this);
 
-        label = new PositionedLabel("0", new Label.LabelStyle(Resources.mplus36, Color.BLACK), new Point2D(10, 10));
+        label = new PositionedLabel("0", new Label.LabelStyle(Resources.mplus36, Color.BLACK), new Point(10, 10));
         label.setPosition(getX() + 10, getY() + 30);
 
         setVisible(false);

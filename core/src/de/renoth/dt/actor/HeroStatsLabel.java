@@ -6,8 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import de.renoth.dt.domain.StyledText;
 import de.renoth.dt.res.Resources;
 import de.renoth.dt.screen.game.GameWorld;
-import javafx.geometry.Point2D;
 
+import java.awt.*;
 import java.util.List;
 
 public class HeroStatsLabel extends DescriptionBox {
@@ -28,7 +28,7 @@ public class HeroStatsLabel extends DescriptionBox {
             StyledText st = description.get(i);
 
             //TODO draw color according to max percentage
-            PositionedLabel label = new PositionedLabel(st.text, new Label.LabelStyle(Resources.mplus20, st.color), new Point2D(10, maxHeight - ROW_HEIGHT * i));
+            PositionedLabel label = new PositionedLabel(st.text, new Label.LabelStyle(Resources.mplus20, st.color), new Point(10, maxHeight - ROW_HEIGHT * i));
             label.setPosition(getX(), getY());
             labels.add(label);
         }

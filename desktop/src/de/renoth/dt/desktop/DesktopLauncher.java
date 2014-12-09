@@ -14,7 +14,7 @@ public class DesktopLauncher {
 		config.height = 800;
 		config.resizable = false;
 		config.vSyncEnabled = true;
-		config.title = "Dungeon Tactics 1.0.1";
+		config.title = "Dungeon Tactics 1.0.3";
 
 		new LwjglApplication(new DungeonTacticsGame(), config);
 	}

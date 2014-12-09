@@ -6,13 +6,16 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.google.common.base.Function;
+import com.google.common.base.Joiner;
+import com.google.common.collect.ImmutableSortedSet;
+import com.google.common.collect.Ordering;
 import de.renoth.dt.res.Resources;
-import javafx.geometry.Point2D;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.StringJoiner;
 
 public class HighScoreLabel extends Actor {
     public static final int SMALL_ROW_HEIGHT = 16;
@@ -27,7 +30,16 @@ public class HighScoreLabel extends Actor {
         List<String> entries = new ArrayList<>();
         entries.addAll(Arrays.asList(scoreFile.readString().split("\n")));
 
-        entries.sort(new ExperienceSorter());
+        Function<String, Integer> getNameFunction = new Function<String, Integer>() {
+            public Integer apply(String from) {
+                return Integer.parseInt(from.split(";")[1]);
+            }
+        };
+
+        Ordering<String> nameOrdering = Ordering.natural().onResultOf(getNameFunction);
+
+        ImmutableSortedSet<String> highScores = ImmutableSortedSet.orderedBy(
+                nameOrdering).addAll(entries).build();
 
         entries.add(0, "NAME;XP;KILLS;DAMAGE");
 
@@ -35,13 +47,14 @@ public class HighScoreLabel extends Actor {
 
         labels = new ArrayList<>();
 
-        for (String entry : entries) {
-            StringJoiner joiner = new StringJoiner(" ");
+        for (String entry : highScores) {
+            ArrayList<String> entryElements = new ArrayList<>();
+            Joiner joiner = Joiner.on(" ");
             for (String s : entry.split(";")) {
-                joiner.add(padLeft(s, 8));
+                entryElements.add(padLeft(s, 8));
             }
 
-            PositionedLabel label = new PositionedLabel(joiner.toString(), style, new Point2D(10, 170 - SMALL_ROW_HEIGHT * entries.indexOf(entry)));
+            PositionedLabel label = new PositionedLabel(joiner.join(entryElements), style, new Point(10, 170 - SMALL_ROW_HEIGHT * entries.indexOf(entry)));
             label.setPosition(x, y);
             labels.add(label);
             if (entries.indexOf(entry) > 10) break;
