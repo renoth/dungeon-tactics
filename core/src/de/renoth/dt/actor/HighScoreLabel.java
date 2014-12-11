@@ -32,20 +32,24 @@ public class HighScoreLabel extends Actor {
 
         Function<String, Integer> getNameFunction = new Function<String, Integer>() {
             public Integer apply(String from) {
-                return Integer.parseInt(from.split(";")[1]);
+                int i = Integer.parseInt(from.split(";")[1]);
+                System.out.println(i);
+                return i;
             }
         };
 
-        Ordering<String> nameOrdering = Ordering.natural().onResultOf(getNameFunction);
+        Ordering<String> nameOrdering = Ordering.natural().reverse().onResultOf(getNameFunction);
 
         ImmutableSortedSet<String> highScores = ImmutableSortedSet.orderedBy(
                 nameOrdering).addAll(entries).build();
 
-        entries.add(0, "NAME;XP;KILLS;DAMAGE");
+        //highScores.add(0, "NAME;XP;KILLS;DAMAGE");
 
         Label.LabelStyle style = new Label.LabelStyle(Resources.mplus12, Color.WHITE);
 
         labels = new ArrayList<>();
+
+        int i =0;
 
         for (String entry : highScores) {
             ArrayList<String> entryElements = new ArrayList<>();
@@ -54,9 +58,12 @@ public class HighScoreLabel extends Actor {
                 entryElements.add(padLeft(s, 8));
             }
 
-            PositionedLabel label = new PositionedLabel(joiner.join(entryElements), style, new Point(10, 170 - SMALL_ROW_HEIGHT * entries.indexOf(entry)));
+            System.out.println(entry);
+
+            PositionedLabel label = new PositionedLabel(joiner.join(entryElements), style, new Point(10, 170 - SMALL_ROW_HEIGHT * i));
             label.setPosition(x, y);
             labels.add(label);
+            i++;
             if (entries.indexOf(entry) > 10) break;
         }
     }
