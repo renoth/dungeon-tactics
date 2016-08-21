@@ -16,12 +16,9 @@ public abstract class BaseScreen implements Screen {
     final GameStage[] stages;
     FitViewport viewport;
 
-    DungeonTacticsGame game;
     int stageCount = 1;
 
     protected BaseScreen(DungeonTacticsGame game) {
-        this.game = game;
-
         stages = new GameStage[2];
 
         batch = new SpriteBatch();

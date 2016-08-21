@@ -88,7 +88,7 @@ public class Inventory {
     public int getFirstFreeInventorySlot() {
         for (int col = 0; col < 7; col++) {
             for (int row = 0; row < 5; row++) {
-                if (inventorySlots.get(getIndex(col, row)).getItem() == null) {
+                if (inventorySlots.get(getIndex(col, row)) != null && inventorySlots.get(getIndex(col, row)).getItem() == null) {
                     return getIndex(col, row);
                 }
             }
