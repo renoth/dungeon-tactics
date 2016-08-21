@@ -139,6 +139,8 @@ public class Hero implements IDescribable, IKillable {
     private void levelUp() {
         level++;
 
+        System.out.println("\nNew Level: " + level);
+
         health.setBaseValue(health.getMaxValue());
 
         for (int i = 1; i <= 3; i++) {
