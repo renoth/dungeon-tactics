@@ -103,9 +103,7 @@ public class GameWorld {
     private void addPlayer() {
         hero = new Hero("$NAME");
         MyTextInputListener listener = new MyTextInputListener();
-        Gdx.input.getTextInput(listener, "Enter Name", "$NAME");
-
-
+        Gdx.input.getTextInput(listener, "Enter Name", "$NAME", "hint");
 
         GameStats.hero = hero;
     }
@@ -121,13 +119,13 @@ public class GameWorld {
 
     public void createRayhandler(OrthographicCamera cam) {
         rayhandler = new RayHandler(world);
-        rayhandler.setCombinedMatrix(cam.combined);
+        rayhandler.setCombinedMatrix(cam);
         rayhandler.setCulling(true);
         rayhandler.setAmbientLight(new Color(0, 0, 0, 0.8f));
     }
 
     public void updateRayhandler(OrthographicCamera cam) {
-        rayhandler.setCombinedMatrix(cam.combined);
+        rayhandler.setCombinedMatrix(cam);
         rayhandler.updateAndRender();
     }
 
@@ -168,14 +166,18 @@ public class GameWorld {
         @Override
         public void input(String text) {
             hero.setName(text);
-            heroStatsLabel.remove();
+            if (heroStatsLabel != null) {
+                heroStatsLabel.remove();
+            }
             addPlayerStats();
         }
 
         @Override
         public void canceled() {
             hero.setName("NOOB!");
-            heroStatsLabel.remove();
+            if (heroStatsLabel != null) {
+                heroStatsLabel.remove();
+            }
             addPlayerStats();
         }
 

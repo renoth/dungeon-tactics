@@ -94,7 +94,7 @@ public abstract class BaseScreen implements Screen {
     }
 
     void exitApplication() {
-        Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width, Gdx.graphics.getDesktopDisplayMode().height, false);
+        Gdx.graphics.setWindowedMode(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         Gdx.app.exit();
     }
 }

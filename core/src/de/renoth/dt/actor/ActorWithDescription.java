@@ -40,7 +40,9 @@ public abstract class ActorWithDescription extends Actor {
         if (descriptionBox != null) {
             descriptionBox.setVisible(false);
             descriptionBox.setLabelsInivisbleAndDispose();
-            removeListener(hoverlistener);
+            if (hoverlistener != null) {
+                removeListener(hoverlistener);
+            }
             hoverlistener = null;
             descriptionBox.remove();
         }
@@ -48,7 +50,9 @@ public abstract class ActorWithDescription extends Actor {
             if (descriptionBox != null) {
                 descriptionBox.setVisible(false);
 
-                removeListener(hoverlistener);
+                if (hoverlistener != null) {
+                    removeListener(hoverlistener);
+                }
                 hoverlistener = null;
                 descriptionBox.remove();
             }

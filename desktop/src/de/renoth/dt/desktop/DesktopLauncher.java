@@ -1,21 +1,18 @@
 package de.renoth.dt.desktop;
 
-import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import de.renoth.dt.DungeonTacticsGame;
 
-import java.awt.*;
-
 public class DesktopLauncher {
-	public static void main (String[] arg) {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+    public static void main(String[] arg) {
+        var config = new Lwjgl3ApplicationConfiguration();
 
-		config.width = 1280;
-		config.height = 800;
-		config.resizable = false;
-		config.vSyncEnabled = true;
-		config.title = "Dungeon Tactics 1.0.3";
+        config.setWindowedMode(1280, 800);
+        config.setResizable(false);
+        // config.vSyncEnabled = true;
+        config.setTitle("Dungeon Tactics 1.0.3");
 
-		new LwjglApplication(new DungeonTacticsGame(), config);
-	}
+        new Lwjgl3Application(new DungeonTacticsGame(), config);
+    }
 }
